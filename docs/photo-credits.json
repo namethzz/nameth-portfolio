@@ -1,0 +1,54 @@
+[
+  {
+    "role": "hero",
+    "file": "public/assets/hero-canyon.jpg",
+    "size": [
+      2400,
+      1600
+    ],
+    "photographer": "Haci",
+    "title": "Desert canyon landscape with mountains at sunset",
+    "source": "https://unsplash.com/photos/desert-canyon-landscape-with-mountains-at-sunset-bR7QMQtOJMQ",
+    "original": "https://images.unsplash.com/photo-1775240158468-06faa67b7286",
+    "downloaded_url": "https://images.unsplash.com/photo-1775240158468-06faa67b7286?auto=format&fit=crop&fm=jpg&q=85&w=2400",
+    "license": "https://unsplash.com/license",
+    "crop_note": "Wide canyon framed by shadowed cliffs; dark lower foreground supports white bottom text. Center at 50% 55% for wide hero."
+  },
+  {
+    "role": "construction-project",
+    "file": "public/assets/project-construction.jpg",
+    "size": [
+      1800,
+      1350
+    ],
+    "photographer": "Neon Wang",
+    "title": "Modern concrete architecture with grassy courtyard and stairs",
+    "source": "https://unsplash.com/photos/modern-concrete-architecture-with-grassy-courtyard-and-stairs-igxSlxxKSb8",
+    "original": "https://images.unsplash.com/photo-1762419757194-406cc4a13d73",
+    "downloaded_url": "https://images.unsplash.com/photo-1762419757194-406cc4a13d73?auto=format&fit=crop&fm=jpg&q=85&w=1800",
+    "license": "https://unsplash.com/license",
+    "crop_note": "Concrete stair geometry and structural lines. Center near 50% 65% for a wider card."
+  },
+  {
+    "role": "crops-project",
+    "file": "public/assets/project-crops.jpg",
+    "size": [
+      1800,
+      1350
+    ],
+    "photographer": "Dawid Zawiła",
+    "title": "Aerial view of green agricultural fields with shadows",
+    "source": "https://unsplash.com/photos/aerial-view-of-green-agricultural-fields-with-shadows-sL3QmOLer6U",
+    "original": "https://images.unsplash.com/photo-1774976225327-05d4dbf4834e",
+    "downloaded_url": "https://images.unsplash.com/photo-1774976225327-05d4dbf4834e?auto=format&fit=crop&fm=jpg&q=85&w=1800",
+    "license": "https://unsplash.com/license",
+    "crop_note": "Top-down green field patterns and long tree shadows, easy landscape crop."
+  },
+  {
+    "role": "ecommerce-project",
+    "file": "public/assets/project-ecommerce.jpg",
+    "photographer": "Pavel Danilyuk",
+    "source": "User-supplied project.zip: Project/wwwroot/img/pexels-pavel-danilyuk-6339725.jpg",
+    "usage": "Original OTW.SHOP storefront hero photograph; resized for the portfolio card."
+  }
+]
