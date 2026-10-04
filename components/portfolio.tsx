@@ -70,7 +70,7 @@ const projects = [
     status: "Team project",
     tags: ["Data cleaning", "ChromaDB", "RAG"],
     role: "Data collector & data analyst",
-    repository: "",
+    repository: "https://github.com/namethzz/chatbot-project",
     details: [
       "Collected Agri-Map information on soil conditions, suitable planting areas and pest management for 11 economic crops across Thailand.",
       "Cleaned and structured raw data for embedding in a ChromaDB vector database used by a retrieval-augmented generation system.",
