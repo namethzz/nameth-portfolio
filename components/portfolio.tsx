@@ -15,7 +15,7 @@ import {
   Sprout,
   Terminal,
 } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { PrismaHero, type HeroNavItem } from "@/components/ui/prisma-hero";
 import { Button } from "@/components/ui/button";
 import {
@@ -49,6 +49,7 @@ const projects = [
     tags: ["React", "Python", "Data visualization"],
     role: "Project developer",
     repository: "https://github.com/namethzz/THAITAY",
+    website: "https://namethzz.github.io/THAITAY/#overview",
     details: [
       "Developing a React interface for exploring and comparing historical construction material prices.",
       "Collecting and preparing price data for structural materials, including checking missing values and material identities.",
@@ -148,6 +149,7 @@ function Kicker({ children }: { children: ReactNode }) {
 
 function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   const [open, setOpen] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const isFeatured = project.imageClass === "ecommerce";
   return (
     <article
@@ -190,6 +192,18 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
               </span>
             ))}
           </div>
+
+          {project.website && (
+            <a
+              href={project.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-link project-detail-link"
+            >
+              Visit website
+              <ArrowRight aria-hidden="true" />
+            </a>
+          )}
           {isFeatured && (
             <DialogTrigger asChild>
               <button className="text-link project-detail-link">
@@ -199,7 +213,19 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             </DialogTrigger>
           )}
         </div>
-        <DialogContent className="detail-dialog sm:max-w-[650px]">
+        <DialogContent
+          ref={dialogRef}
+          className="detail-dialog sm:max-w-[650px]"
+          onOpenAutoFocus={(event) => {
+            event.preventDefault();
+
+            const dialog = dialogRef.current;
+            if (!dialog) return;
+
+            dialog.scrollTop = 0;
+            dialog.focus({ preventScroll: true });
+          }}
+        >
           <DialogHeader>
             <p className="detail-kicker">Selected project / {project.number}</p>
             <DialogTitle className="detail-title">{project.name}</DialogTitle>
@@ -227,6 +253,18 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             </div>
           </div>
           <p className="detail-notice">{project.note}</p>
+          {project.website && (
+            <Button asChild className="detail-source">
+              <a
+                href={project.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ArrowRight aria-hidden="true" />
+                Visit website
+              </a>
+            </Button>
+          )}
           {project.repository && (
             <Button asChild className="detail-source">
               <a
