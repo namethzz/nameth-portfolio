@@ -3,6 +3,31 @@
 @import "../vendor/shadcn-tailwind-4.13.0.css";
 
 @font-face {
+  font-family: 'Noto Sans Thai';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(/assets/noto-sans-thai-400.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans Thai';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(/assets/noto-sans-thai-500.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Noto Sans Thai';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(/assets/noto-sans-thai-600.ttf) format('truetype');
+}
+
+@font-face {
   font-family: "Manrope";
   src: url("/assets/manrope-400.ttf") format("truetype");
   font-style: normal;
@@ -1325,4 +1350,75 @@ input {
   .hero-video {
     display: none;
   }
+}
+
+/* Small bilingual control, deliberately part of the existing navigation. */
+.language-switch {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 3px;
+  margin-left: 10px;
+  border: 1px solid #ffffff26;
+  border-radius: 99px;
+  background: #242521;
+}
+.language-switch button {
+  min-width: 42px;
+  min-height: 38px;
+  border: 0;
+  border-radius: 99px;
+  background: transparent;
+  color: #b5b6a9;
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  transition: background .2s, color .2s;
+}
+.language-switch button:hover { color: #fffef4; }
+.language-switch button[aria-pressed="true"] {
+  background: #ececde;
+  color: #252821;
+  box-shadow: 0 1px 5px #00000020;
+}
+.project-detail-link + .project-detail-link { margin-left: 20px; }
+:lang(th) { --font-sans: "Noto Sans Thai", "Tahoma", sans-serif; }
+html:lang(th) body { font-family: var(--font-sans); }
+html:lang(th) :is(.section-heading-row h2, .about-heading, .contact-heading-row h2) {
+  font-family: var(--font-sans);
+  letter-spacing: -.025em;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+html:lang(th) .section-heading-row h2 { font-size: clamp(34px, 4.5vw, 66px); }
+html:lang(th) .about-heading { font-size: clamp(36px, 4.3vw, 64px); }
+html:lang(th) .contact-heading-row h2 { font-size: clamp(42px, 7vw, 100px); }
+html:lang(th) :is(.hero-role, .section-kicker, .project-eyebrow, .project-photo-title small, .detail-kicker) { letter-spacing: 0; }
+html:lang(th) :is(.hero-copy p, .project-summary, .detail-block li, .detail-notice) { line-height: 1.85; }
+.section-heading-row > h2 { max-width: 780px; min-width: 0; }
+.section-heading-row > p { flex-shrink: 0; }
+.detail-dialog [data-slot="dialog-close"] { min-width: 44px; min-height: 44px; display: grid; place-items: center; top: 8px; right: 8px; }
+@media (max-width: 760px) {
+  .main-nav { width: calc(100% - 34px); max-width: 480px; }
+  .nav-inner { padding: 6px 6px 8px; justify-content: space-between; }
+  .nav-link { padding: 12px 8px; font-size: 12px; }
+  .language-switch { margin-left: 3px; padding: 2px; }
+  .language-switch button { min-width: 34px; min-height: 40px; }
+  .hero-meta { gap: 10px; font-size: 10px; }
+  .hero-meta a { font-size: 10px; }
+  .work-footer { flex-wrap: wrap; }
+  .hero-role { letter-spacing: 0; }
+  html:lang(th) .hero { min-height: 700px; }
+  html:lang(th) .hero-copy { max-width: 330px; }
+  .project-photo-title { font-size: clamp(30px, 10vw, 44px); overflow-wrap: anywhere; }
+  .project-photo-title small { font-size: 10px; }
+  .project-detail-link + .project-detail-link { margin-left: 0; display: flex; }
+}
+
+@media (min-width: 761px) and (max-width: 1050px) {
+  .section-heading-row { flex-direction: column; align-items: start; gap: 24px; }
+  .section-heading-row > p { max-width: 480px; }
+  .contact-heading-row { flex-direction: column; align-items: start; }
+  .contact-intro { width: 100%; max-width: 480px; }
 }

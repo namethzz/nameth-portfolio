@@ -1,5 +1,7 @@
 "use client";
 
+import { useLanguage } from "@/lib/language";
+import { getProjects } from "@/lib/projects";
 import { assetUrl } from "@/lib/assets";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -16,7 +18,7 @@ import {
   Terminal,
 } from "lucide-react";
 import { useRef, useState, type ReactNode } from "react";
-import { PrismaHero, type HeroNavItem } from "@/components/ui/prisma-hero";
+import { PrismaHero } from "@/components/ui/prisma-hero";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -27,93 +29,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-const navigation: HeroNavItem[] = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
-
-const projects = [
-  {
-    number: "01",
-    name: "THAI TAY",
-    subtitle: "Construction Price Intelligence",
-    category: "WEB DEVELOPMENT · DATA ANALYSIS",
-    description:
-      "Making historical construction material prices easier to explore and understand.",
-    image: assetUrl("assets/project-construction.jpg"),
-    alt: "Modern concrete courtyard with architectural stairs",
-    imageClass: "construction",
-    status: "In progress",
-    tags: ["React", "Python", "Data visualization"],
-    role: "Project developer",
-    repository: "https://github.com/namethzz/THAITAY",
-    website: "https://namethzz.github.io/THAITAY/#overview",
-    details: [
-      "Developing a React interface for exploring and comparing historical construction material prices.",
-      "Collecting and preparing price data for structural materials, including checking missing values and material identities.",
-      "Building workflows for material selection and trend visualization, with a focus on clear, usable interfaces.",
-    ],
-    tools: ["React", "JavaScript", "CSS", "Python", "Pandas", "Git / GitHub"],
-    note: "Current focus: individual structural material prices. Machine learning forecasts for the next 1–3 months are in development. BOQ integration is a possible later extension.",
-  },
-  {
-    number: "02",
-    name: "Economic Crops Chat",
-    subtitle: "An agricultural data advisory chatbot",
-    category: "DATA PREPARATION · RAG",
-    description:
-      "Structuring agricultural knowledge to support location-based crop recommendations.",
-    image: assetUrl("assets/project-crops.jpg"),
-    alt: "Aerial view of green agricultural fields and long tree shadows",
-    imageClass: "crops",
-    status: "Team project",
-    tags: ["Data cleaning", "ChromaDB", "RAG"],
-    role: "Data collector & data analyst",
-    repository: "https://github.com/namethzz/chatbot-project",
-    details: [
-      "Collected Agri-Map information on soil conditions, suitable planting areas and pest management for 11 economic crops across Thailand.",
-      "Cleaned and structured raw data for embedding in a ChromaDB vector database used by a retrieval-augmented generation system.",
-      "Organized information by province and district to support location-based crop recommendations.",
-      "Contributed to frontend and backend tasks with React, Node.js and MongoDB as part of the development team.",
-    ],
-    tools: ["Data preprocessing", "ChromaDB", "React", "Node.js", "MongoDB"],
-    note: "My primary contribution was collecting and preparing the agricultural data. The chatbot was developed as a team project.",
-  },
-  {
-    number: "03",
-    name: "OTW.SHOP",
-    subtitle: "A supplement store built with C#",
-    category: "C# DEVELOPMENT · E-COMMERCE",
-    description:
-      "A supplement shopping experience, from product discovery and a shopping cart to order management and store administration.",
-    image: assetUrl("assets/project-ecommerce.jpg"),
-    alt: "An athlete drinking from a shaker after a workout, the hero image used in OTW.SHOP",
-    imageClass: "ecommerce",
-    status: "C# project",
-    tags: ["C#", "ASP.NET Core MVC", "MySQL"],
-    role: "Web developer",
-    repository: "https://github.com/namethzz/OTW",
-    details: [
-      "Built a server-rendered storefront with Razor and Bootstrap, including product search, category filters and price sorting.",
-      "Implemented a session-based shopping cart, checkout, order history and promotion validation.",
-      "Connected product, customer and order data using Entity Framework Core and MySQL.",
-      "Developed admin pages for managing products, stock, order statuses, promotions and return requests.",
-      "Added product reviews and customer return requests linked to their orders.",
-    ],
-    tools: [
-      "C#",
-      "ASP.NET Core MVC",
-      "Razor",
-      "Entity Framework Core",
-      "MySQL",
-      "Bootstrap",
-      "JavaScript",
-    ],
-    note: "A supplement store web project covering both the customer storefront and store administration.",
-  },
-];
 
 function Reveal({
   children,
@@ -147,7 +62,8 @@ function Kicker({ children }: { children: ReactNode }) {
   );
 }
 
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
+function ProjectCard({ project }: { project: ReturnType<typeof getProjects>[number] }) {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const isFeatured = project.imageClass === "ecommerce";
@@ -159,7 +75,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         <DialogTrigger asChild>
           <button
             className={`project-visual ${project.imageClass}`}
-            aria-label={`Explore ${project.name}`}
+            aria-label={`${t("explore")} ${project.name}`}
           >
             <img
               src={project.image}
@@ -200,20 +116,19 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
               rel="noopener noreferrer"
               className="text-link project-detail-link"
             >
-              Visit website
+              {t("visit")} 
               <ArrowRight aria-hidden="true" />
             </a>
           )}
-          {isFeatured && (
-            <DialogTrigger asChild>
+          <DialogTrigger asChild>
               <button className="text-link project-detail-link">
-                Explore project
+                {t("explore")} 
                 <ArrowRight aria-hidden="true" />
               </button>
-            </DialogTrigger>
-          )}
+          </DialogTrigger>
         </div>
         <DialogContent
+          closeLabel={t("close")}
           ref={dialogRef}
           className="detail-dialog sm:max-w-[650px]"
           onOpenAutoFocus={(event) => {
@@ -227,17 +142,17 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
           }}
         >
           <DialogHeader>
-            <p className="detail-kicker">Selected project / {project.number}</p>
+            <p className="detail-kicker">{t("selectedProject")}  {project.number}</p>
             <DialogTitle className="detail-title">{project.name}</DialogTitle>
             <DialogDescription className="detail-subtitle">
               {project.subtitle}
             </DialogDescription>
           </DialogHeader>
           <div className="detail-role">
-            <strong>My role:</strong> {project.role}
+            <strong>{t("role")} </strong> {project.role}
           </div>
           <div className="detail-block">
-            <h3>What I worked on</h3>
+            <h3>{t("strengths")} </h3>
             <ul>
               {project.details.map((detail) => (
                 <li key={detail}>{detail}</li>
@@ -245,7 +160,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             </ul>
           </div>
           <div className="detail-block">
-            <h3>Tools & technologies</h3>
+            <h3>{t("tools")} </h3>
             <div className="skill-tags">
               {project.tools.map((tool) => (
                 <span key={tool}>{tool}</span>
@@ -261,7 +176,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
                 rel="noopener noreferrer"
               >
                 <ArrowRight aria-hidden="true" />
-                Visit website
+                {t("visit")} 
               </a>
             </Button>
           )}
@@ -273,7 +188,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
                 rel="noopener noreferrer"
               >
                 <Github />
-                View source on GitHub
+                {t("source")} 
               </a>
             </Button>
           )}
@@ -284,29 +199,37 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 }
 
 export default function Portfolio() {
+  const { language, t } = useLanguage();
+  const projects = getProjects(language);
+  const navigation = [
+    { label: t("navWork"), href: "#work" },
+    { label: t("navAbout"), href: "#about" },
+    { label: t("navSkills"), href: "#skills" },
+    { label: t("navContact"), href: "#contact" },
+  ];
   return (
     <>
       <a href="#work" className="skip-link">
-        Skip to selected work
+        {t("skip")} 
       </a>
       <main className="site-shell">
         <PrismaHero
           title="Nameth"
           monogram="nw."
-          role="Developer + data enthusiast"
-          location="Thailand"
-          description="Connecting the dots between data and development. I build thoughtful web experiences and turn raw information into something useful."
-          availability="Open for internships"
+          role={t("heroRole")}
+          location={t("country")}
+          description={t("heroDescription")}
+          availability={t("availability")}
           navItems={navigation}
-          ctaLabel="Explore my work"
+          ctaLabel={t("exploreWork")}
           ctaHref="#work"
         />
         <div className="hero-meta">
-          <span>BASED IN PATHUM THANI, THAILAND</span>
+          <span>{t("based")} </span>
           <a href="#work">
-            SCROLL TO EXPLORE <ArrowDown aria-hidden="true" />
+            {t("scroll")}  <ArrowDown aria-hidden="true" />
           </a>
-          <span className="meta-year">PORTFOLIO / 2026</span>
+          <span className="meta-year">{t("portfolio")} </span>
         </div>
 
         <section
@@ -316,13 +239,12 @@ export default function Portfolio() {
         >
           <Reveal>
             <Kicker>
-              Selected work / {String(projects.length).padStart(2, "0")}
+              {t("selectedWork")}  {String(projects.length).padStart(2, "0")}
             </Kicker>
             <div className="section-heading-row">
-              <h2 id="work-heading">Built with purpose.</h2>
+              <h2 id="work-heading">{t("workTitle")} </h2>
               <p>
-                A mix of web development and data projects. Learning by making
-                things that solve real problems.
+                {t("workIntro")} 
               </p>
             </div>
           </Reveal>
@@ -340,7 +262,7 @@ export default function Portfolio() {
             ))}
           </div>
           <div className="work-footer">
-            <span>Always learning. Always building.</span>
+            <span>{t("workFooter")} </span>
             <a
               href="https://github.com/namethzz"
               target="_blank"
@@ -348,7 +270,7 @@ export default function Portfolio() {
               className="text-link"
             >
               <Github aria-hidden="true" />
-              More on GitHub
+              {t("more")} 
             </a>
           </div>
         </section>
@@ -359,11 +281,11 @@ export default function Portfolio() {
           aria-labelledby="about-heading"
         >
           <Reveal>
-            <Kicker>A little about me</Kicker>
+            <Kicker>{t("aboutKicker")} </Kicker>
             <h2 className="about-heading" id="about-heading">
-              A curious mind.
+              {t("aboutTitle")} 
               <br />
-              <em>A practical approach.</em>
+              <em>{t("aboutEm")} </em>
             </h2>
             <div className="profile-line">
               <div className="portrait-frame">
@@ -375,31 +297,26 @@ export default function Portfolio() {
               </div>
               <div>
                 <p>Nameth Wongmongkol</p>
-                <span>ณเมธ วงค์มงคล · Thailand</span>
+                <span>{language === "th" ? "Nameth Wongmongkol · ประเทศไทย" : "ณเมธ วงค์มงคล · Thailand"}</span>
               </div>
             </div>
           </Reveal>
           <Reveal className="about-copy" delay={0.1}>
             <p>
-              I’m a Computer Science and Software Development student who enjoys
-              working where code meets data.
+              {t("about1")} 
             </p>
             <p>
-              From collecting and cleaning datasets to building React interfaces
-              and a C# e-commerce application, I like understanding how the
-              pieces connect. My projects help me put that curiosity into
-              practice.
+              {t("about2")} 
             </p>
             <p>
-              I’m looking for an internship where I can contribute, learn from a
-              team, and keep growing in web development and data analysis.
+              {t("about3")} 
             </p>
             <div className="education-line">
               <GraduationCap aria-hidden="true" />
               <div>
-                <p>B.Sc. Computer Science & Software Development</p>
-                <span>Sripatum University · 2023–Present</span>
-                <span>GPAX 3.79 / 4.00 · 6 semesters</span>
+                <p>{t("degree")} </p>
+                <span>{t("university")} </span>
+                <span>{t("gpa")} </span>
               </div>
             </div>
             <Button asChild variant="outline" className="resume-button">
@@ -408,7 +325,7 @@ export default function Portfolio() {
                 download="Nameth-Wongmongkol-Resume.png"
               >
                 <Download aria-hidden="true" />
-                Download résumé<span className="sr-only"> (PNG)</span>
+                {t("resume")} <span className="sr-only"> (PNG)</span>
               </a>
             </Button>
           </Reveal>
@@ -420,21 +337,20 @@ export default function Portfolio() {
           aria-labelledby="skills-heading"
         >
           <Reveal>
-            <Kicker>Capabilities</Kicker>
+            <Kicker>{t("capabilities")} </Kicker>
             <div className="section-heading-row">
               <h2 className="skills-heading" id="skills-heading">
-                My growing toolkit.
+                {t("skillsTitle")} 
               </h2>
-              <p>The tools I use to move from an idea to a working solution.</p>
+              <p>{t("skillsIntro")} </p>
             </div>
           </Reveal>
           <div className="skills-grid">
             <Reveal className="skill-group">
               <Code2 aria-hidden="true" />
-              <h3>Web development</h3>
+              <h3>{t("web")} </h3>
               <p>
-                Building React interfaces and C# web applications with ASP.NET
-                Core MVC and database-backed features.
+                {t("webDesc")} 
               </p>
               <div className="skill-tags">
                 {[
@@ -452,10 +368,9 @@ export default function Portfolio() {
             </Reveal>
             <Reveal className="skill-group" delay={0.06}>
               <Database aria-hidden="true" />
-              <h3>Data & analysis</h3>
+              <h3>{t("data")} </h3>
               <p>
-                Collecting, cleaning and organizing data, with basic exploratory
-                analysis and visualization.
+                {t("dataDesc")} 
               </p>
               <div className="skill-tags">
                 {["Python", "Pandas", "NumPy", "SQL", "Google Colab"].map(
@@ -467,10 +382,9 @@ export default function Portfolio() {
             </Reveal>
             <Reveal className="skill-group" delay={0.12}>
               <Terminal aria-hidden="true" />
-              <h3>Tools & databases</h3>
+              <h3>{t("databases")} </h3>
               <p>
-                Working with version control, relational databases and tools for
-                connected data workflows.
+                {t("databaseDesc")} 
               </p>
               <div className="skill-tags">
                 {[
@@ -489,7 +403,7 @@ export default function Portfolio() {
           </div>
           <p className="skill-note">
             <Sprout aria-hidden="true" />
-            Currently learning Microsoft Excel for data analysis.
+            {t("learning")} 
           </p>
         </section>
 
@@ -499,20 +413,19 @@ export default function Portfolio() {
           aria-labelledby="contact-heading"
         >
           <Reveal>
-            <Kicker>Let’s connect</Kicker>
+            <Kicker>{t("contactKicker")} </Kicker>
             <div className="contact-heading-row">
               <h2 id="contact-heading">
-                Good things start<span>with a hello.</span>
+                {t("contactTitle")} <span>{t("contactEm")} </span>
               </h2>
               <div className="contact-intro">
                 <p>
-                  Have an internship opportunity or a project in mind? I’d love
-                  to hear about it.
+                  {t("contactIntro")} 
                 </p>
                 <Button asChild className="contact-cta">
                   <a href="mailto:nameth.won@spumail.net">
                     <Mail aria-hidden="true" />
-                    Say hello
+                    {t("hello")} 
                   </a>
                 </Button>
               </div>
@@ -541,10 +454,10 @@ export default function Portfolio() {
           <span className="footer-name">© 2026 Nameth Wongmongkol</span>
           <div>
             <span className="footer-location">
-              Made with curiosity in Thailand.
+              {t("made")} 
             </span>
             <a href="#home" className="text-link">
-              Back to top
+              {t("top")} 
             </a>
           </div>
         </footer>

@@ -1,5 +1,6 @@
 "use client";
 
+import { LanguageSwitch, useLanguage } from "@/lib/language";
 import { assetUrl } from "@/lib/assets";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -93,6 +94,7 @@ export const PrismaHero = ({
   ctaLabel = "Join the lab", ctaHref = "#contact",
   videoSrc = assetUrl("assets/prisma-landscape.mp4"), poster = assetUrl("assets/hero-canyon.jpg"),
 }: PrismaHeroProps) => {
+  const { t } = useLanguage();
   const reducedMotion = useReducedMotion();
   const [activeSection, setActiveSection] = useState("");
   useEffect(() => {
@@ -109,10 +111,11 @@ export const PrismaHero = ({
     return () => observer.disconnect();
   }, [navItems]);
   return (
-    <section className="hero" id="home" aria-label="Introduction">
-      <nav className="main-nav" aria-label="Main navigation">
+    <section className="hero" id="home" aria-label={t("introduction")}>
+      <nav className="main-nav" aria-label={t("navigation")}>
         <div className="nav-inner">
           {navItems.map((item) => <a key={item.href} href={item.href} className={`nav-link ${activeSection === item.href.slice(1) ? "active" : ""}`} aria-current={activeSection === item.href.slice(1) ? "location" : undefined}>{item.label}</a>)}
+          <LanguageSwitch />
         </div>
       </nav>
       <div className="hero-frame">
@@ -120,7 +123,7 @@ export const PrismaHero = ({
         {videoSrc && !reducedMotion && <video autoPlay loop muted playsInline preload="none" aria-hidden="true" className="hero-video" src={videoSrc} poster={poster} />}
         <div className="hero-shade" />
         <div className="noise-overlay" />
-        <a href="#home" className="wordmark" aria-label="Back to introduction">{monogram}</a>
+        <a href="#home" className="wordmark" aria-label={t("backIntro")}>{monogram}</a>
         <div className="hero-availability"><span className="availability-mark" />{availability}</div>
         <div className="hero-content">
           <div className="hero-title-block">
