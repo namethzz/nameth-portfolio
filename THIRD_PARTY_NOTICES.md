@@ -4,7 +4,7 @@
 - Hero video comes from the CloudFront video URL in that supplied component and is included as an optimized local MP4.
 - shadcn UI: https://ui.shadcn.com/ — Button and Dialog components, with Radix UI primitives.
 - Icons: Lucide React — https://lucide.dev/
-- Fonts: Manrope and DM Sans from Google Fonts. Their SIL Open Font License texts are included in `docs/font-licenses/`.
+- Fonts: Manrope, DM Sans and Noto Sans Thai from Google Fonts. Their SIL Open Font License texts are included in `docs/font-licenses/`.
 - Canyon photograph: Haci — https://unsplash.com/photos/desert-canyon-landscape-with-mountains-at-sunset-bR7QMQtOJMQ
 - Architecture photograph: Neon Wang — https://unsplash.com/photos/modern-concrete-architecture-with-grassy-courtyard-and-stairs-igxSlxxKSb8
 - Agricultural photograph: Dawid Zawiła — https://unsplash.com/photos/aerial-view-of-green-agricultural-fields-with-shadows-sL3QmOLer6U
