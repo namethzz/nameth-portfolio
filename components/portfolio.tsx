@@ -321,11 +321,11 @@ export default function Portfolio() {
             </div>
             <Button asChild variant="outline" className="resume-button">
               <a
-                href={assetUrl("assets/nameth-resume.png")}
-                download="Nameth-Wongmongkol-Resume.png"
+                href={assetUrl("assets/resume.pdf")}
+                download="resume.pdf"
               >
                 <Download aria-hidden="true" />
-                {t("resume")} <span className="sr-only"> (PNG)</span>
+                {t("resume")} <span className="sr-only"> (PDF)</span>
               </a>
             </Button>
           </Reveal>
