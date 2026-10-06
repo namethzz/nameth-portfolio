@@ -24,6 +24,7 @@ const baseProjects = [
     image: assetUrl("assets/project-ecommerce.jpg"),
     imageClass: "ecommerce",
     repository: "https://github.com/namethzz/OTW",
+    website: "https://otw-production.up.railway.app/",  
     tools: [
       "C#",
       "ASP.NET Core MVC",
