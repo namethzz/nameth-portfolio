@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Download, Github, Mail } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Download, GitBranch as Github, Mail } from "lucide-react";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { getProjects } from "@/lib/projects";
