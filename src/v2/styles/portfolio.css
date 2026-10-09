@@ -2259,3 +2259,26 @@
 @media(prefers-reduced-motion:reduce) {
   .portfolio-v2 .v2-proof-code-card { transition: none; }
 }
+
+/* Recruiter-facing context within each work chapter. */
+.portfolio-v2 .v2-story-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 15px 0 10px;
+  color: #3C6257;
+  font-size: 12px;
+  line-height: 1.55;
+  font-weight: 650;
+}
+.portfolio-v2 .v2-story-status > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--nm-copper);
+  flex: none;
+}
+@media(max-width:520px) {
+  .portfolio-v2 .v2-story-links { gap: 10px 15px; }
+  .portfolio-v2 .v2-story-status { font-size: 11px; }
+}
