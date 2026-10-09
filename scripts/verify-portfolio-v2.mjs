@@ -109,6 +109,30 @@ async function smokeDesktop() {
     await page.locator(".v2-case-study h1").waitFor();
     assert(await page.locator(".v2-case-study h1").innerText() === "THAI TAY", "Case study not loaded");
 
+    // Role and technology information must be readable, clearly structured
+    // and sourced from the project, not a generic capabilities tag list.
+    const dossier = page.locator(".v2-case-facts");
+    assert(await dossier.getByRole("heading", { name: /My role|บทบาทของผม/i }).count() === 1,
+      "Case study dossier is missing its role heading");
+    assert(await dossier.getByRole("heading", { name: /Tools & technologies|เครื่องมือที่ใช้/i }).count() === 1,
+      "Case study dossier is missing its technology heading");
+    assert(await dossier.locator(".v2-case-tool-list li").count() === 6,
+      "THAI TAY tools must come from the project's canonical data");
+    const contrast = await dossier.locator(".v2-case-fact-value").evaluate(node => {
+      const parse = color => (color.match(/[\\d.]+/g) || []).slice(0, 3).map(Number);
+      const luminance = rgb => {
+        const channels = rgb.map(value => {
+          const c = value / 255;
+          return c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4;
+        });
+        return channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722;
+      };
+      const ink = luminance(parse(getComputedStyle(node).color));
+      const paper = luminance(parse(getComputedStyle(node.closest(".v2-case-facts")).backgroundColor));
+      return (Math.max(ink, paper) + .05) / (Math.min(ink, paper) + .05);
+    });
+    assert(contrast >= 4.5, "Case-study role text contrast fails WCAG AA: " + contrast);
+
     await page.locator(".v2-case-study .v2-inline-link").first().click();
     await page.waitForURL(/#work/);
     assert(await page.locator(".v2-story-chapter").count() === 3, "Returning home lost the work section");
@@ -177,6 +201,15 @@ async function smokeMobile() {
     await page.getByRole("dialog").waitFor({ state: "visible" });
     await page.getByRole("button", { name: /Close preview|ปิดหน้าต่าง/ }).click();
     await page.getByRole("dialog").waitFor({ state: "hidden", timeout: 3000 });
+
+    await page.goto(base + "?project=economic-crops-chat", { waitUntil: "domcontentloaded" });
+    const mobileDossier = page.locator(".v2-case-facts");
+    assert(await mobileDossier.locator(".v2-case-tool-list li").count() === 5,
+      "Crop chat should show its five documented project technologies");
+    assert(await mobileDossier.locator(".v2-case-fact-value").isVisible(),
+      "Role copy is not visible on mobile case studies");
+    const caseOverflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
+    assert(!caseOverflow, "Case study metadata causes mobile horizontal overflow");
   } finally { await page.close(); }
 }
 
