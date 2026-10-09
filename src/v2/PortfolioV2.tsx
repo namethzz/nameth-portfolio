@@ -209,7 +209,7 @@ function About() {
   );
 }
 
-function Skills({ projects }: { projects: Project[] }) {
+function Skills({ projects, onNavigate }: { projects: Project[]; onNavigate: (index: number) => void }) {
   const { t } = useLanguage();
   const reduce = useReducedMotion();
   const categories = [
@@ -238,7 +238,7 @@ function Skills({ projects }: { projects: Project[] }) {
             <h3>{category.title}</h3>
             <p>{category.description}</p>
             <div className="v2-tags">{category.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
-            {category.project && <a className="v2-inline-link" href={projectHref(category.index)}>{category.project.name} <ArrowUpRight aria-hidden="true" size={16} /></a>}
+            {category.project && <a className="v2-inline-link" href={projectHref(category.index)} onClick={(event) => { event.preventDefault(); onNavigate(category.index); }}>{category.project.name} <ArrowUpRight aria-hidden="true" size={16} /></a>}
           </motion.article>
         ))}
       </div>
@@ -283,12 +283,17 @@ function Contact() {
 
 function CaseStudy({ project, onBackToWork }: { project: Project; onBackToWork: () => void }) {
   const { language, t } = useLanguage();
+  const reduce = useReducedMotion();
   return (
     <main id="main-content" className="v2-case-study">
       <div className="v2-case-hero">
         <a className="v2-inline-link" href={sectionHref("work")} onClick={(event) => { event.preventDefault(); onBackToWork(); }}><ArrowLeft size={17} aria-hidden="true" /> {t("navWork")}</a>
         <p className="v2-kicker">{project.number} / {project.category}</p>
-        <h1>{project.name}</h1>
+        <motion.h1
+          initial={reduce ? false : { opacity: 0, y: 26 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reduce ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >{project.name}</motion.h1>
         <p className="v2-case-subtitle">{project.subtitle}</p>
         <img src={project.image} alt={project.alt} width="1800" height="1350" style={{ viewTransitionName: "v2-feature-image" }} />
       </div>
@@ -300,14 +305,18 @@ function CaseStudy({ project, onBackToWork }: { project: Project; onBackToWork: 
           <div className="v2-tags">{project.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
         </aside>
         <div>
-          <h2>{language === "th" ? "เรื่องราวของงานนี้" : "Behind the project"}</h2>
-          <p className="v2-case-lead">{project.description}</p>
+          <Reveal>
+            <h2>{language === "th" ? "เรื่องราวของงานนี้" : "Behind the project"}</h2>
+            <p className="v2-case-lead">{project.description}</p>
+          </Reveal>
           {project.details.map((detail, index) => (
-            <div className="v2-case-point" key={detail}>
-              <span>0{index + 1}</span><p>{detail}</p>
-            </div>
+            <Reveal key={detail} delay={index * 0.075}>
+              <div className="v2-case-point">
+                <span>0{index + 1}</span><p>{detail}</p>
+              </div>
+            </Reveal>
           ))}
-          <p className="v2-case-note">{project.note}</p>
+          <Reveal><p className="v2-case-note">{project.note}</p></Reveal>
           <div className="v2-actions">
             {project.website && <a className="v2-button v2-button-dark" href={project.website} target="_blank" rel="noopener noreferrer">{t("visit")} <ArrowUpRight size={17} aria-hidden="true" /></a>}
             <a className="v2-button v2-button-outline" href={project.repository} target="_blank" rel="noopener noreferrer">{t("source")} <Github size={17} aria-hidden="true" /></a>
@@ -381,7 +390,7 @@ export default function PortfolioV2() {
           <Hero />
           <SelectedWork projects={projects} onNavigate={navigateToProject} />
           <About />
-          <Skills projects={projects} />
+          <Skills projects={projects} onNavigate={navigateToProject} />
           <Contact />
         </main>
       )}
