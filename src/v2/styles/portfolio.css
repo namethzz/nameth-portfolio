@@ -1687,3 +1687,275 @@
     gap: 42px;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PHASE 4 / PALETTE REFINEMENT
+   One warm editorial visual language from Waving Hero → About → Skills → Case.
+   Dark ink is for typography, short decorative accents and small controls,
+   not repeated full-bleed backgrounds that interrupt the warm-paper mood.
+   ───────────────────────────────────────────────────────────────────────── */
+.portfolio-v2 {
+  --nm-copper-text: #963c2b;
+  --nm-sage-paper: #E8ECE4;
+  --nm-parchment: #ECE6DB;
+  --nm-quiet-line: #C9C7B9;
+}
+
+/* ABOUT ME — sage paper instead of an unrelated full-screen dark panel. */
+.portfolio-v2 .v2-about {
+  position: relative;
+  background: var(--nm-sage-paper);
+  color: var(--nm-ink);
+  gap: clamp(36px, 6vw, 112px);
+  border-top: 1px solid #D4DACE;
+  border-bottom: 1px solid #D4DACE;
+}
+.portfolio-v2 .v2-about::before {
+  content: "ABOUT / 02";
+  position: absolute;
+  right: clamp(20px, 4vw, 72px);
+  top: 33px;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .15em;
+  color: var(--nm-teal);
+}
+.portfolio-v2 .v2-about .v2-kicker {
+  color: var(--nm-copper-text);
+  font-weight: 750;
+}
+.portfolio-v2 .v2-about h2 {
+  color: var(--nm-ink);
+}
+.portfolio-v2 .v2-about h2 em {
+  color: #AB5441;
+}
+.portfolio-v2 .v2-about-copy {
+  padding-top: clamp(24px, 4vw, 58px);
+}
+.portfolio-v2 .v2-about-copy > div > p:not(.v2-education) {
+  max-width: 62ch;
+  color: #354743;
+  font-size: clamp(15px, 1.12vw, 17px);
+  line-height: 1.85;
+  margin: 0 0 18px;
+}
+.portfolio-v2 .v2-about-signature {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 19px;
+  width: min(100%, 335px);
+  min-height: 187px;
+  margin-top: 36px;
+  padding: 21px 24px;
+  background: #F5F1E8;
+  border: 1px solid #C7CBBF;
+  color: var(--nm-ink);
+  box-shadow: 9px 9px 0 rgba(53, 107, 104, .06);
+}
+.portfolio-v2 .v2-about-signature-label,
+.portfolio-v2 .v2-about-signature-sub {
+  font-size: 10px;
+  letter-spacing: .13em;
+  line-height: 1.5;
+  font-weight: 750;
+  color: #536B63;
+}
+.portfolio-v2 .v2-about-signature strong {
+  font-size: clamp(32px, 3vw, 43px);
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -.068em;
+}
+.portfolio-v2 .v2-about-signature strong span {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 13px;
+  letter-spacing: 0;
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-about-signature-line {
+  height: 2px;
+  width: 54px;
+  background: var(--nm-copper);
+}
+.portfolio-v2 .v2-values {
+  gap: 1px;
+  background: #C9D2C6;
+  border: 1px solid #C9D2C6;
+}
+.portfolio-v2 .v2-value {
+  min-height: 121px;
+  padding: 18px 21px;
+  gap: 7px;
+  background: #F2F2EB;
+  color: var(--nm-ink);
+  transition: background var(--nm-motion-normal) var(--nm-motion-ease);
+}
+.portfolio-v2 .v2-value:hover {
+  background: #FFFFFF;
+}
+.portfolio-v2 .v2-value > span {
+  font-size: 11px;
+  font-weight: 750;
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-value strong {
+  font-size: 18px;
+  color: var(--nm-ink);
+  letter-spacing: -.02em;
+}
+.portfolio-v2 .v2-value small {
+  color: #476058;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.portfolio-v2 .v2-education {
+  border-top: 1px solid #BAC8BB;
+  padding-top: 23px;
+  color: #3C5149;
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 32px 0 0;
+}
+
+/* CAPABILITIES — an open project dossier on parchment, not a black card. */
+.portfolio-v2 .v2-cap-evidence {
+  color: var(--nm-ink);
+  background: var(--nm-parchment);
+  border: 1px solid #D3CABC;
+  box-shadow: 10px 11px 0 rgba(53, 107, 104, .065);
+}
+.portfolio-v2 .v2-cap-evidence::after {
+  border: 0;
+}
+.portfolio-v2 .v2-cap-evidence-header {
+  color: #3D5851;
+  border-bottom: 1px solid #D4C9BC;
+}
+.portfolio-v2 .v2-cap-evidence-header > span:last-child {
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-cap-stepper span {
+  background: #CAC5B8;
+}
+.portfolio-v2 .v2-cap-stepper span.is-active {
+  background: var(--nm-copper);
+}
+.portfolio-v2 .v2-cap-photo {
+  background: #C7CEC3;
+}
+.portfolio-v2 .v2-cap-photo img {
+  filter: saturate(.78) contrast(.97);
+}
+.portfolio-v2 .v2-cap-photo::after {
+  background: linear-gradient(transparent 55%, rgba(18,29,31,.27));
+}
+.portfolio-v2 .v2-cap-evidence-body {
+  padding-top: clamp(25px,2.6vw,40px);
+}
+.portfolio-v2 .v2-cap-project-label {
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-cap-project-copy h3 {
+  color: var(--nm-ink);
+}
+.portfolio-v2 .v2-cap-project-subtitle {
+  color: #435750;
+}
+.portfolio-v2 .v2-cap-role-line,
+.portfolio-v2 .v2-cap-tech-row {
+  border-top-color: #CDC3B6;
+}
+.portfolio-v2 .v2-cap-role-line > span,
+.portfolio-v2 .v2-cap-tech-row > span {
+  color: #315E56;
+}
+.portfolio-v2 .v2-cap-role-line p {
+  color: var(--nm-ink);
+}
+.portfolio-v2 .v2-cap-tech-row > div span {
+  color: #3B514B;
+  border-bottom-color: #AEB9AF;
+}
+.portfolio-v2 .v2-cap-evidence-link {
+  border-top-color: #BFB6A9;
+  color: var(--nm-ink);
+}
+.portfolio-v2 .v2-cap-evidence-link svg {
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-cap-evidence-link:hover {
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-cap-toolbox {
+  background: #E8ECE5;
+  border-color: #CBD2C8;
+}
+
+/* CASE STUDIES — consistent printed project notes on warm stock. */
+.portfolio-v2 .v2-case-facts {
+  color: var(--nm-ink);
+  background: #EEE8DE;
+  border-color: #CFC7BA;
+  box-shadow: 10px 11px 0 rgba(53, 107, 104, .065);
+}
+.portfolio-v2 .v2-case-facts::before {
+  background: var(--nm-copper);
+}
+.portfolio-v2 .v2-case-facts-header {
+  color: #446057;
+}
+.portfolio-v2 .v2-case-facts-header span:last-child,
+.portfolio-v2 .v2-case-tool-index {
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-case-fact-section,
+.portfolio-v2 .v2-case-facts-footer {
+  border-color: #CEC6B9;
+}
+.portfolio-v2 .v2-case-fact-label {
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-case-fact-label > span {
+  color: #315E56;
+}
+.portfolio-v2 .v2-case-fact-role .v2-case-fact-value {
+  color: var(--nm-ink);
+}
+.portfolio-v2 .v2-case-tool-list li {
+  color: #263937;
+  border-bottom-color: #D2CABC;
+}
+.portfolio-v2 .v2-case-facts-footer {
+  color: #456059;
+}
+.portfolio-v2 .v2-case-facts-mark {
+  background: var(--nm-copper);
+}
+@media (max-width: 850px) {
+  .portfolio-v2 .v2-about-copy { padding-top: 0; }
+  .portfolio-v2 .v2-about::before { display: none; }
+}
+@media (max-width: 520px) {
+  .portfolio-v2 .v2-about-signature {
+    width: 100%;
+    min-height: 152px;
+    padding: 19px;
+    margin-top: 26px;
+  }
+  .portfolio-v2 .v2-value {
+    min-height: 105px;
+    padding: 15px 12px;
+  }
+  .portfolio-v2 .v2-value strong { font-size: 15px; }
+  .portfolio-v2 .v2-value small { font-size: 11px; }
+  .portfolio-v2 .v2-cap-evidence,
+  .portfolio-v2 .v2-case-facts {
+    box-shadow: 7px 8px 0 rgba(53, 107, 104, .065);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-v2 .v2-value { transition: none; }
+}
