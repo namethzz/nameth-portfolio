@@ -39,6 +39,27 @@ try {
   const info = await stat(path);
   if (info.size < 45000) throw new Error("Screenshot appears empty; refusing to publish");
   console.log("Verified real storefront screenshot:", path, "bytes:", info.size);
+
+  // Capture the actual public catalog route as a second engineering proof.
+  // A missing or unavailable route is never replaced by a synthetic mock.
+  const catalogUrl = new URL("Shop", site).href;
+  try {
+    const catalogResponse = await page.goto(catalogUrl, { waitUntil: "domcontentloaded", timeout: 45000 });
+    const catalogText = await page.locator("body").innerText();
+    if (!catalogResponse?.ok() || catalogText.trim().length < 140 ||
+      !/สินค้า|shop|product|OTW/i.test(catalogText)) {
+      throw new Error("Public catalog did not return meaningful content");
+    }
+    await page.evaluate(() => document.fonts.ready);
+    await sleep(1800);
+    const catalogPath = "public/assets/work/otw-catalog.png";
+    await page.screenshot({ path: catalogPath, type: "png", animations: "disabled", timeout: 25000 });
+    const catalogInfo = await stat(catalogPath);
+    if (catalogInfo.size < 45000) throw new Error("Catalog screenshot too small");
+    console.log("Verified actual shop catalog screenshot:", catalogPath, "bytes:", catalogInfo.size);
+  } catch (error) {
+    console.warn("Catalog screenshot omitted because it could not be verified:", error.message);
+  }
   await page.close();
 } finally {
   await browser.close();
