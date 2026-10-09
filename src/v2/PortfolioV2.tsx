@@ -261,13 +261,32 @@ function CaseStudy({ project, onBackToWork }: { project: Project; onBackToWork: 
         <img src={project.image} alt={project.alt} width="1800" height="1350" style={{ viewTransitionName: "v2-feature-image" }} />
       </div>
       <div className="v2-case-body">
-        <aside>
-          <p className="v2-kicker">{t("role")}</p>
-          <p>{project.role}</p>
-          <p className="v2-kicker">{t("tools")}</p>
-          <div className="v2-tags">{project.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
+        <aside className="v2-case-facts" aria-label={language === "th" ? "บทบาทและเทคโนโลยีที่ใช้" : "Role and technologies"}>
+          <div className="v2-case-facts-header">
+            <span>{language === "th" ? "ข้อมูลโปรเจกต์" : "PROJECT NOTES"}</span>
+            <span>{project.number} / 03</span>
+          </div>
+          <div className="v2-case-fact-section v2-case-fact-role">
+            <h2 className="v2-case-fact-label"><span aria-hidden="true">01</span> {t("role").replace(/:$/, "")}</h2>
+            <p className="v2-case-fact-value">{project.role}</p>
+          </div>
+          <div className="v2-case-fact-section v2-case-fact-tools">
+            <h2 className="v2-case-fact-label"><span aria-hidden="true">02</span> {t("tools")}</h2>
+            <ul className="v2-case-tool-list">
+              {project.tools.map((tool, index) => (
+                <li key={tool}>
+                  <span className="v2-case-tool-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <span>{tool}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="v2-case-facts-footer" aria-hidden="true">
+            <span>NAMETH / PORTFOLIO</span>
+            <span className="v2-case-facts-mark" />
+          </div>
         </aside>
-        <div>
+        <div className="v2-case-narrative">
           <Reveal>
             <h2>{language === "th" ? "เรื่องราวของงานนี้" : "Behind the project"}</h2>
             <p className="v2-case-lead">{project.description}</p>
