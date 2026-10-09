@@ -41,6 +41,38 @@ async function smokeDesktop() {
     const chapters = page.locator(".v2-story-chapter");
     assert(await chapters.count() === 3, "Expected three project chapters");
 
+    // Regression: source index, photo, label and progress must agree for
+    // every chapter, including rapid forward/backward scroll. The old
+    // observer+hover race showed Economic Crops when OTW text was centered.
+    async function checkSynchronizedProject(index) {
+      await page.evaluate((i) => {
+        const card = document.querySelectorAll(".v2-story-chapter")[i];
+        if (!card) throw new Error("Chapter not found: " + i);
+        const rect = card.getBoundingClientRect();
+        const target = window.scrollY + rect.top + rect.height / 2 - window.innerHeight * 0.5;
+        window.scrollTo({ top: target, behavior: "instant" });
+      }, index);
+      const expectedNumber = String(index + 1).padStart(2, "0");
+      await page.waitForFunction((expected) =>
+        document.querySelector(".v2-story-visual")?.getAttribute("data-active-project") === expected,
+        expectedNumber,
+        { timeout: 3000 },
+      );
+      const projectName = await chapters.nth(index).locator(".v2-story-title h3").innerText();
+      assert(await page.locator(".v2-story-feature-title").innerText() === projectName,
+        "Photo/title mismatch on chapter " + expectedNumber);
+      assert((await page.locator(".v2-story-photo-number").innerText()).startsWith(expectedNumber),
+        "Photo number mismatch on chapter " + expectedNumber);
+      assert(await page.locator(".v2-story-progress .is-active").count() === 1,
+        "Expected exactly one active progress segment");
+      assert(await page.locator(".v2-story-progress span").nth(index).getAttribute("class") === "is-active",
+        "Progress mismatch on chapter " + expectedNumber);
+      assert((await page.locator(".v2-story-feature img").getAttribute("src")) ===
+        (await chapters.nth(index).locator(".v2-story-mobile-image img").getAttribute("src")),
+        "Project photo src mismatch on chapter " + expectedNumber);
+    }
+    for (const i of [0, 1, 2, 1, 0, 2]) await checkSynchronizedProject(i);
+
     const previewButton = chapters.first().getByRole("button", { name: /Quick preview|ดูตัวอย่าง/ });
     await previewButton.click();
     const dialog = page.getByRole("dialog");
