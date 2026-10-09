@@ -37,7 +37,7 @@ export default function ProjectPreviewModal({
       // Return focus to the original Quick Preview control when it remains mounted.
       if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
     };
-  }, [open, project, returnFocus]);
+  }, [open, project?.number, returnFocus]);
 
   // Mount the dialog before opening it to let showModal create the top layer.
   if (!project) return null;
