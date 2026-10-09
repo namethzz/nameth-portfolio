@@ -98,16 +98,16 @@ export const copy = {
     "th": "และตั้งใจทำให้ดี"
   },
   "about1": {
-    "en": "I’m Nameth, a Computer Science and Software Development student at Sripatum University. I get excited by the question: “This doesn’t exist yet. How could I make it happen?” That’s what draws me to both web development and data.",
-    "th": "ผมณเมธ เรียนวิทยาการคอมพิวเตอร์และการพัฒนาซอฟต์แวร์ที่มหาวิทยาลัยศรีปทุม ผมมักจะสนุกกับคำถามว่า “ตอนนี้มันยังไม่มี แล้วเราจะทำให้มันมีได้ยังไง?” นั่นเป็นเหตุผลที่ผมชอบทั้งการสร้างเว็บและการทำงานกับข้อมูล"
+    "en": "I study Computer Science and Software Development at Sripatum University. I like figuring out how to build things I haven’t tried before, especially websites and tools that solve real problems.",
+    "th": "ผมเรียนวิทยาการคอมพิวเตอร์และการพัฒนาซอฟต์แวร์ที่มหาวิทยาลัยศรีปทุม ผมชอบลองสร้างสิ่งที่ยังไม่เคยทำ โดยเฉพาะเว็บไซต์และงานข้อมูลที่ช่วยแก้ปัญหาได้จริง"
   },
   "about2": {
-    "en": "When I’m into a project, I can get pretty absorbed. I like getting things finished so I have time to rest and enjoy life, but I still want to be proud of what I hand over. To me, doing a good job means caring about the details and the person who will use it.",
-    "th": "เวลาตั้งใจทำอะไร ผมอาจดูเป็นคนบ้างานอยู่บ้าง ผมอยากทำให้เสร็จเพื่อมีเวลาไปพัก ไปทำอย่างอื่นที่ชอบด้วย แต่ก็อยากภูมิใจกับงานที่ส่งต่อให้คนอื่น สำหรับผม งานที่ดีต้องใส่ใจทั้งรายละเอียดและคนที่จะได้ใช้มัน"
+    "en": "When I’m working on a project, I get pretty focused. I like finishing early, but not at the cost of quality. I care about the details and how someone will actually use what I make.",
+    "th": "เวลาทำโปรเจกต์ ผมจะค่อนข้างจดจ่อกับงาน ผมชอบทำให้เสร็จเร็วเพื่อมีเวลาของตัวเอง แต่ไม่อยากรีบจนงานเสียคุณภาพ ผมใส่ใจทั้งรายละเอียดและคนที่จะได้ใช้งานจริง"
   },
   "about3": {
-    "en": "I often see someone doing something well and think, “I want to learn how to do that too.” I’m looking for a team where I can feel comfortable asking questions, take responsibility, and be useful. I don’t know exactly what working life will be like yet. This internship is my next step, and I intend to give it my best.",
-    "th": "เวลาเห็นใครทำอะไรเก่ง ๆ ผมก็อยากเรียนรู้ อยากทำเป็นบ้าง ผมอยากอยู่ในทีมที่สบายใจพอจะถาม รับผิดชอบงานของตัวเอง และช่วยคนอื่นได้ ผมยังไม่รู้ว่าการทำงานจริงจะเหมือนที่หวังไว้แค่ไหน แต่การฝึกงานคือก้าวถัดไปที่ผมตั้งใจจะพยายามให้เต็มที่"
+    "en": "When I see someone build something well, I want to learn how they did it. I’m looking for an internship where I can ask questions, take responsibility and contribute to a real development team.",
+    "th": "เวลาเห็นใครทำอะไรเก่ง ๆ ผมก็อยากเรียนรู้ว่าทำได้อย่างไร ผมอยากฝึกงานกับทีมที่ได้ถาม ได้รับผิดชอบงานจริง และช่วยให้งานของทีมเดินหน้าได้"
   },
   "degree": {
     "en": "B.Sc. Computer Science & Software Development",
@@ -256,7 +256,7 @@ export const projectCopy = {
         "I see the strongest part of my contribution as connecting a practical problem to a clear, manageable data task. The next goal is forecasting one selected material 1–3 months ahead."
       ],
       "note": "In progress: cleaning and preparing the data. The next milestone is a model for 1–3 month forecasts of individual structural materials.",
-      "alt": "Concrete architecture representing the construction project"
+      "alt": "Actual desktop screenshot of the THAI TAY frontend"
     },
     {
       "subtitle": "Better crop planning starts with better information",
@@ -321,7 +321,7 @@ export const projectCopy = {
         "สิ่งที่ผมคิดว่าทำได้ดีคือการเชื่อมปัญหาที่พบเข้ากับงานข้อมูลที่มีขอบเขตชัดเจน เป้าหมายถัดไปคือพยากรณ์ราคาวัสดุที่เลือกเป็นรายชิ้นล่วงหน้า 1–3 เดือน"
       ],
       "note": "กำลังทำความสะอาดและเตรียมข้อมูล ขั้นต่อไปคือพัฒนาโมเดลพยากรณ์ราคาวัสดุโครงสร้างรายชิ้นล่วงหน้า 1–3 เดือน",
-      "alt": "อาคารคอนกรีตประกอบโปรเจกต์ราคาวัสดุก่อสร้าง"
+      "alt": "ภาพหน้าจอจริงของเว็บไซต์ THAI TAY บนคอมพิวเตอร์"
     },
     {
       "subtitle": "การวางแผนปลูกที่ดี เริ่มจากข้อมูลที่เข้าใจพื้นที่",
