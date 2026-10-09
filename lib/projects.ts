@@ -22,7 +22,8 @@ const baseProjects = [
   {
     number: "03",
     name: "OTW.SHOP",
-    image: assetUrl("assets/project-ecommerce.jpg"),
+    // Screenshot of the deployed storefront, captured by a verified GitHub Actions job.
+    image: assetUrl("assets/work/otw-storefront.png"),
     imageClass: "ecommerce",
     repository: "https://github.com/namethzz/OTW",
     website: "https://otw-production.up.railway.app/",  
