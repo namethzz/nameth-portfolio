@@ -91,17 +91,27 @@ function Hero() {
           style={prefersReducedMotion ? undefined : { opacity: captionOpacity }}
         >
           <p>{t("heroDescription")}</p>
-          <div className="v2-actions">
-            <a className="v2-button v2-button-dark" href="#work">
-              {t("exploreWork")} <ArrowUpRight aria-hidden="true" size={17} />
+          <nav className="v2-opening-links" aria-label={language === "th" ? "ลิงก์สำคัญ" : "Explore portfolio"}>
+            <a className="v2-editorial-action v2-editorial-primary" href="#work">
+              <span className="v2-action-number" aria-hidden="true">01</span>
+              <span className="v2-action-label">{t("exploreWork")}</span>
+              <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.7} />
             </a>
-            <a className="v2-button v2-button-outline" href={assetUrl("assets/resume.pdf")} download="resume.pdf">
-              {t("resume")} <Download aria-hidden="true" size={16} />
+            <a
+              className="v2-editorial-action v2-editorial-secondary"
+              href={assetUrl("assets/resume.pdf")}
+              download="resume.pdf"
+            >
+              <span className="v2-action-number" aria-hidden="true">02</span>
+              <span className="v2-action-label">{t("resume")}</span>
+              <Download aria-hidden="true" size={17} strokeWidth={1.7} />
             </a>
-          </div>
+          </nav>
         </motion.div>
         <a className="v2-opening-scroll" href="#work">
-          {t("scroll")} <ArrowDown aria-hidden="true" size={17} />
+          <span className="v2-scroll-stem" aria-hidden="true" />
+          <span className="v2-scroll-text">{t("scroll")}</span>
+          <ArrowDown aria-hidden="true" size={15} strokeWidth={1.7} />
         </a>
         <motion.div
           className="v2-opening-progress"
