@@ -73,6 +73,27 @@ async function smokeDesktop() {
     }
     for (const i of [0, 1, 2, 1, 0, 2]) await checkSynchronizedProject(i);
 
+    // Editorial capabilities: explicit selection, honest project evidence,
+    // and navigation that does not land the heading behind the fixed header.
+    const capabilityOptions = page.locator(".v2-cap-option");
+    assert(await capabilityOptions.count() === 3, "Expected three capability options");
+    const expectedProjects = ["OTW.SHOP", "THAI TAY", "Economic Crops Chat"];
+    for (const index of [0, 2, 1, 0]) {
+      await capabilityOptions.nth(index).click();
+      assert(await capabilityOptions.nth(index).getAttribute("aria-pressed") === "true",
+        "Selected capability is not exposed accessibly");
+      const heading = await page.locator(".v2-cap-project-copy h3").innerText();
+      assert(heading === expectedProjects[index],
+        "Capability/project mismatch: expected " + expectedProjects[index] + " found " + heading);
+      const evidenceId = await page.locator(".v2-cap-evidence").getAttribute("data-capability");
+      assert(evidenceId === String(index + 1).padStart(2, "0"), "Evidence index not synchronized");
+    }
+    await page.locator('.v2-nav a[href$="#skills"]').click();
+    await page.waitForTimeout(150);
+    const navBottom = await page.locator(".v2-header").evaluate(el => el.getBoundingClientRect().bottom);
+    const skillsTop = await page.locator("#v2-skills-heading").evaluate(el => el.getBoundingClientRect().top);
+    assert(skillsTop > navBottom + 10, "Skills heading obscured by fixed navigation");
+
     const previewButton = chapters.first().getByRole("button", { name: /Quick preview|ดูตัวอย่าง/ });
     await previewButton.click();
     const dialog = page.getByRole("dialog");
@@ -144,6 +165,13 @@ async function smokeMobile() {
     assert(await page.locator(".v2-story-mobile-image").first().isVisible(), "Mobile project image missing");
     const overflows = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 2);
     assert(!overflows, "Unexpected horizontal scroll on mobile");
+    // Interactive evidence must remain usable on touch screens.
+    await page.locator(".v2-cap-option").nth(2).click();
+    assert(await page.locator(".v2-cap-project-copy h3").innerText() === "Economic Crops Chat",
+      "Mobile capability selection lost its matching evidence");
+    const overflowAfterSkills = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 2);
+    assert(!overflowAfterSkills, "Capabilities section causes horizontal overflow");
+
     const trigger = page.locator(".v2-story-chapter").first().getByRole("button", { name: /Quick preview|ดูตัวอย่าง/ });
     await trigger.click();
     await page.getByRole("dialog").waitFor({ state: "visible" });
