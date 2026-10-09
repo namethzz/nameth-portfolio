@@ -253,7 +253,7 @@ async function smokeMobile() {
     await page.goto(base + "?project=otw-shop", { waitUntil: "domcontentloaded" });
     assert(await page.locator(".v2-proof-code-card").count() === 4,
       "OTW case study should expose technical proof for four workflows");
-    assert((await page.locator(".v2-case-status").innerText()).includes("Implemented"),
+    assert((await page.locator(".v2-case-status").innerText()).includes("Full-stack project"),
       "OTW case study status missing");
 
     assert(await page.locator(".v2-case-tool-list li").first().isVisible(),
