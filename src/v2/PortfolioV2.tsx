@@ -51,6 +51,19 @@ function Hero() {
   const { language, t } = useLanguage();
   const openingRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const [introComplete, setIntroComplete] = useState(false);
+  const [focusRequested, setFocusRequested] = useState(false);
+  const revealCopy = introComplete || Boolean(prefersReducedMotion) || focusRequested;
+  // Text arrives after the poster's actual completion callback, not an
+  // independent timeout that could drift out of sync with the intro.
+  const revealVariants = prefersReducedMotion
+    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
+    : { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
+  const revealTransition = (delay: number) => ({
+    duration: prefersReducedMotion ? 0 : 0.68,
+    delay: prefersReducedMotion || focusRequested ? 0 : delay,
+    ease: "easeOut" as const,
+  });
   const { scrollYProgress } = useScroll({
     target: openingRef,
     // The scene stays pinned for the opening's extra scroll distance.
@@ -84,35 +97,63 @@ function Hero() {
             paper="#F5F1E8"
             ink="#1E292C"
             height="100%"
+            onIntroChange={setIntroComplete}
           />
         </motion.div>
         <motion.div
           className="v2-opening-actions"
           style={prefersReducedMotion ? undefined : { opacity: captionOpacity }}
+          onFocusCapture={() => setFocusRequested(true)}
         >
-          <p>{t("heroDescription")}</p>
+          <motion.p
+            initial="hidden"
+            animate={revealCopy ? "visible" : "hidden"}
+            variants={revealVariants}
+            transition={revealTransition(0.06)}
+          >
+            {t("heroDescription")}
+          </motion.p>
           <nav className="v2-opening-links" aria-label={language === "th" ? "ลิงก์สำคัญ" : "Explore portfolio"}>
-            <a className="v2-editorial-action v2-editorial-primary" href="#work">
+            <motion.a
+              className="v2-editorial-action v2-editorial-primary"
+              href="#work"
+              initial="hidden"
+              animate={revealCopy ? "visible" : "hidden"}
+              variants={revealVariants}
+              transition={revealTransition(0.26)}
+            >
               <span className="v2-action-number" aria-hidden="true">01</span>
               <span className="v2-action-label">{t("exploreWork")}</span>
               <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.7} />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               className="v2-editorial-action v2-editorial-secondary"
               href={assetUrl("assets/resume.pdf")}
               download="resume.pdf"
+              initial="hidden"
+              animate={revealCopy ? "visible" : "hidden"}
+              variants={revealVariants}
+              transition={revealTransition(0.43)}
             >
               <span className="v2-action-number" aria-hidden="true">02</span>
               <span className="v2-action-label">{t("resume")}</span>
               <Download aria-hidden="true" size={17} strokeWidth={1.7} />
-            </a>
+            </motion.a>
           </nav>
         </motion.div>
-        <a className="v2-opening-scroll" href="#work">
+        <motion.a
+          className="v2-opening-scroll"
+          href="#work"
+          initial="hidden"
+          animate={revealCopy ? "visible" : "hidden"}
+          variants={revealVariants}
+          transition={revealTransition(0.69)}
+          onFocus={() => setFocusRequested(true)}
+        >
           <span className="v2-scroll-stem" aria-hidden="true" />
           <span className="v2-scroll-text">{t("scroll")}</span>
           <ArrowDown aria-hidden="true" size={15} strokeWidth={1.7} />
-        </a>
+        </motion.a>
         <motion.div
           className="v2-opening-progress"
           aria-hidden="true"
