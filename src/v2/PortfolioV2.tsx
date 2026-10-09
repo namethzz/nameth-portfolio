@@ -1,6 +1,9 @@
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Download, GitBranch as Github, Mail } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
+import Reveal from "@/src/v2/components/Reveal";
+import SelectedWork from "@/src/v2/components/SelectedWork";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { getProjects } from "@/lib/projects";
@@ -10,7 +13,7 @@ import { getProjectIndex, previewPath, projectHref, sectionHref } from "@/src/v2
 
 type Project = ReturnType<typeof getProjects>[number];
 
-function Header({ caseStudy, scrolled }: { caseStudy: boolean; scrolled: boolean }) {
+function Header({ caseStudy, scrolled, onBackToWork, onBackToTop }: { caseStudy: boolean; scrolled: boolean; onBackToWork: () => void; onBackToTop: () => void }) {
   const { language, setLanguage, t } = useLanguage();
   const navigation = [
     { href: sectionHref("work"), label: t("navWork") },
@@ -21,11 +24,11 @@ function Header({ caseStudy, scrolled }: { caseStudy: boolean; scrolled: boolean
 
   return (
     <header className={`v2-header${!caseStudy && scrolled ? " is-scrolled" : ""}`}>
-      <a className="v2-brand" href={sectionHref("home")} aria-label={identity.name + " — home"}>
+      <a className="v2-brand" href={sectionHref("home")} onClick={(event) => { if (caseStudy) { event.preventDefault(); onBackToTop(); } }} aria-label={identity.name + " — home"}>
         NAMETH<span aria-hidden="true">®</span>
       </a>
       <nav aria-label={t("navigation")} className="v2-nav">
-        {caseStudy && <a href={sectionHref("work")} className="v2-back"><ArrowLeft aria-hidden="true" size={15} /> {t("navWork")}</a>}
+        {caseStudy && <a href={sectionHref("work")} onClick={(event) => { event.preventDefault(); onBackToWork(); }} className="v2-back"><ArrowLeft aria-hidden="true" size={15} /> {t("navWork")}</a>}
         {!caseStudy && navigation.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
       </nav>
       <div className="v2-language" role="group" aria-label={t("language")}>
@@ -164,39 +167,6 @@ function Hero() {
   );
 }
 
-function Work({ projects }: { projects: Project[] }) {
-  const { t } = useLanguage();
-  return (
-    <section className="v2-section v2-work" id="work" aria-labelledby="v2-work-heading">
-      <div className="v2-section-heading">
-        <div><p className="v2-kicker">01 / {t("selectedWork")}</p><h2 id="v2-work-heading">{t("workTitle")}</h2></div>
-        <p>{t("workIntro")}</p>
-      </div>
-      <div className="v2-project-list">
-        {projects.map((project, index) => (
-          <article className="v2-project" key={project.number}>
-            <a className="v2-project-image" href={projectHref(index)} aria-label={t("explore") + " " + project.name}>
-              <img src={project.image} alt={project.alt} loading="lazy" width="1800" height="1350" />
-              <span className="v2-project-index">{project.number} / 03</span>
-              <span className="v2-project-open" aria-hidden="true"><ArrowUpRight size={22} /></span>
-            </a>
-            <div className="v2-project-text">
-              <p className="v2-kicker">{project.category}</p>
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
-              <div className="v2-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-              <div className="v2-project-links">
-                <a className="v2-inline-link" href={projectHref(index)}>{t("explore")} <ArrowUpRight aria-hidden="true" size={17} /></a>
-                {project.website && <a className="v2-inline-link" href={project.website} target="_blank" rel="noopener noreferrer">{t("visit")} <ArrowUpRight aria-hidden="true" size={16} /></a>}
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-      <a className="v2-inline-link" href="https://github.com/namethzz" target="_blank" rel="noopener noreferrer"><Github aria-hidden="true" size={17} /> {t("more")}</a>
-    </section>
-  );
-}
 
 function About() {
   const { language, t } = useLanguage();
@@ -271,16 +241,16 @@ function Contact() {
   );
 }
 
-function CaseStudy({ project }: { project: Project }) {
+function CaseStudy({ project, onBackToWork }: { project: Project; onBackToWork: () => void }) {
   const { language, t } = useLanguage();
   return (
     <main id="main-content" className="v2-case-study">
       <div className="v2-case-hero">
-        <a className="v2-inline-link" href={sectionHref("work")}><ArrowLeft size={17} aria-hidden="true" /> {t("navWork")}</a>
+        <a className="v2-inline-link" href={sectionHref("work")} onClick={(event) => { event.preventDefault(); onBackToWork(); }}><ArrowLeft size={17} aria-hidden="true" /> {t("navWork")}</a>
         <p className="v2-kicker">{project.number} / {project.category}</p>
         <h1>{project.name}</h1>
         <p className="v2-case-subtitle">{project.subtitle}</p>
-        <img src={project.image} alt={project.alt} width="1800" height="1350" />
+        <img src={project.image} alt={project.alt} width="1800" height="1350" style={{ viewTransitionName: "v2-feature-image" }} />
       </div>
       <div className="v2-case-body">
         <aside>
@@ -304,7 +274,7 @@ function CaseStudy({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-      <div className="v2-next"><a href={sectionHref("work")}>{t("navWork")} <ArrowRight size={21} aria-hidden="true" /></a></div>
+      <div className="v2-next"><a href={sectionHref("work")} onClick={(event) => { event.preventDefault(); onBackToWork(); }}>{t("navWork")} <ArrowRight size={21} aria-hidden="true" /></a></div>
     </main>
   );
 }
@@ -324,17 +294,52 @@ export default function PortfolioV2() {
     };
   }, []);
   const projects = getProjects(language);
-  const index = getProjectIndex();
-  const project = index < 0 ? undefined : projects[index];
+  const [routeIndex, setRouteIndex] = useState(() => getProjectIndex());
+  const project = routeIndex < 0 ? undefined : projects[routeIndex];
+
+  useEffect(() => {
+    const handleLocation = () => setRouteIndex(getProjectIndex());
+    window.addEventListener("popstate", handleLocation);
+    return () => window.removeEventListener("popstate", handleLocation);
+  }, []);
+
+  function transition(change: () => void) {
+    if (
+      typeof document.startViewTransition === "function" &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      document.startViewTransition(change);
+    } else {
+      change();
+    }
+  }
+  function navigateToProject(index: number) {
+    if (!projects[index]) return;
+    transition(() => {
+      window.history.pushState(null, "", projectHref(index));
+      flushSync(() => setRouteIndex(index));
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
+  }
+  function navigateHome(section: "home" | "work") {
+    transition(() => {
+      window.history.pushState(null, "", sectionHref(section));
+      flushSync(() => setRouteIndex(-1));
+      requestAnimationFrame(() => {
+        if (section === "home") window.scrollTo({ top: 0, behavior: "instant" });
+        else document.getElementById("work")?.scrollIntoView({ behavior: "instant" });
+      });
+    });
+  }
 
   return (
     <div className={`portfolio-v2 ${project ? "v2-case-page" : "v2-homepage"}`} lang={language}>
       <a className="v2-skip-link" href="#main-content">{language === "th" ? "ข้ามไปยังเนื้อหา" : "Skip to content"}</a>
-      <Header caseStudy={Boolean(project)} scrolled={scrolled} />
-      {project ? <CaseStudy project={project} /> : (
+      <Header caseStudy={Boolean(project)} scrolled={scrolled} onBackToWork={() => navigateHome("work")} onBackToTop={() => navigateHome("home")} />
+      {project ? <CaseStudy project={project} onBackToWork={() => navigateHome("work")} /> : (
         <main id="main-content">
           <Hero />
-          <Work projects={projects} />
+          <SelectedWork projects={projects} onNavigate={navigateToProject} />
           <About />
           <Skills projects={projects} />
           <Contact />
