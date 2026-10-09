@@ -14,4 +14,13 @@ export default defineConfig({
   resolve: {
     alias: { "@": fileURLToPath(new URL("./", import.meta.url)) },
   },
+  build: {
+    // Keep v1 as the homepage; emit v2 as a separate, reviewable preview.
+    rollupOptions: {
+      input: {
+        index: fileURLToPath(new URL("./index.html", import.meta.url)),
+        previewV2: fileURLToPath(new URL("./preview-v2.html", import.meta.url)),
+      },
+    },
+  },
 });
