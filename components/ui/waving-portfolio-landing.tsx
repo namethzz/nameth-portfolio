@@ -251,6 +251,8 @@ export type WavingPortfolioLandingProps = {
   ink?: string
   /** Play the cinematic intro on mount. */
   intro?: boolean
+  /** Notify surrounding UI when the opening sequence starts or finishes. */
+  onIntroChange?: (complete: boolean) => void
   height?: string
   className?: string
 }
@@ -271,6 +273,7 @@ export default function WavingPortfolioLanding({
   paper = "#F5F1E8",
   ink = "#1E292C",
   intro = true,
+  onIntroChange,
   height = "100svh",
   className = "",
 }: WavingPortfolioLandingProps) {
@@ -346,6 +349,12 @@ export default function WavingPortfolioLanding({
       clearTimeout(b)
     }
   }, [run, playing, wave])
+
+  // Share the real poster timeline with the surrounding text choreography.
+  // Replay switches ready back to false; reduced motion completes immediately.
+  React.useEffect(() => {
+    onIntroChange?.(ready)
+  }, [ready, onIntroChange])
 
   const L = React.useMemo(
     () => layoutPoster(lettersLeft, giantLetter, lettersRight, compact),
