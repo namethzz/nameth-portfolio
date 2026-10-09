@@ -96,11 +96,18 @@ const proof = [
   },
   {
     stage: { en: "Implemented e-commerce project — public storefront and source available.", th: "โปรเจกต์ร้านค้าออนไลน์ — มีหน้าร้านและ Source Code ให้ตรวจสอบ" },
-    screenshots: [{
-      src: assetUrl("assets/work/otw-storefront.png"),
-      caption: { en: "Actual deployed storefront — captured Oct 2026", th: "ภาพหน้าร้านจริงจากเว็บที่ Deploy — ต.ค. 2569" },
-      alt: { en: "Actual screenshot of the deployed OTW.SHOP storefront", th: "ภาพหน้าจอเว็บไซต์ OTW.SHOP ที่เปิดใช้งานจริง" },
-    }],
+    screenshots: [
+      {
+        src: assetUrl("assets/work/otw-storefront.png"),
+        caption: { en: "Actual deployed storefront — captured Oct 2026", th: "ภาพหน้าร้านจริงจากเว็บที่ Deploy — ต.ค. 2569" },
+        alt: { en: "Actual screenshot of the deployed OTW.SHOP storefront", th: "ภาพหน้าจอเว็บไซต์ OTW.SHOP ที่เปิดใช้งานจริง" },
+      },
+      {
+        src: assetUrl("assets/work/otw-catalog.png"),
+        caption: { en: "Real product catalog and browsing UI", th: "หน้ารายการและค้นดูสินค้าจากเว็บจริง" },
+        alt: { en: "Actual product catalog page of OTW.SHOP", th: "ภาพหน้าจอจริงของหน้ารายการสินค้า OTW.SHOP" },
+      },
+    ],
     engineering: [
       {
         title: { en: "Search, filter and cart", th: "ค้นหา กรองสินค้า และตะกร้า" },
