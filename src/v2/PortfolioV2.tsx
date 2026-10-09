@@ -181,7 +181,12 @@ function About() {
           <h2 id="v2-about-heading">{t("aboutTitle")} <em>{t("aboutEm")}</em></h2>
         </Reveal>
         <Reveal delay={0.18}>
-          <img className="v2-profile-image" src={assetUrl("assets/nameth-resume.png")} alt={identity.name} loading="lazy" />
+          <div className="v2-about-signature" aria-label="Nameth Wongmongkol — Software Developer / Data Enthusiast">
+            <span className="v2-about-signature-label">PERSONAL / 2026</span>
+            <strong>NAMETH<span aria-hidden="true">®</span></strong>
+            <span className="v2-about-signature-line" aria-hidden="true" />
+            <span className="v2-about-signature-sub">SOFTWARE DEVELOPMENT / DATA</span>
+          </div>
         </Reveal>
       </div>
       <div className="v2-about-copy">
