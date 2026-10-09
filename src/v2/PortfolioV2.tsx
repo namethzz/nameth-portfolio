@@ -1,4 +1,6 @@
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Download, GitBranch as Github, Mail } from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { getProjects } from "@/lib/projects";
@@ -8,7 +10,7 @@ import { getProjectIndex, previewPath, projectHref, sectionHref } from "@/src/v2
 
 type Project = ReturnType<typeof getProjects>[number];
 
-function Header({ caseStudy }: { caseStudy: boolean }) {
+function Header({ caseStudy, scrolled }: { caseStudy: boolean; scrolled: boolean }) {
   const { language, setLanguage, t } = useLanguage();
   const navigation = [
     { href: sectionHref("work"), label: t("navWork") },
@@ -18,7 +20,7 @@ function Header({ caseStudy }: { caseStudy: boolean }) {
   ];
 
   return (
-    <header className="v2-header">
+    <header className={`v2-header${!caseStudy && scrolled ? " is-scrolled" : ""}`}>
       <a className="v2-brand" href={sectionHref("home")} aria-label={identity.name + " — home"}>
         NAMETH<span aria-hidden="true">®</span>
       </a>
@@ -47,30 +49,66 @@ function Header({ caseStudy }: { caseStudy: boolean }) {
 
 function Hero() {
   const { language, t } = useLanguage();
+  const openingRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: openingRef,
+    // The scene stays pinned for the opening's extra scroll distance.
+    offset: ["start start", "end end"],
+  });
+  const posterScale = useTransform(scrollYProgress, [0, 0.46, 1], [1, 1, 0.91]);
+  const posterY = useTransform(scrollYProgress, [0, 0.46, 1], ["0%", "0%", "-5%"]);
+  const posterOpacity = useTransform(scrollYProgress, [0, 0.56, 1], [1, 1, 0.55]);
+  const captionOpacity = useTransform(scrollYProgress, [0, 0.52, 0.88], [1, 1, 0]);
+  const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
-    <section className="v2-hero v2-hero-poster" id="home" aria-label={t("introduction")}>
-      <div className="v2-poster-shell">
-        <WavingPortfolioLanding
-          name={identity.name}
-          year="PORTFOLIO / 2026"
-          roles={["SOFTWARE DEVELOPER", "DATA ENTHUSIAST"]}
-          greeting={language === "th" ? "สวัสดี!" : "HELLO!"}
-          title="Portfolio"
-          signature="NA/METH"
-          accent="#B84F3A"
-          paper="#F5F1E8"
-          ink="#1E292C"
-          height="100%"
+    <section className="v2-opening" ref={openingRef} id="home" aria-label={t("introduction")}>
+      <div className="v2-hero-sticky">
+        <motion.div
+          className="v2-opening-art"
+          style={prefersReducedMotion ? undefined : {
+            scale: posterScale,
+            y: posterY,
+            opacity: posterOpacity,
+          }}
+        >
+          <WavingPortfolioLanding
+            name={identity.name}
+            year="PORTFOLIO / 2026"
+            roles={["SOFTWARE DEVELOPER", "DATA ENTHUSIAST"]}
+            greeting={language === "th" ? "สวัสดี!" : "HELLO!"}
+            title="Portfolio"
+            signature="NA/METH"
+            accent="#B84F3A"
+            paper="#F5F1E8"
+            ink="#1E292C"
+            height="100%"
+          />
+        </motion.div>
+        <motion.div
+          className="v2-opening-actions"
+          style={prefersReducedMotion ? undefined : { opacity: captionOpacity }}
+        >
+          <p>{t("heroDescription")}</p>
+          <div className="v2-actions">
+            <a className="v2-button v2-button-dark" href="#work">
+              {t("exploreWork")} <ArrowUpRight aria-hidden="true" size={17} />
+            </a>
+            <a className="v2-button v2-button-outline" href={assetUrl("assets/resume.pdf")} download="resume.pdf">
+              {t("resume")} <Download aria-hidden="true" size={16} />
+            </a>
+          </div>
+        </motion.div>
+        <a className="v2-opening-scroll" href="#work">
+          {t("scroll")} <ArrowDown aria-hidden="true" size={17} />
+        </a>
+        <motion.div
+          className="v2-opening-progress"
+          aria-hidden="true"
+          style={prefersReducedMotion ? { scaleX: 0 } : { scaleX: progressScale }}
         />
       </div>
-      <div className="v2-poster-caption">
-        <p>{t("heroDescription")}</p>
-        <div className="v2-actions">
-          <a className="v2-button v2-button-dark" href="#work">{t("exploreWork")} <ArrowUpRight aria-hidden="true" size={17} /></a>
-          <a className="v2-button v2-button-outline" href={assetUrl("assets/resume.pdf")} download="resume.pdf">{t("resume")} <Download aria-hidden="true" size={16} /></a>
-        </div>
-      </div>
-      <a className="v2-scroll-cue" href="#work">{t("scroll")} <ArrowDown aria-hidden="true" size={16} /></a>
     </section>
   );
 }
@@ -222,6 +260,18 @@ function CaseStudy({ project }: { project: Project }) {
 
 export default function PortfolioV2() {
   const { language, t } = useLanguage();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > window.innerHeight * 0.58);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
   const projects = getProjects(language);
   const index = getProjectIndex();
   const project = index < 0 ? undefined : projects[index];
@@ -229,7 +279,7 @@ export default function PortfolioV2() {
   return (
     <div className={`portfolio-v2 ${project ? "v2-case-page" : "v2-homepage"}`} lang={language}>
       <a className="v2-skip-link" href="#main-content">{language === "th" ? "ข้ามไปยังเนื้อหา" : "Skip to content"}</a>
-      <Header caseStudy={Boolean(project)} />
+      <Header caseStudy={Boolean(project)} scrolled={scrolled} />
       {project ? <CaseStudy project={project} /> : (
         <main id="main-content">
           <Hero />
