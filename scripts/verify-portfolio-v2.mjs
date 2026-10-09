@@ -94,6 +94,26 @@ async function smokeDesktop() {
     const skillsTop = await page.locator("#v2-skills-heading").evaluate(el => el.getBoundingClientRect().top);
     assert(skillsTop > navBottom + 10, "Skills heading obscured by fixed navigation");
 
+    // Keep the warm editorial identity consistent across About, Skills and
+    // Case Study. Dark ink typography should not turn into three huge panels.
+    const paperPalette = await page.evaluate(() => {
+      const bg = selector => getComputedStyle(document.querySelector(selector)).backgroundColor;
+      const lightness = color => {
+        const values = (color.match(/[0-9.]+/g) || []).slice(0, 3).map(Number);
+        return values.reduce((sum, value) => sum + value, 0) / (values.length * 255);
+      };
+      return {
+        about: lightness(bg(".v2-about")),
+        evidence: lightness(bg(".v2-cap-evidence")),
+        value: lightness(bg(".v2-value")),
+      };
+    });
+    assert(paperPalette.about > .7, "About panel should be warm light sage");
+    assert(paperPalette.evidence > .7, "Capabilities project evidence should use light paper");
+    assert(paperPalette.value > .7, "About highlight cards should use light paper");
+    assert(await page.locator(".v2-about-signature strong").innerText() === "NAMETH®",
+      "Personal identity plaque is missing");
+
     const previewButton = chapters.first().getByRole("button", { name: /Quick preview|ดูตัวอย่าง/ });
     await previewButton.click();
     const dialog = page.getByRole("dialog");
@@ -132,6 +152,10 @@ async function smokeDesktop() {
       return (Math.max(ink, paper) + .05) / (Math.min(ink, paper) + .05);
     });
     assert(contrast >= 4.5, "Case-study role text contrast fails WCAG AA: " + contrast);
+    const dossierBackground = await dossier.evaluate(node =>
+      getComputedStyle(node).backgroundColor);
+    assert(dossierBackground.includes("238, 232, 222"),
+      "Project notes should use consistent warm parchment, got: " + dossierBackground);
 
     await page.locator(".v2-case-study .v2-inline-link").first().click();
     await page.waitForURL(/#work/);
@@ -208,6 +232,8 @@ async function smokeMobile() {
       "Crop chat should show its five documented project technologies");
     assert(await mobileDossier.locator(".v2-case-fact-value").isVisible(),
       "Role copy is not visible on mobile case studies");
+    assert(await page.locator(".v2-case-tool-list li").first().isVisible(),
+      "Mobile technology item missing after palette change");
     const caseOverflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
     assert(!caseOverflow, "Case study metadata causes mobile horizontal overflow");
   } finally { await page.close(); }
