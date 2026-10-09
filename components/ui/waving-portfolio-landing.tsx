@@ -1,4 +1,3 @@
-waving-portfolio-landing.tsx
 "use client"
 
 // Waving Portfolio Landing — a red-on-paper poster landing page. A storm of
@@ -1034,13 +1033,3 @@ const WPL_CSS = `
 .wpl-root *,.wpl-root *::before,.wpl-root *::after{animation:none!important;transition:none!important}
 }
 `
-
-
-demo.tsx
-"use client"
-
-import WavingPortfolioLanding from "@/components/ui/waving-portfolio-landing"
-
-export default function Demo() {
-  return <WavingPortfolioLanding />
-}
