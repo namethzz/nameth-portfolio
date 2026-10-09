@@ -145,6 +145,7 @@ export default function SelectedWork({
                   <h3>{project.name}</h3><ArrowUpRight aria-hidden="true" size={25} />
                 </a>
                 <p className="v2-story-description">{project.description}</p>
+                <p className="v2-story-status"><span aria-hidden="true" />{project.status}</p>
                 <div className="v2-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
                 <a className="v2-story-mobile-image" href={projectHref(index)} onClick={(event) => { event.preventDefault(); onNavigate(index); }}>
                   <img src={project.image} alt={project.alt} loading="lazy" style={{ viewTransitionName: index === activeIndex ? "v2-feature-image" : "none" }} />
@@ -156,6 +157,11 @@ export default function SelectedWork({
                   <a href={projectHref(index)} onClick={(event) => { event.preventDefault(); onNavigate(index); }}>
                     {language === "th" ? "อ่านรายละเอียด" : "Full case study"} <ArrowUpRight aria-hidden="true" size={17} />
                   </a>
+                  {project.website && (
+                    <a href={project.website} target="_blank" rel="noopener noreferrer">
+                      {language === "th" ? "เปิดเว็บจริง" : "Live demo"} <ArrowUpRight size={15} aria-hidden="true" />
+                    </a>
+                  )}
                   <a href={project.repository} target="_blank" rel="noopener noreferrer">
                     <GitBranch size={15} aria-hidden="true" /> GitHub
                   </a>
