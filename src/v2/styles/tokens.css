@@ -1,0 +1,71 @@
+/*
+ * NAMETH Portfolio v2 — Creative Engineering design foundation.
+ * Import this stylesheet only in the v2 app shell; the existing site is unaffected.
+ * All custom properties live under .portfolio-v2 to prevent leakage to v1.
+ */
+.portfolio-v2 {
+  --nm-paper: #F5F1E8;
+  --nm-ink: #1E292C;
+  --nm-copper: #B84F3A;
+  --nm-teal: #356B68;
+  --nm-surface: #EAE4D9;
+  --nm-border: #D1C9BC;
+  --nm-muted: #536663;
+  --nm-focus: #B84F3A;
+
+  --nm-font-body: "Manrope", "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+  --nm-font-display: "Manrope", "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+
+  --nm-radius-sm: 0.5rem;
+  --nm-radius-md: 0.875rem;
+  --nm-radius-lg: 1.25rem;
+
+  --nm-space-1: 0.25rem;
+  --nm-space-2: 0.5rem;
+  --nm-space-3: 0.75rem;
+  --nm-space-4: 1rem;
+  --nm-space-6: 1.5rem;
+  --nm-space-8: 2rem;
+  --nm-space-12: 3rem;
+
+  --nm-motion-fast: 160ms;
+  --nm-motion-normal: 280ms;
+  --nm-motion-slow: 560ms;
+  --nm-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: light;
+  background: var(--nm-paper);
+  color: var(--nm-ink);
+  font-family: var(--nm-font-body);
+}
+
+.portfolio-v2 :focus-visible {
+  outline: 2px solid var(--nm-focus);
+  outline-offset: 3px;
+}
+
+.portfolio-v2 .nm-display {
+  font-family: var(--nm-font-display);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.portfolio-v2 .nm-editorial-link {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.23em;
+  transition: color var(--nm-motion-fast) var(--nm-motion-ease);
+}
+
+.portfolio-v2 .nm-editorial-link:hover {
+  color: var(--nm-copper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-v2 {
+    --nm-motion-fast: 0ms;
+    --nm-motion-normal: 0ms;
+    --nm-motion-slow: 0ms;
+  }
+}
