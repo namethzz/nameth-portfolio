@@ -86,7 +86,7 @@ export default function SelectedWork({
               exit={reduce ? undefined : { opacity: 0, y: -12, scale: 0.985 }}
               transition={{ duration: reduce ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
-              <img src={activeProject.image} alt={activeProject.alt} loading="lazy" />
+              <img src={activeProject.image} alt={activeProject.alt} loading="lazy" style={{ viewTransitionName: "v2-feature-image" }} />
               <span className="v2-story-photo-number">{activeProject.number} / 03</span>
               <span className="v2-story-feature-title">{activeProject.name}</span>
               <span className="v2-story-photo-arrow" aria-hidden="true"><ArrowUpRight size={22} /></span>
@@ -117,7 +117,7 @@ export default function SelectedWork({
                 <p className="v2-story-description">{project.description}</p>
                 <div className="v2-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
                 <a className="v2-story-mobile-image" href={projectHref(index)} onClick={(event) => { event.preventDefault(); onNavigate(index); }}>
-                  <img src={project.image} alt={project.alt} loading="lazy" />
+                  <img src={project.image} alt={project.alt} loading="lazy" style={{ viewTransitionName: index === activeIndex ? "v2-feature-image" : "none" }} />
                 </a>
                 <div className="v2-story-links">
                   <button type="button" className="v2-quick-preview" onClick={(event) => openPreview(index, event.currentTarget)}>
