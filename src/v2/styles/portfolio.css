@@ -195,3 +195,186 @@
   .portfolio-v2.v2-homepage .v2-poster-caption .v2-button{min-height:34px;padding-block:6px}
   .portfolio-v2.v2-homepage .v2-scroll-cue{font-size:10px;padding-top:5px}
 }
+
+/* Phase 3 / immersive fullscreen scene.
+   The hero is genuinely edge-to-edge; the navigation overlays it instead
+   of consuming another row of the viewport. Selected Work scrolls over
+   the pinned scene without intercepting or locking the user's scroll. */
+.portfolio-v2.v2-homepage {
+  --v2-nav-height: 80px;
+  overflow-x: clip;
+}
+.portfolio-v2.v2-homepage .v2-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  height: var(--v2-nav-height);
+  padding-inline: clamp(22px, 4.5vw, 78px);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  transition: background var(--nm-motion-normal), border-color var(--nm-motion-normal), box-shadow var(--nm-motion-normal);
+}
+.portfolio-v2.v2-homepage .v2-header.is-scrolled {
+  background: rgba(245, 241, 232, 0.96);
+  border-bottom-color: var(--nm-border);
+  box-shadow: 0 2px 18px rgba(30, 41, 44, 0.035);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.portfolio-v2.v2-homepage .v2-opening {
+  position: relative;
+  height: 168vh;
+  height: 168dvh;
+  z-index: 1;
+  background: var(--nm-paper);
+}
+.portfolio-v2.v2-homepage .v2-hero-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--nm-paper);
+}
+.portfolio-v2.v2-homepage .v2-opening-art {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 44%;
+  will-change: transform, opacity;
+}
+.portfolio-v2.v2-homepage .v2-opening-art .wpl-root {
+  width: 100%;
+  height: 100% !important;
+  min-height: 0;
+}
+.portfolio-v2.v2-homepage .v2-opening-actions {
+  position: absolute;
+  z-index: 8;
+  bottom: clamp(59px, 9dvh, 103px);
+  left: clamp(20px, 4.5vw, 78px);
+  right: clamp(20px, 4.5vw, 78px);
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: clamp(18px, 4vw, 65px);
+  pointer-events: none;
+}
+.portfolio-v2.v2-homepage .v2-opening-actions > p {
+  margin: 0;
+  max-width: 475px;
+  font-size: clamp(15px, 1.3vw, 19px);
+  line-height: 1.55;
+  letter-spacing: -0.025em;
+  color: var(--nm-ink);
+}
+.portfolio-v2.v2-homepage .v2-opening-actions .v2-actions {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  pointer-events: auto;
+}
+.portfolio-v2.v2-homepage .v2-opening-actions .v2-button {
+  min-height: 47px;
+  white-space: nowrap;
+}
+.portfolio-v2.v2-homepage .v2-opening-scroll {
+  position: absolute;
+  z-index: 9;
+  right: clamp(20px, 4.5vw, 78px);
+  bottom: clamp(17px, 3dvh, 30px);
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+.portfolio-v2.v2-homepage .v2-opening-scroll svg {
+  animation: v2-scroll-arrow 1.7s ease-in-out infinite;
+}
+.portfolio-v2.v2-homepage .v2-opening-progress {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--nm-copper);
+  transform-origin: left center;
+  pointer-events: none;
+}
+@keyframes v2-scroll-arrow {
+  0%, 100% { transform: translateY(-3px); }
+  52% { transform: translateY(5px); }
+}
+.portfolio-v2.v2-homepage .v2-work {
+  position: relative;
+  z-index: 3;
+  margin-top: -17vh;
+  margin-top: -17dvh;
+  border-radius: clamp(15px, 2.8vw, 38px) clamp(15px, 2.8vw, 38px) 0 0;
+  box-shadow: 0 -12px 55px rgba(30, 41, 44, 0.065);
+  padding-top: clamp(85px, 11vw, 170px);
+  scroll-margin-top: var(--v2-nav-height);
+}
+@media(max-width:850px) {
+  .portfolio-v2.v2-homepage { --v2-nav-height: 118px; }
+  .portfolio-v2.v2-homepage .v2-header {
+    height: var(--v2-nav-height);
+    min-height: 0;
+    padding: 12px 20px 10px;
+    align-content: space-between;
+    gap: 8px;
+  }
+  .portfolio-v2.v2-homepage .v2-nav { order: 3; }
+  .portfolio-v2.v2-homepage .v2-opening-actions {
+    bottom: 55px;
+    left: 24px;
+    right: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .portfolio-v2.v2-homepage .v2-opening-actions > p {
+    max-width: 440px;
+    font-size: 14px;
+  }
+  .portfolio-v2.v2-homepage .v2-opening-actions .v2-button { min-height: 40px; }
+  .portfolio-v2.v2-homepage .v2-opening-scroll { bottom: 18px; right: 24px; }
+  .portfolio-v2.v2-homepage .v2-opening-art .wpl-poster { top: 12%; height: 59%; }
+}
+@media(max-width:520px) {
+  .portfolio-v2.v2-homepage { --v2-nav-height: 109px; }
+  .portfolio-v2.v2-homepage .v2-header { padding-inline: 15px; }
+  .portfolio-v2.v2-homepage .v2-nav a { font-size: 12px; }
+  .portfolio-v2.v2-homepage .v2-opening-actions { left: 18px; right: 18px; bottom: 53px; }
+  .portfolio-v2.v2-homepage .v2-opening-actions > p {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .portfolio-v2.v2-homepage .v2-opening-actions .v2-actions { gap: 8px; }
+  .portfolio-v2.v2-homepage .v2-opening-actions .v2-button {
+    min-height: 38px;
+    padding: 9px 11px;
+    font-size: 11px;
+  }
+  .portfolio-v2.v2-homepage .v2-opening-art .wpl-poster { top: 12%; height: 57%; }
+  .portfolio-v2.v2-homepage .v2-opening-scroll { font-size: 9px; right: 18px; }
+}
+@media(max-height:640px) {
+  .portfolio-v2.v2-homepage .v2-opening-actions > p {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .portfolio-v2.v2-homepage .v2-opening-actions .v2-button { min-height: 36px; padding-block: 7px; }
+  .portfolio-v2.v2-homepage .v2-opening-art .wpl-poster { top: 13%; height: 56%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .portfolio-v2.v2-homepage .v2-opening-scroll svg { animation: none; }
+  .portfolio-v2.v2-homepage .v2-opening-art { will-change: auto; }
+}
