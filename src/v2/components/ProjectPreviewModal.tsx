@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, GitBranch, X } from "lucide-react";
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useLanguage } from "@/lib/language";
 import type { getProjects } from "@/lib/projects";
 
@@ -23,6 +23,19 @@ export default function ProjectPreviewModal({
   const { language } = useLanguage();
   const titleId = useId();
   const reduce = useReducedMotion();
+  const [visible, setVisible] = useState(true);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function requestClose() {
+    if (!visible) return;
+    setVisible(false);
+    if (reduce) onClose();
+    else closeTimer.current = setTimeout(onClose, 260);
+  }
+
+  useEffect(() => () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  }, []);
 
   useEffect(() => {
     if (!open || !project) return;
@@ -48,23 +61,27 @@ export default function ProjectPreviewModal({
       ref={dialogRef}
       aria-labelledby={titleId}
       onClose={onClose}
+      onCancel={(event) => {
+        event.preventDefault();
+        requestClose();
+      }}
       onClick={(event) => {
-        if (event.target === event.currentTarget) onClose();
+        if (event.target === event.currentTarget) requestClose();
       }}
     >
       <AnimatePresence>
-        {open && (
+        {visible && (
           <motion.div
             className="v2-preview-panel"
             initial={reduce ? false : { opacity: 0, y: 35, scale: 0.975 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduce ? undefined : { opacity: 0, y: 15, scale: 0.985 }}
-            transition={{ duration: reduce ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: reduce ? 0 : visible ? 0.42 : 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="v2-preview-media">
               <img src={project.image} alt={project.alt} />
               <span className="v2-preview-index">{project.number} / 03</span>
-              <button type="button" className="v2-preview-close" onClick={onClose} aria-label={language === "th" ? "ปิดหน้าต่าง" : "Close preview"}>
+              <button type="button" className="v2-preview-close" onClick={requestClose} aria-label={language === "th" ? "ปิดหน้าต่าง" : "Close preview"}>
                 <X size={19} aria-hidden="true" />
               </button>
             </div>
