@@ -60,7 +60,9 @@ export default function ProjectPreviewModal({
       className="v2-preview-dialog"
       ref={dialogRef}
       aria-labelledby={titleId}
-      onClose={onClose}
+      // Escape is handled by onCancel; do not mirror native 'close' to React
+      // state because StrictMode's effect cleanup calls dialog.close() during
+      // development remount checks, which would immediately unmount the modal.
       onCancel={(event) => {
         event.preventDefault();
         requestClose();
