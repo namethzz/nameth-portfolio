@@ -85,7 +85,7 @@ async function smokeMobile() {
 
 try {
   await ready();
-  browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
+  browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--no-sandbox"] });
   await smokeDesktop();
   await smokeMobile();
   console.log("Portfolio v2 browser smoke checks passed");
