@@ -5,6 +5,7 @@ import { flushSync } from "react-dom";
 import Reveal from "@/src/v2/components/Reveal";
 import SelectedWork from "@/src/v2/components/SelectedWork";
 import Capabilities from "@/src/v2/components/Capabilities";
+import ProjectEvidence from "@/src/v2/components/ProjectEvidence";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { getProjects } from "@/lib/projects";
@@ -109,14 +110,24 @@ function Hero() {
           style={prefersReducedMotion ? undefined : { opacity: captionOpacity }}
           onFocusCapture={() => setFocusRequested(true)}
         >
-          <motion.p
+          <motion.div
+            className="v2-opening-message"
             initial="hidden"
             animate={revealCopy ? "visible" : "hidden"}
             variants={revealVariants}
             transition={revealTransition(0.06)}
           >
-            {t("heroDescription")}
-          </motion.p>
+            <p>{t("heroDescription")}</p>
+            <p className="v2-internship-line">
+              <span className="v2-availability-dot" aria-hidden="true" />
+              {language === "th"
+                ? "มองหาที่ฝึกงาน Front-end / Full-stack"
+                : "Looking for a Front-end / Full-stack internship"}
+            </p>
+            <p className="v2-internship-dates">
+              {language === "th" ? "พร้อมฝึกงาน 4 ม.ค. – 23 เม.ย. 2570" : "Available Jan 4 – Apr 23, 2027"}
+            </p>
+          </motion.div>
           <nav className="v2-opening-links" aria-label={language === "th" ? "ลิงก์สำคัญ" : "Explore portfolio"}>
             <motion.a
               className="v2-editorial-action v2-editorial-primary"
@@ -263,6 +274,7 @@ function CaseStudy({ project, onBackToWork }: { project: Project; onBackToWork: 
           transition={{ duration: reduce ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
         >{project.name}</motion.h1>
         <p className="v2-case-subtitle">{project.subtitle}</p>
+        <div className="v2-case-status"><span className="v2-availability-dot" aria-hidden="true" />{project.status}</div>
         <img src={project.image} alt={project.alt} width="1800" height="1350" style={{ viewTransitionName: "v2-feature-image" }} />
       </div>
       <div className="v2-case-body">
@@ -310,6 +322,7 @@ function CaseStudy({ project, onBackToWork }: { project: Project; onBackToWork: 
           </div>
         </div>
       </div>
+      <ProjectEvidence project={project} />
       <div className="v2-next"><a href={sectionHref("work")} onClick={(event) => { event.preventDefault(); onBackToWork(); }}>{t("navWork")} <ArrowRight size={21} aria-hidden="true" /></a></div>
     </main>
   );
