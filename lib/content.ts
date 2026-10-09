@@ -298,7 +298,7 @@ export const projectCopy = {
         "The part I believe I did well was keeping the user’s needs in view across the whole build, rather than treating each page as a separate feature."
       ],
       "note": "What I take from this project: understanding the person using the system is part of the development work, from the first requirement to the admin pages.",
-      "alt": "Athlete with a shaker, the OTW.SHOP hero image"
+      "alt": "Actual screenshot of the deployed OTW.SHOP storefront"
     }
   ],
   "th": [
@@ -363,7 +363,7 @@ export const projectCopy = {
         "สิ่งที่ผมคิดว่าทำได้ดีคือการรักษาความต้องการของผู้ใช้ไว้ตลอดการพัฒนา แล้วคิดถึงภาพรวมของการใช้งาน ไม่ได้มองแต่ละหน้าแยกออกจากกัน"
       ],
       "note": "สิ่งที่ผมได้จากงานนี้คือ การเข้าใจคนใช้เป็นส่วนหนึ่งของการพัฒนา ตั้งแต่รับความต้องการครั้งแรก ไปจนถึงออกแบบหน้าจัดการร้าน",
-      "alt": "นักกีฬาถือกระบอกเชค ภาพประกอบเว็บไซต์ OTW.SHOP"
+      "alt": "ภาพหน้าจอจริงของเว็บไซต์ร้านค้า OTW.SHOP ที่เผยแพร่แล้ว"
     }
   ]
 };
