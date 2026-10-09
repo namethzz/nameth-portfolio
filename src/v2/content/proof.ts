@@ -1,4 +1,5 @@
 import type { Language } from "@/lib/content";
+import { assetUrl } from "@/lib/assets";
 
 type Localized = Record<Language, string>;
 export type ProofItem = {
@@ -95,7 +96,11 @@ const proof = [
   },
   {
     stage: { en: "Implemented e-commerce project — public storefront and source available.", th: "โปรเจกต์ร้านค้าออนไลน์ — มีหน้าร้านและ Source Code ให้ตรวจสอบ" },
-    screenshots: [] as EvidenceImage[],
+    screenshots: [{
+      src: assetUrl("assets/work/otw-storefront.png"),
+      caption: { en: "Actual deployed storefront — captured Oct 2026", th: "ภาพหน้าร้านจริงจากเว็บที่ Deploy — ต.ค. 2569" },
+      alt: { en: "Actual screenshot of the deployed OTW.SHOP storefront", th: "ภาพหน้าจอเว็บไซต์ OTW.SHOP ที่เปิดใช้งานจริง" },
+    }],
     engineering: [
       {
         title: { en: "Search, filter and cart", th: "ค้นหา กรองสินค้า และตะกร้า" },
