@@ -227,7 +227,7 @@ export default function PortfolioV2() {
   const project = index < 0 ? undefined : projects[index];
 
   return (
-    <div className="portfolio-v2" lang={language}>
+    <div className={`portfolio-v2 ${project ? "v2-case-page" : "v2-homepage"}`} lang={language}>
       <a className="v2-skip-link" href="#main-content">{language === "th" ? "ข้ามไปยังเนื้อหา" : "Skip to content"}</a>
       <Header caseStudy={Boolean(project)} />
       {project ? <CaseStudy project={project} /> : (
