@@ -4,7 +4,8 @@ const baseProjects = [
   {
     number: "01",
     name: "THAI TAY",
-    image: assetUrl("assets/project-construction.jpg"),
+    // Authentic UI capture provided in the THAI TAY source repository.
+    image: "https://raw.githubusercontent.com/namethzz/THAITAY/main/preview/desktop.png",
     imageClass: "construction",
     repository: "https://github.com/namethzz/THAITAY",
     website: "https://namethzz.github.io/THAITAY/#overview",
