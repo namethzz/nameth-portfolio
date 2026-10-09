@@ -667,3 +667,89 @@
     transition: none;
   }
 }
+
+/*
+ * Typography study — Marion Marijola (installed fonts only).
+ * The handwritten script is a small editorial accent rather than a body face.
+ * This is restricted to English text: Marion Marijola contains no Thai glyphs.
+ * The SVG-drawn PORTFOLIO poster remains untouched.
+ */
+.portfolio-v2[lang="en"] .v2-section-heading h2,
+.portfolio-v2[lang="en"] .v2-project-text h3,
+.portfolio-v2[lang="en"] .v2-about h2,
+.portfolio-v2[lang="en"] .v2-contact h2,
+.portfolio-v2[lang="en"] .v2-case-hero h1,
+.portfolio-v2[lang="en"] .v2-case-body h2 {
+  font-family: var(--nm-font-display);
+  font-weight: 400;
+  letter-spacing: 0.004em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.portfolio-v2[lang="en"] .v2-section-heading h2 {
+  font-size: clamp(70px, 8.3vw, 138px);
+  line-height: 0.91;
+  max-width: 990px;
+}
+.portfolio-v2[lang="en"] .v2-project-text h3 {
+  font-size: clamp(46px, 5.7vw, 96px);
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+.portfolio-v2[lang="en"] .v2-about h2 {
+  font-size: clamp(64px, 6.5vw, 110px);
+  line-height: 0.96;
+}
+.portfolio-v2[lang="en"] .v2-contact h2 {
+  font-size: clamp(75px, 10.8vw, 172px);
+  line-height: 0.94;
+}
+.portfolio-v2[lang="en"] .v2-case-hero h1 {
+  font-size: clamp(72px, 10vw, 168px);
+  line-height: 0.98;
+  overflow-wrap: anywhere;
+}
+.portfolio-v2[lang="en"] .v2-case-body h2 {
+  font-size: clamp(48px, 5vw, 84px);
+}
+.portfolio-v2[lang="en"] .v2-about h2 em,
+.portfolio-v2[lang="en"] .v2-contact h2 em {
+  font-family: var(--nm-font-script);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.73em;
+  letter-spacing: 0;
+  line-height: 1.16;
+}
+.portfolio-v2[lang="en"] .v2-skill h3 {
+  font-family: var(--nm-font-display);
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: clamp(35px, 3.1vw, 50px);
+  line-height: 1.06;
+}
+@media(max-width:850px) {
+  .portfolio-v2[lang="en"] .v2-section-heading h2 {
+    font-size: clamp(58px, 11vw, 96px);
+    max-width: 100%;
+  }
+  .portfolio-v2[lang="en"] .v2-about h2,
+  .portfolio-v2[lang="en"] .v2-contact h2 {
+    font-size: clamp(57px, 10vw, 100px);
+  }
+}
+@media(max-width:520px) {
+  .portfolio-v2[lang="en"] .v2-section-heading h2 {
+    font-size: clamp(53px, 14vw, 78px);
+  }
+  .portfolio-v2[lang="en"] .v2-project-text h3 {
+    font-size: clamp(51px, 13vw, 75px);
+  }
+  .portfolio-v2[lang="en"] .v2-contact h2 {
+    font-size: clamp(60px, 13vw, 82px);
+  }
+  .portfolio-v2[lang="en"] .v2-about h2 em,
+  .portfolio-v2[lang="en"] .v2-contact h2 em {
+    font-size: 0.7em;
+  }
+}
