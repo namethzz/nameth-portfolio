@@ -98,6 +98,43 @@ async function smokeDesktop() {
   } finally { await page.close(); }
 }
 
+async function smokeAnimatedScroll() {
+  // Test with actual animations enabled; the previous mode="wait" kept
+  // project 02 on the image stage after chapter 03 had become active.
+  const page = await browser.newPage({
+    viewport: { width: 1440, height: 900 },
+    reducedMotion: "no-preference",
+  });
+  try {
+    await page.goto(base, { waitUntil: "domcontentloaded" });
+    await page.locator(".v2-story-chapter").first().waitFor();
+    for (const index of [2, 1, 0, 2]) {
+      await page.evaluate((i) => {
+        const card = document.querySelectorAll(".v2-story-chapter")[i];
+        const rect = card.getBoundingClientRect();
+        window.scrollTo({
+          top: window.scrollY + rect.top + rect.height / 2 - innerHeight / 2,
+          behavior: "instant",
+        });
+      }, index);
+      const number = String(index + 1).padStart(2, "0");
+      await page.waitForFunction((expected) =>
+        document.querySelector(".v2-story-visual")?.getAttribute("data-active-project") === expected,
+        number,
+        { timeout: 3000 },
+      );
+      // Check the selected photo and its title immediately, not after
+      // waiting for the 300ms cosmetic opacity animation to finish.
+      const photo = page.locator(".v2-story-feature img");
+      const cardImg = page.locator(".v2-story-chapter").nth(index).locator(".v2-story-mobile-image img");
+      assert(await photo.getAttribute("src") === await cardImg.getAttribute("src"),
+        "Animated image not synchronized with current chapter: " + number);
+      assert((await page.locator(".v2-story-photo-number").innerText()).startsWith(number),
+        "Animated stage counter not synchronized: " + number);
+    }
+  } finally { await page.close(); }
+}
+
 async function smokeMobile() {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, reducedMotion: "reduce" });
   try {
@@ -119,6 +156,7 @@ try {
   await ready();
   browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--no-sandbox"] });
   await smokeDesktop();
+  await smokeAnimatedScroll();
   await smokeMobile();
   console.log("Portfolio v2 browser smoke checks passed");
 } catch (error) {
