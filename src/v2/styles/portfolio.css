@@ -1511,3 +1511,179 @@
   .portfolio-v2 .v2-cap-tool-item,
   .portfolio-v2 .v2-cap-tool-item-top svg { transition: none; }
 }
+
+
+/* CASE STUDY — editorial project dossier / readable role & tech metadata.
+   Strong contrast replaces the previous low-contrast, unstructured tag list. */
+.portfolio-v2 .v2-case-body {
+  grid-template-columns: minmax(285px, .76fr) minmax(0, 1.24fr);
+  gap: clamp(48px, 6vw, 100px);
+  align-items: start;
+}
+.portfolio-v2 .v2-case-facts {
+  position: sticky;
+  top: 112px;
+  align-self: start;
+  isolation: isolate;
+  min-width: 0;
+  padding: clamp(25px, 2.7vw, 42px);
+  background: #223034;
+  color: #F5F1E8;
+  border: 1px solid #314A49;
+  border-radius: 3px;
+  box-shadow: 11px 11px 0 rgba(53, 107, 104, .10);
+}
+.portfolio-v2 .v2-case-facts::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: clamp(25px, 2.7vw, 42px);
+  width: 82px;
+  height: 3px;
+  background: #D99A82;
+}
+.portfolio-v2 .v2-case-facts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 3px 0 27px;
+  color: #C6D6D1;
+  font-size: 10px;
+  line-height: 1.5;
+  font-weight: 750;
+  letter-spacing: .15em;
+}
+.portfolio-v2 .v2-case-facts-header span:last-child {
+  color: #E3A68F;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.portfolio-v2 .v2-case-fact-section {
+  padding: 25px 0 28px;
+  border-top: 1px solid #556A68;
+}
+.portfolio-v2 .v2-case-fact-label {
+  display: flex;
+  align-items: baseline;
+  gap: 13px;
+  margin: 0 0 22px;
+  color: #E1AB94;
+  font-family: var(--nm-font-body) !important;
+  font-size: 12px !important;
+  line-height: 1.65 !important;
+  font-weight: 700 !important;
+  letter-spacing: .09em !important;
+  text-transform: uppercase;
+  text-wrap: initial !important;
+}
+.portfolio-v2 .v2-case-fact-label > span {
+  color: #A9C3BB;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .12em;
+}
+.portfolio-v2 .v2-case-fact-role .v2-case-fact-value {
+  margin: 0;
+  max-width: 38ch;
+  color: #FFFDF8;
+  font-size: clamp(18px, 1.85vw, 26px);
+  font-weight: 540;
+  line-height: 1.54;
+  letter-spacing: -.025em;
+  overflow-wrap: break-word;
+}
+.portfolio-v2 .v2-case-fact-tools {
+  padding-bottom: 27px;
+}
+.portfolio-v2 .v2-case-tool-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.portfolio-v2 .v2-case-tool-list li {
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 13px;
+  align-items: baseline;
+  padding: 11px 0 12px;
+  border-bottom: 1px solid #465B5A;
+  color: #F3F4ED;
+  font-size: 14px;
+  font-weight: 540;
+  line-height: 1.45;
+}
+.portfolio-v2 .v2-case-tool-list li:last-child {
+  border-bottom-color: transparent;
+}
+.portfolio-v2 .v2-case-tool-index {
+  color: #D5A087;
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.portfolio-v2 .v2-case-facts-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid #556A68;
+  padding-top: 23px;
+  color: #C3D0CA;
+  font-size: 10px;
+  letter-spacing: .14em;
+  font-weight: 700;
+}
+.portfolio-v2 .v2-case-facts-mark {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #E1AB94;
+}
+.portfolio-v2 .v2-case-narrative {
+  min-width: 0;
+}
+@media (max-width: 1020px), (max-height: 780px) {
+  .portfolio-v2 .v2-case-facts {
+    position: static;
+  }
+}
+@media (max-width: 850px) {
+  .portfolio-v2 .v2-case-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 58px;
+    padding-top: 38px;
+  }
+  .portfolio-v2 .v2-case-facts {
+    max-width: none;
+  }
+  .portfolio-v2 .v2-case-tool-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 26px;
+  }
+}
+@media (max-width: 520px) {
+  .portfolio-v2 .v2-case-facts {
+    padding: 26px 21px 22px;
+    box-shadow: 7px 7px 0 rgba(53, 107, 104, .10);
+  }
+  .portfolio-v2 .v2-case-facts::before {
+    left: 21px;
+  }
+  .portfolio-v2 .v2-case-facts-header {
+    padding-bottom: 21px;
+  }
+  .portfolio-v2 .v2-case-fact-role .v2-case-fact-value {
+    font-size: 20px;
+  }
+  .portfolio-v2 .v2-case-tool-list {
+    grid-template-columns: 1fr;
+  }
+  .portfolio-v2 .v2-case-body {
+    padding-top: 29px;
+    gap: 42px;
+  }
+}
