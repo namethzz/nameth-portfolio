@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, GitBranch, ScanEye } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/language";
@@ -26,25 +26,52 @@ export default function SelectedWork({
   const previewProject = previewIndex == null ? null : projects[previewIndex];
 
   useEffect(() => {
-    if (typeof IntersectionObserver === "undefined") return;
-    const cards = cardRefs.current.filter((card): card is HTMLElement => Boolean(card));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const candidates = entries.filter((entry) => entry.isIntersecting);
-        if (!candidates.length) return;
-        const center = window.innerHeight * 0.49;
-        candidates.sort((a, b) => {
-          const ac = Math.abs(a.boundingClientRect.top + a.boundingClientRect.height / 2 - center);
-          const bc = Math.abs(b.boundingClientRect.top + b.boundingClientRect.height / 2 - center);
-          return ac - bc;
-        });
-        const next = Number((candidates[0].target as HTMLElement).dataset.projectIndex);
-        if (Number.isInteger(next)) setActiveIndex(next);
-      },
-      { rootMargin: "-18% 0px -18% 0px", threshold: [0, 0.25, 0.5] },
-    );
-    cards.forEach((card) => observer.observe(card));
-    return () => observer.disconnect();
+    // One canonical scroll position determines both the photo AND chapter state.
+    // IntersectionObserver's partial entries and pointer hover previously
+    // competed, leaving 02 in the photo while 03 was the active chapter.
+    let frame = 0;
+    const updateFromScroll = () => {
+      frame = 0;
+      const focusLine = window.innerHeight * 0.5;
+      let nearest = 0;
+      let bestDistance = Number.POSITIVE_INFINITY;
+
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        // Select the chapter crossing the viewport's focal line. When the
+        // line falls outside all chapters, select the nearest chapter edge.
+        const distance = focusLine < rect.top
+          ? rect.top - focusLine
+          : focusLine > rect.bottom
+            ? focusLine - rect.bottom
+            : 0;
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          nearest = index;
+        }
+      });
+      setActiveIndex((current) => current === nearest ? current : nearest);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(updateFromScroll);
+    };
+    // Re-evaluate continuously from current geometry, not just IO event
+    // entries, so swift scrolling and reverse scrolling remain deterministic.
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    const resizeObserver = typeof ResizeObserver === "undefined"
+      ? null
+      : new ResizeObserver(schedule);
+    cardRefs.current.forEach((card) => { if (card) resizeObserver?.observe(card); });
+    void document.fonts?.ready.then(schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      resizeObserver?.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, [projects.length]);
 
   function openPreview(index: number, trigger: HTMLElement) {
@@ -73,25 +100,30 @@ export default function SelectedWork({
         <Reveal delay={0.12}><p className="v2-work-intro">{t("workIntro")}</p></Reveal>
       </div>
       <div className="v2-story-layout">
-        <div className="v2-story-visual" aria-label={language === "th" ? "ภาพผลงานที่กำลังอ่าน" : "Current project showcase"}>
-          <AnimatePresence mode="wait">
-            <motion.a
+        <div
+          className="v2-story-visual"
+          data-active-project={activeProject.number}
+          aria-label={language === "th" ? "ภาพผลงานที่กำลังอ่าน" : "Current project showcase"}
+        >
+          <a
+            className="v2-story-feature"
+            href={projectHref(activeIndex)}
+            aria-label={t("explore") + " " + activeProject.name}
+            onClick={(event) => { event.preventDefault(); onNavigate(activeIndex); }}
+          >
+            <motion.img
               key={activeProject.number}
-              className="v2-story-feature"
-              href={projectHref(activeIndex)}
-              aria-label={t("explore") + " " + activeProject.name}
-              onClick={(event) => { event.preventDefault(); onNavigate(activeIndex); }}
-              initial={reduce ? false : { opacity: 0, y: 24, scale: 1.02 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={reduce ? undefined : { opacity: 0, y: -12, scale: 0.985 }}
-              transition={{ duration: reduce ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img src={activeProject.image} alt={activeProject.alt} loading="lazy" style={{ viewTransitionName: "v2-feature-image" }} />
-              <span className="v2-story-photo-number">{activeProject.number} / 03</span>
-              <span className="v2-story-feature-title">{activeProject.name}</span>
-              <span className="v2-story-photo-arrow" aria-hidden="true"><ArrowUpRight size={22} /></span>
-            </motion.a>
-          </AnimatePresence>
+              src={activeProject.image}
+              alt={activeProject.alt}
+              initial={reduce ? false : { opacity: 0.55, scale: 1.014 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: reduce ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
+              style={{ viewTransitionName: "v2-feature-image" }}
+            />
+            <span className="v2-story-photo-number">{activeProject.number} / 03</span>
+            <span className="v2-story-feature-title">{activeProject.name}</span>
+            <span className="v2-story-photo-arrow" aria-hidden="true"><ArrowUpRight size={22} /></span>
+          </a>
           <div className="v2-story-progress" aria-hidden="true">
             {projects.map((project, index) => (
               <span key={project.number} className={index === activeIndex ? "is-active" : ""} />
@@ -105,8 +137,6 @@ export default function SelectedWork({
               key={project.number}
               data-project-index={index}
               ref={(node) => { cardRefs.current[index] = node; }}
-              onPointerEnter={() => setActiveIndex(index)}
-              onFocusCapture={() => setActiveIndex(index)}
             >
               <Reveal>
                 <p className="v2-story-index">{project.number} <span>/ 03</span></p>
