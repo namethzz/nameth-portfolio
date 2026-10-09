@@ -119,7 +119,7 @@ async function smokeDesktop() {
     assert(await dossier.locator(".v2-case-tool-list li").count() === 6,
       "THAI TAY tools must come from the project's canonical data");
     const contrast = await dossier.locator(".v2-case-fact-value").evaluate(node => {
-      const parse = color => (color.match(/[\\d.]+/g) || []).slice(0, 3).map(Number);
+      const parse = color => (color.match(/[0-9.]+/g) || []).slice(0, 3).map(Number);
       const luminance = rgb => {
         const channels = rgb.map(value => {
           const c = value / 255;
