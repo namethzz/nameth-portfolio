@@ -35,6 +35,13 @@ async function smokeDesktop() {
     await page.locator("#work").waitFor();
     assert(await page.locator(".v2-opening").count() === 1, "Fullscreen opening missing");
     assert(await page.locator(".v2-hero-sticky").count() === 1, "Pinned hero missing");
+    // An employer can locate role and the actual university dates immediately.
+    assert(await page.locator(".v2-internship-line").innerText() ===
+      "Looking for a Front-end / Full-stack internship",
+      "Internship target is not clear on the opening screen");
+    assert((await page.locator(".v2-internship-dates").innerText()).includes("Apr 23, 2027"),
+      "University internship availability missing");
+
 
     const work = page.locator("#work");
     await work.scrollIntoViewIfNeeded();
@@ -138,6 +145,15 @@ async function smokeDesktop() {
       "Case study dossier is missing its technology heading");
     assert(await dossier.locator(".v2-case-tool-list li").count() === 6,
       "THAI TAY tools must come from the project's canonical data");
+    // Real project evidence, not generic cover photography.
+    assert(await page.locator(".v2-proof-gallery img").count() === 3,
+      "Authentic THAI TAY repository screenshots missing");
+    assert(await page.locator(".v2-proof-code-card").count() === 3,
+      "THAI TAY evidence should include directly verifiable source links");
+    const screenshotsFromRepo = await page.locator(".v2-proof-gallery img").evaluateAll(nodes =>
+      nodes.every(node => node.getAttribute("src")?.includes("/namethzz/THAITAY/main/preview/")));
+    assert(screenshotsFromRepo, "Proof gallery contains a non-source screenshot");
+
     const contrast = await dossier.locator(".v2-case-fact-value").evaluate(node => {
       const parse = color => (color.match(/[0-9.]+/g) || []).slice(0, 3).map(Number);
       const luminance = rgb => {
@@ -232,6 +248,14 @@ async function smokeMobile() {
       "Crop chat should show its five documented project technologies");
     assert(await mobileDossier.locator(".v2-case-fact-value").isVisible(),
       "Role copy is not visible on mobile case studies");
+    assert(await page.locator(".v2-proof-code-card").count() === 2,
+      "Crop chatbot frontend evidence missing");
+    await page.goto(base + "?project=otw-shop", { waitUntil: "domcontentloaded" });
+    assert(await page.locator(".v2-proof-code-card").count() === 4,
+      "OTW case study should expose technical proof for four workflows");
+    assert((await page.locator(".v2-case-status").innerText()).includes("Implemented"),
+      "OTW case study status missing");
+
     assert(await page.locator(".v2-case-tool-list li").first().isVisible(),
       "Mobile technology item missing after palette change");
     const caseOverflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 2);
