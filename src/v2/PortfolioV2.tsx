@@ -171,23 +171,39 @@ function Hero() {
 function About() {
   const { language, t } = useLanguage();
   const values = identityCopy[language].values;
+  const reduce = useReducedMotion();
   return (
     <section className="v2-section v2-about" id="about" aria-labelledby="v2-about-heading">
       <div>
-        <p className="v2-kicker">02 / {t("aboutKicker")}</p>
-        <h2 id="v2-about-heading">{t("aboutTitle")} <em>{t("aboutEm")}</em></h2>
-        <img className="v2-profile-image" src={assetUrl("assets/nameth-resume.png")} alt={identity.name} loading="lazy" />
+        <Reveal>
+          <p className="v2-kicker">02 / {t("aboutKicker")}</p>
+          <h2 id="v2-about-heading">{t("aboutTitle")} <em>{t("aboutEm")}</em></h2>
+        </Reveal>
+        <Reveal delay={0.18}>
+          <img className="v2-profile-image" src={assetUrl("assets/nameth-resume.png")} alt={identity.name} loading="lazy" />
+        </Reveal>
       </div>
       <div className="v2-about-copy">
-        <p>{t("about1")}</p><p>{t("about2")}</p><p>{t("about3")}</p>
+        <Reveal><p>{t("about1")}</p></Reveal>
+        <Reveal delay={0.08}><p>{t("about2")}</p></Reveal>
+        <Reveal delay={0.13}><p>{t("about3")}</p></Reveal>
         <div className="v2-values">
           {values.map((item, index) => (
-            <div key={item.id} className="v2-value">
+            <motion.div
+              key={item.id}
+              className="v2-value"
+              initial={reduce ? false : { opacity: 0, y: 22 }}
+              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : index * 0.09 }}
+              whileHover={reduce ? undefined : { y: -5 }}
+            >
               <span>0{index + 1}</span><strong>{item.title}</strong>
-            </div>
+              <small>{item.description}</small>
+            </motion.div>
           ))}
         </div>
-        <p className="v2-education">{t("degree")}<br />{t("university")}</p>
+        <Reveal><p className="v2-education">{t("degree")}<br />{t("university")}</p></Reveal>
       </div>
     </section>
   );
@@ -195,6 +211,7 @@ function About() {
 
 function Skills({ projects }: { projects: Project[] }) {
   const { t } = useLanguage();
+  const reduce = useReducedMotion();
   const categories = [
     { title: t("web"), description: t("webDesc"), tools: ["React", "TypeScript", "C#", "ASP.NET Core MVC"], project: projects[2], index: 2 },
     { title: t("data"), description: t("dataDesc"), tools: ["Python", "Pandas", "NumPy", "Google Colab"], project: projects[0], index: 0 },
@@ -203,41 +220,64 @@ function Skills({ projects }: { projects: Project[] }) {
   return (
     <section className="v2-section v2-skills" id="skills" aria-labelledby="v2-skills-heading">
       <div className="v2-section-heading">
-        <div><p className="v2-kicker">03 / {t("capabilities")}</p><h2 id="v2-skills-heading">{t("skillsTitle")}</h2></div>
-        <p>{t("skillsIntro")}</p>
+        <Reveal><p className="v2-kicker">03 / {t("capabilities")}</p><h2 id="v2-skills-heading">{t("skillsTitle")}</h2></Reveal>
+        <Reveal delay={0.1}><p>{t("skillsIntro")}</p></Reveal>
       </div>
       <div className="v2-skill-grid">
         {categories.map((category, index) => (
-          <article key={category.title} className="v2-skill">
+          <motion.article
+            key={category.title}
+            className="v2-skill"
+            initial={reduce ? false : { opacity: 0, y: 24 }}
+            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.22 }}
+            transition={{ duration: reduce ? 0 : 0.6, delay: reduce ? 0 : index * 0.12 }}
+            whileHover={reduce ? undefined : { y: -6 }}
+          >
             <span className="v2-skill-number">0{index + 1}</span>
             <h3>{category.title}</h3>
             <p>{category.description}</p>
             <div className="v2-tags">{category.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
             {category.project && <a className="v2-inline-link" href={projectHref(category.index)}>{category.project.name} <ArrowUpRight aria-hidden="true" size={16} /></a>}
-          </article>
+          </motion.article>
         ))}
       </div>
-      <p className="v2-skill-note">{t("learning")}</p>
+      <Reveal><p className="v2-skill-note">{t("learning")}</p></Reveal>
     </section>
   );
 }
 
 function Contact() {
   const { t } = useLanguage();
+  const reduce = useReducedMotion();
   return (
-    <section className="v2-contact" id="contact" aria-labelledby="v2-contact-heading">
-      <p className="v2-kicker">04 / {t("contactKicker")}</p>
-      <h2 id="v2-contact-heading">{t("contactTitle")} <em>{t("contactEm")}</em></h2>
-      <p className="v2-contact-copy">{t("contactIntro")}</p>
-      <div className="v2-actions">
-        <a className="v2-button v2-button-dark" href="mailto:nameth.won@spumail.net">{t("hello")} <Mail aria-hidden="true" size={16} /></a>
-        <a className="v2-button v2-button-outline" href={assetUrl("assets/resume.pdf")} download="resume.pdf">{t("resume")} <Download aria-hidden="true" size={16} /></a>
-      </div>
-      <div className="v2-contact-bottom">
-        <a href="mailto:nameth.won@spumail.net">nameth.won@spumail.net</a>
-        <a href="https://github.com/namethzz" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight aria-hidden="true" size={15} /></a>
-      </div>
-    </section>
+    <motion.section
+      className="v2-contact"
+      id="contact"
+      aria-labelledby="v2-contact-heading"
+      initial={reduce ? false : { backgroundColor: "#EAE4D9" }}
+      whileInView={reduce ? undefined : { backgroundColor: "#D6DDD3" }}
+      viewport={{ once: true, amount: 0.14 }}
+      transition={{ duration: reduce ? 0 : 1.1 }}
+    >
+      <Reveal><p className="v2-kicker">04 / {t("contactKicker")}</p></Reveal>
+      <Reveal delay={0.1}>
+        <h2 id="v2-contact-heading">{t("contactTitle")} <em>{t("contactEm")}</em></h2>
+      </Reveal>
+      <Reveal delay={0.14}><p className="v2-contact-copy">{t("contactIntro")}</p></Reveal>
+      <Reveal delay={0.2}>
+        <div className="v2-actions">
+          <a className="v2-button v2-button-dark" href="mailto:nameth.won@spumail.net">{t("hello")} <Mail aria-hidden="true" size={16} /></a>
+          <a className="v2-button v2-button-outline" href={assetUrl("assets/resume.pdf")} download="resume.pdf">{t("resume")} <Download aria-hidden="true" size={16} /></a>
+        </div>
+      </Reveal>
+      <Reveal delay={0.22}>
+        <div className="v2-contact-bottom">
+          <a href="mailto:nameth.won@spumail.net">nameth.won@spumail.net</a>
+          <a href="https://github.com/namethzz" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight aria-hidden="true" size={15} /></a>
+        </div>
+      </Reveal>
+    </motion.section>
   );
 }
 
