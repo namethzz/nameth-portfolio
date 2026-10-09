@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Reveal from "@/src/v2/components/Reveal";
 import SelectedWork from "@/src/v2/components/SelectedWork";
+import Capabilities from "@/src/v2/components/Capabilities";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { getProjects } from "@/lib/projects";
@@ -209,44 +210,6 @@ function About() {
   );
 }
 
-function Skills({ projects, onNavigate }: { projects: Project[]; onNavigate: (index: number) => void }) {
-  const { t } = useLanguage();
-  const reduce = useReducedMotion();
-  const categories = [
-    { title: t("web"), description: t("webDesc"), tools: ["React", "TypeScript", "C#", "ASP.NET Core MVC"], project: projects[2], index: 2 },
-    { title: t("data"), description: t("dataDesc"), tools: ["Python", "Pandas", "NumPy", "Google Colab"], project: projects[0], index: 0 },
-    { title: t("databases"), description: t("databaseDesc"), tools: ["Git / GitHub", "Docker", "Postman", "n8n"], project: projects[1], index: 1 },
-  ];
-  return (
-    <section className="v2-section v2-skills" id="skills" aria-labelledby="v2-skills-heading">
-      <div className="v2-section-heading">
-        <Reveal><p className="v2-kicker">03 / {t("capabilities")}</p><h2 id="v2-skills-heading">{t("skillsTitle")}</h2></Reveal>
-        <Reveal delay={0.1}><p>{t("skillsIntro")}</p></Reveal>
-      </div>
-      <div className="v2-skill-grid">
-        {categories.map((category, index) => (
-          <motion.article
-            key={category.title}
-            className="v2-skill"
-            initial={reduce ? false : { opacity: 0, y: 24 }}
-            whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.22 }}
-            transition={{ duration: reduce ? 0 : 0.6, delay: reduce ? 0 : index * 0.12 }}
-            whileHover={reduce ? undefined : { y: -6 }}
-          >
-            <span className="v2-skill-number">0{index + 1}</span>
-            <h3>{category.title}</h3>
-            <p>{category.description}</p>
-            <div className="v2-tags">{category.tools.map((tool) => <span key={tool}>{tool}</span>)}</div>
-            {category.project && <a className="v2-inline-link" href={projectHref(category.index)} onClick={(event) => { event.preventDefault(); onNavigate(category.index); }}>{category.project.name} <ArrowUpRight aria-hidden="true" size={16} /></a>}
-          </motion.article>
-        ))}
-      </div>
-      <Reveal><p className="v2-skill-note">{t("learning")}</p></Reveal>
-    </section>
-  );
-}
-
 function Contact() {
   const { t } = useLanguage();
   const reduce = useReducedMotion();
@@ -390,7 +353,7 @@ export default function PortfolioV2() {
           <Hero />
           <SelectedWork projects={projects} onNavigate={navigateToProject} />
           <About />
-          <Skills projects={projects} onNavigate={navigateToProject} />
+          <Capabilities projects={projects} onNavigate={navigateToProject} />
           <Contact />
         </main>
       )}
