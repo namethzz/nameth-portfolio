@@ -1959,3 +1959,303 @@
 @media (prefers-reduced-motion: reduce) {
   .portfolio-v2 .v2-value { transition: none; }
 }
+
+/* APPLICATION READINESS — identify the role/date without disrupting the poster. */
+.portfolio-v2 .v2-opening-message {
+  max-width: 490px;
+  flex: 1 1 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  min-width: 0;
+}
+.portfolio-v2 .v2-opening-message > p { margin: 0; }
+.portfolio-v2 .v2-opening-message > p:first-child {
+  font-size: clamp(14px, 1.2vw, 18px);
+  letter-spacing: -.02em;
+  color: var(--nm-ink);
+  line-height: 1.47;
+}
+.portfolio-v2 .v2-internship-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--nm-copper-text);
+  font-weight: 750;
+  letter-spacing: .01em;
+}
+.portfolio-v2 .v2-availability-dot {
+  flex: none;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--nm-copper);
+}
+.portfolio-v2 .v2-internship-dates {
+  padding-left: 15px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #475D57;
+}
+.portfolio-v2 .v2-case-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: -20px 0 33px;
+  max-width: 660px;
+  color: #3D5C54;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+/* AUTHENTIC WORK — screenshots and direct links to implemented code. */
+.portfolio-v2 .v2-proof {
+  padding: clamp(78px, 9vw, 130px) clamp(20px, 4vw, 72px);
+  background: #E8ECE4;
+  border-top: 1px solid #CBD5C9;
+  border-bottom: 1px solid #CBD5C9;
+}
+.portfolio-v2 .v2-proof-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, .6fr);
+  gap: clamp(18px, 5vw, 80px);
+  align-items: end;
+  padding-bottom: 45px;
+}
+.portfolio-v2 .v2-proof-head h2 {
+  font-size: clamp(45px, 6.4vw, 102px);
+  line-height: 1.02;
+  letter-spacing: -.058em;
+  margin: 0;
+  font-weight: 650;
+}
+.portfolio-v2[lang="en"] .v2-proof-head h2 {
+  font-family: var(--nm-font-display);
+  font-size: clamp(65px, 8.5vw, 142px);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: 0;
+}
+.portfolio-v2 .v2-proof-stage {
+  padding: 17px 0 10px;
+  border-top: 1px solid #B5C5B7;
+  display: flex;
+  gap: 11px;
+  align-items: baseline;
+}
+.portfolio-v2 .v2-proof-stage .v2-proof-stage-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--nm-copper);
+  border-radius: 100%;
+  flex: none;
+}
+.portfolio-v2 .v2-proof-stage p {
+  color: #33554E;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+.portfolio-v2 .v2-proof-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 19px;
+  margin: 0 0 65px;
+}
+.portfolio-v2 .v2-proof-gallery-feature { grid-column: span 2; }
+.portfolio-v2 .v2-proof-shot {
+  margin: 0;
+  padding: clamp(8px, 1vw, 15px);
+  background: #F5F1E8;
+  border: 1px solid #D2C9BB;
+}
+.portfolio-v2 .v2-proof-shot-screen {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #D9E2DF;
+  border: 1px solid #C8D1C9;
+}
+.portfolio-v2 .v2-proof-shot-screen > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.portfolio-v2 .v2-proof-window-bar {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 12px;
+  background: #F6F3ED;
+  border-bottom: 1px solid #D8D7CB;
+  pointer-events: none;
+}
+.portfolio-v2 .v2-proof-window-bar i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #C8BDB0;
+  border-radius: 50%;
+}
+.portfolio-v2 .v2-proof-shot figcaption {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 14px 3px 3px;
+  font-size: 12px;
+  color: #314640;
+  font-weight: 650;
+}
+.portfolio-v2 .v2-proof-shot figcaption span {
+  color: var(--nm-copper-text);
+  font-size: 11px;
+  font-weight: 750;
+}
+.portfolio-v2 .v2-proof-shot figcaption svg {
+  margin-left: auto;
+  color: var(--nm-teal);
+}
+.portfolio-v2 .v2-proof-source {
+  display: grid;
+  grid-template-columns: minmax(200px, .46fr) minmax(0, 1.54fr);
+  gap: clamp(25px, 5vw, 80px);
+  border-top: 1px solid #C3D0C4;
+  padding-top: 40px;
+}
+.portfolio-v2 .v2-proof-source-heading svg { color: var(--nm-copper-text); }
+.portfolio-v2 .v2-proof-source-heading h3 {
+  font-size: clamp(28px, 2.8vw, 40px);
+  letter-spacing: -.045em;
+  line-height: 1.1;
+  margin: 22px 0 12px;
+}
+.portfolio-v2 .v2-proof-source-heading p {
+  color: #3F5C50;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 280px;
+}
+.portfolio-v2 .v2-proof-source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.portfolio-v2 .v2-proof-code-card {
+  display: flex;
+  min-height: 230px;
+  height: 100%;
+  flex-direction: column;
+  padding: clamp(20px, 2.3vw, 32px);
+  background: #F5F1E8;
+  border: 1px solid #CCD3C7;
+  transition: transform var(--nm-motion-normal), border-color var(--nm-motion-normal), background var(--nm-motion-normal);
+}
+.portfolio-v2 .v2-proof-code-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--nm-copper);
+  background: #FFFCF7;
+}
+.portfolio-v2 .v2-proof-code-index {
+  display: block;
+  font-size: 10px;
+  letter-spacing: .12em;
+  font-weight: 750;
+  color: var(--nm-copper-text);
+  margin-bottom: 19px;
+}
+.portfolio-v2 .v2-proof-code-card strong {
+  display: block;
+  font-size: clamp(18px, 1.9vw, 26px);
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -.025em;
+  margin-bottom: 11px;
+}
+.portfolio-v2 .v2-proof-code-description {
+  color: #425E54;
+  font-size: 13px;
+  line-height: 1.75;
+  margin-bottom: 23px;
+}
+.portfolio-v2 .v2-proof-code-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .08em;
+  color: var(--nm-copper-text);
+}
+.portfolio-v2 .v2-proof-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: clamp(36px, 5vw, 70px);
+  padding-top: 21px;
+  border-top: 1px solid #C3D0C4;
+}
+.portfolio-v2 .v2-proof-bottom > span {
+  font-size: 14px;
+  color: #3D5B52;
+}
+.portfolio-v2 .v2-proof-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.portfolio-v2 .v2-proof-bottom-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 750;
+  border-bottom: 1px solid var(--nm-copper);
+  padding-bottom: 6px;
+}
+.portfolio-v2 .v2-proof-bottom-links a:hover { color: var(--nm-copper-text); }
+@media(max-width: 1020px) {
+  .portfolio-v2 .v2-proof-source { grid-template-columns: 1fr; }
+  .portfolio-v2 .v2-proof-source-heading p { max-width: 620px; }
+}
+@media(max-width: 850px) {
+  .portfolio-v2 .v2-opening-message { flex-basis: auto; }
+  .portfolio-v2 .v2-opening-message > p:first-child { font-size: 13px; }
+  .portfolio-v2 .v2-opening-message .v2-internship-line { font-size: 11px; }
+  .portfolio-v2 .v2-proof-head { grid-template-columns: 1fr; }
+  .portfolio-v2 .v2-proof-gallery { gap: 10px; }
+  .portfolio-v2 .v2-proof-head h2 { max-width: 750px; }
+}
+@media(max-width: 520px) {
+  .portfolio-v2 .v2-opening-message { gap: 3px; }
+  .portfolio-v2 .v2-opening-message > p:first-child { font-size: 12px; line-height: 1.3; }
+  .portfolio-v2 .v2-internship-dates { font-size: 10px; }
+  .portfolio-v2 .v2-proof-head { padding-bottom: 30px; }
+  .portfolio-v2 .v2-proof-head h2 { font-size: 43px; }
+  .portfolio-v2[lang="en"] .v2-proof-head h2 { font-size: 62px; }
+  .portfolio-v2 .v2-proof-gallery { grid-template-columns: 1fr; gap: 13px; margin-bottom: 42px; }
+  .portfolio-v2 .v2-proof-gallery-feature { grid-column: span 1; }
+  .portfolio-v2 .v2-proof-source-grid { grid-template-columns: 1fr; }
+  .portfolio-v2 .v2-proof-code-card { min-height: 185px; }
+  .portfolio-v2 .v2-proof-bottom-links { gap: 15px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .portfolio-v2 .v2-proof-code-card { transition: none; }
+}
