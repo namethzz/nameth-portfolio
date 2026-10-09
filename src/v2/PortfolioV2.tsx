@@ -2,6 +2,7 @@ import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Download, GitBranch as 
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { getProjects } from "@/lib/projects";
+import WavingPortfolioLanding from "@/components/ui/waving-portfolio-landing";
 import { identity, identityCopy } from "@/src/v2/content/identity";
 import { getProjectIndex, previewPath, projectHref, sectionHref } from "@/src/v2/lib/routes";
 
@@ -47,23 +48,26 @@ function Header({ caseStudy }: { caseStudy: boolean }) {
 function Hero() {
   const { language, t } = useLanguage();
   return (
-    <section className="v2-hero" id="home" aria-labelledby="v2-hero-title">
-      <div className="v2-hero-top">
-        <span>{identity.name.toUpperCase()}</span>
-        <span>PORTFOLIO / {identity.year}</span>
+    <section className="v2-hero v2-hero-poster" id="home" aria-label={t("introduction")}>
+      <div className="v2-poster-shell">
+        <WavingPortfolioLanding
+          name={identity.name}
+          year="PORTFOLIO / 2026"
+          roles={["SOFTWARE DEVELOPER", "DATA ENTHUSIAST"]}
+          greeting={language === "th" ? "สวัสดี!" : "HELLO!"}
+          title="Portfolio"
+          signature="NA/METH"
+          accent="#B84F3A"
+          paper="#F5F1E8"
+          ink="#1E292C"
+          height="100%"
+        />
       </div>
-      <div className="v2-hero-stage">
-        <p className="v2-hero-eyebrow">{language === "th" ? "งานที่ผมลงมือทำ" : "A collection of things I've built"}</p>
-        <h1 className="v2-hero-title" id="v2-hero-title">PORTFOLIO<span aria-hidden="true">.</span></h1>
-        <div className="v2-hero-bottom">
-          <p className="v2-hero-role">SOFTWARE DEVELOPER<br />DATA ENTHUSIAST</p>
-          <div className="v2-hero-intro">
-            <p>{t("heroDescription")}</p>
-            <div className="v2-actions">
-              <a className="v2-button v2-button-dark" href="#work">{t("exploreWork")} <ArrowUpRight aria-hidden="true" size={17} /></a>
-              <a className="v2-button v2-button-outline" href={assetUrl("assets/resume.pdf")} download="resume.pdf">{t("resume")} <Download aria-hidden="true" size={16} /></a>
-            </div>
-          </div>
+      <div className="v2-poster-caption">
+        <p>{t("heroDescription")}</p>
+        <div className="v2-actions">
+          <a className="v2-button v2-button-dark" href="#work">{t("exploreWork")} <ArrowUpRight aria-hidden="true" size={17} /></a>
+          <a className="v2-button v2-button-outline" href={assetUrl("assets/resume.pdf")} download="resume.pdf">{t("resume")} <Download aria-hidden="true" size={16} /></a>
         </div>
       </div>
       <a className="v2-scroll-cue" href="#work">{t("scroll")} <ArrowDown aria-hidden="true" size={16} /></a>
