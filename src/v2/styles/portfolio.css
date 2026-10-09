@@ -95,3 +95,22 @@
 @media(max-width:850px){.portfolio-v2 .v2-header{height:auto;min-height:72px;flex-wrap:wrap;padding-block:16px}.portfolio-v2 .v2-nav{order:3;width:100%;overflow-x:auto;justify-content:space-between;gap:16px}.portfolio-v2 .v2-hero{min-height:650px}.portfolio-v2 .v2-hero-bottom,.portfolio-v2 .v2-section-heading,.portfolio-v2 .v2-project,.portfolio-v2 .v2-about,.portfolio-v2 .v2-case-body{grid-template-columns:1fr}.portfolio-v2 .v2-project:nth-child(even) .v2-project-image{order:0}.portfolio-v2 .v2-project-list{gap:65px}.portfolio-v2 .v2-about-copy{padding-top:0}.portfolio-v2 .v2-skill-grid{grid-template-columns:1fr}.portfolio-v2 .v2-skill,.portfolio-v2 .v2-skill:first-child{padding:26px 0;min-height:auto}.portfolio-v2 .v2-skill+.v2-skill{border-left:0;border-top:1px solid var(--nm-border)}.portfolio-v2 .v2-skill h3{margin-top:12px}.portfolio-v2 .v2-skill .v2-inline-link{margin-top:12px}.portfolio-v2 .v2-contact-bottom{margin-top:65px}}
 @media(max-width:520px){.portfolio-v2 .v2-hero{min-height:630px}.portfolio-v2 .v2-hero-title{font-size:16vw}.portfolio-v2 .v2-hero-top{font-size:9px}.portfolio-v2 .v2-section{padding-block:65px}.portfolio-v2 .v2-section-heading{margin-bottom:35px}.portfolio-v2 .v2-about .v2-values{grid-template-columns:1fr 1fr}.portfolio-v2 .v2-value{min-height:85px;padding:12px}.portfolio-v2 .v2-value strong{font-size:14px}.portfolio-v2 .v2-project-image{aspect-ratio:1.15}.portfolio-v2 .v2-hero-stage{gap:24px}.portfolio-v2 .v2-contact{padding-top:70px}}
 @media(prefers-reduced-motion:reduce){.portfolio-v2{scroll-behavior:auto}.portfolio-v2 *{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+
+/* Phase 3: poster hero. The original SVG composition remains intact on all viewports. */
+.portfolio-v2 .v2-hero-poster{min-height:0;padding-top:18px;gap:0}
+.portfolio-v2 .v2-poster-shell{position:relative;width:100%;height:clamp(440px,67svh,800px);overflow:hidden;border-top:1px solid var(--nm-border);border-bottom:1px solid var(--nm-border)}
+.portfolio-v2 .v2-poster-shell .wpl-root{min-height:100%;width:100%}
+.portfolio-v2 .v2-poster-caption{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:25px 0 32px}
+.portfolio-v2 .v2-poster-caption>p{font-size:clamp(15px,1.4vw,19px);max-width:620px;line-height:1.55;margin:0}
+.portfolio-v2 .v2-poster-caption .v2-actions{flex-shrink:0}
+.portfolio-v2 .v2-poster-caption .v2-button{white-space:nowrap}
+@media(max-width:850px){
+.portfolio-v2 .v2-hero-poster{min-height:0}
+.portfolio-v2 .v2-poster-shell{height:clamp(440px,69svh,680px)}
+.portfolio-v2 .v2-poster-caption{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:520px){
+.portfolio-v2 .v2-hero-poster{min-height:0;padding-top:8px}
+.portfolio-v2 .v2-poster-shell{height:clamp(390px,62svh,580px)}
+.portfolio-v2 .v2-poster-caption{padding-top:18px}
+}
