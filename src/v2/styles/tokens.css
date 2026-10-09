@@ -1,4 +1,26 @@
 /*
+ * Local-only preview faces for the user-supplied Marion Marijola fonts.
+ * The files are personal-use only and prohibit redistribution. No font
+ * binaries or remote URLs are bundled into this public repository.
+ * Browsers on other machines will use the fallback font until a
+ * suitable licensed web-font package is obtained.
+ */
+@font-face {
+  font-family: "Marion Marijola Local";
+  src: local("Marion Marijola"), local("MarionMarijola");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Marion Marijola Script Local";
+  src: local("Marion Marijola Script"), local("MarionMarijolaScript");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+/*
  * NAMETH Portfolio v2 — Creative Engineering design foundation.
  * Import this stylesheet only in the v2 app shell; the existing site is unaffected.
  * All custom properties live under .portfolio-v2 to prevent leakage to v1.
@@ -14,7 +36,8 @@
   --nm-focus: #B84F3A;
 
   --nm-font-body: "Manrope", "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
-  --nm-font-display: "Manrope", "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+  --nm-font-display: "Marion Marijola Local", "Arial Narrow", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --nm-font-script: "Marion Marijola Script Local", "Segoe Script", cursive;
 
   --nm-radius-sm: 0.5rem;
   --nm-radius-md: 0.875rem;
