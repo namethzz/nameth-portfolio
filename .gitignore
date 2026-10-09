@@ -7,3 +7,12 @@ dist/
 *.log
 .DS_Store
 Thumbs.db
+
+# Personal-use-only typography assets. Never publish font binaries without
+# redistribution/webfont permission from the font owner.
+*Marion*Marijola*.otf
+*marion*marijola*.otf
+*Marion*Marijola*.ttf
+*marion*marijola*.ttf
+*Marion*Marijola*.woff*
+*marion*marijola*.woff*
