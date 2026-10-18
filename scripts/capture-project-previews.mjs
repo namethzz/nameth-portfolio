@@ -8,7 +8,7 @@ import { setTimeout as sleep } from "node:timers/promises";
  * Requires GitHub Actions' pre-installed Google Chrome.
  */
 const site = "https://otw-production.up.railway.app/";
-const path = "public/assets/work/otw-storefront.png";
+const path = "public/assets/work/otw-home.png";
 const browser = await chromium.launch({ channel: "chrome", headless: true, args: ["--no-sandbox"] });
 try {
   const page = await browser.newPage({
@@ -52,7 +52,7 @@ try {
     }
     await page.evaluate(() => document.fonts.ready);
     await sleep(1800);
-    const catalogPath = "public/assets/work/otw-catalog.png";
+    const catalogPath = "public/assets/work/otw-shop.png";
     await page.screenshot({ path: catalogPath, type: "png", animations: "disabled", timeout: 25000 });
     const catalogInfo = await stat(catalogPath);
     if (catalogInfo.size < 45000) throw new Error("Catalog screenshot too small");
