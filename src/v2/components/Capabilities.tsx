@@ -50,7 +50,7 @@ export default function Capabilities({
     <section className="v2-section v2-capabilities" id="capabilities" aria-labelledby="v2-capabilities-heading">
       <div className="v2-cap-heading">
         <Reveal>
-          <p className="v2-kicker">02.2 / {t("capabilities")}</p>
+          <p className="v2-kicker">04 / {t("capabilities")}</p>
           <h2 id="v2-capabilities-heading">
             {thai ? (
               <>เรียนรู้เพิ่ม <span>ลงมือได้มากขึ้น</span></>
@@ -61,7 +61,7 @@ export default function Capabilities({
         </Reveal>
         <Reveal delay={0.08}>
           <div className="v2-cap-heading-aside">
-            <span className="v2-cap-mini-index">02.2 <span>/ CAPABILITIES</span></span>
+            <span className="v2-cap-mini-index">04 <span>/ CAPABILITIES</span></span>
             <p>{t("skillsIntro")}</p>
             <span className="v2-cap-trace" aria-hidden="true" />
           </div>

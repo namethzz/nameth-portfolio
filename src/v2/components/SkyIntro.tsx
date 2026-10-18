@@ -1,5 +1,5 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import CloudShader from "@/components/ui/cloud-shader";
 import { useLanguage } from "@/lib/language";
 import Reveal from "@/src/v2/components/Reveal";
@@ -16,6 +16,8 @@ export default function SkyIntro() {
   const { language, t } = useLanguage();
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const spaceRef = useRef<HTMLDivElement>(null);
   const values = identityCopy[language].values;
   const thai = language === "th";
 
@@ -26,20 +28,53 @@ export default function SkyIntro() {
     return section ? -section.getBoundingClientRect().top / window.innerHeight : 0;
   }, []);
 
+  // Time of day, 0 (day) → 1 (space): starts as the languages & tools come
+  // into view and reaches night when the space lead-in is near the top.
+  const readNight = useCallback(() => {
+    const stack = stackRef.current?.getBoundingClientRect();
+    const space = spaceRef.current?.getBoundingClientRect();
+    if (!stack || !space) return 0;
+    const vh = window.innerHeight;
+    const k = (vh - stack.top) / (space.top - stack.top + vh * 0.75);
+    return Math.min(1, Math.max(0, k));
+  }, []);
+
+  // The header switches to its dark treatment while it sits over space.
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const section = sectionRef.current?.getBoundingClientRect();
+      const inSky = section ? section.top < 80 && section.bottom > 80 : false;
+      document.body.classList.toggle("v2-over-space", inSky && readNight() > 0.6);
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      cancelAnimationFrame(frame);
+      document.body.classList.remove("v2-over-space");
+    };
+  }, [readNight]);
+
   // Two bands of mist add depth layers between the clouds and the cards.
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
   const mistNear = useTransform(scrollYProgress, [0, 1], ["60vh", "-300vh"]);
   const mistFar = useTransform(scrollYProgress, [0, 1], ["100vh", "-160vh"]);
+  const mistOpacity = useTransform(scrollYProgress, [0, 0.35, 0.55], [1, 1, 0]);
 
   return (
     <section className="v2-sky" id="about" ref={sectionRef} aria-labelledby="v2-about-heading">
       <div className="v2-sky-stage" aria-hidden="true">
-        <CloudShader className="v2-sky-canvas" count={6} speed={0.8} scroll={reduce ? undefined : readScroll} />
+        <CloudShader className="v2-sky-canvas" count={6} speed={0.8} scroll={reduce ? undefined : readScroll} phase={readNight} />
         {!reduce && (
           <>
-            <motion.span className="v2-sky-mist v2-sky-mist-a" style={{ y: mistNear }} />
-            <motion.span className="v2-sky-mist v2-sky-mist-b" style={{ y: mistFar }} />
-            <motion.span className="v2-sky-mist v2-sky-mist-c" style={{ y: mistNear }} />
+            <motion.span className="v2-sky-mist v2-sky-mist-a" style={{ y: mistNear, opacity: mistOpacity }} />
+            <motion.span className="v2-sky-mist v2-sky-mist-b" style={{ y: mistFar, opacity: mistOpacity }} />
+            <motion.span className="v2-sky-mist v2-sky-mist-c" style={{ y: mistNear, opacity: mistOpacity }} />
           </>
         )}
       </div>
@@ -87,7 +122,7 @@ export default function SkyIntro() {
           ))}
         </ul>
 
-        <div className="v2-stack-wrap" id="skills">
+        <div className="v2-stack-wrap" id="skills" ref={stackRef}>
           <Reveal className="v2-stack-head">
             <p className="v2-kicker">02 / {thai ? "ภาษาและเครื่องมือ" : "Languages & tools"}</p>
             <h2 id="v2-skills-heading">{thai ? "เครื่องมือที่ใช้ทำงานจริง" : "The tools I build with."}</h2>
@@ -135,6 +170,19 @@ export default function SkyIntro() {
             <span className="v2-cap-learning-dot" aria-hidden="true" />
             <strong>{thai ? "กำลังเรียนรู้" : "Currently learning"}</strong>
             <p>{t("learning")}</p>
+          </Reveal>
+        </div>
+
+        {/* Out of the atmosphere: a moment of space that leads into the work. */}
+        <div className="v2-space-lead" ref={spaceRef}>
+          <Reveal>
+            <p className="v2-space-lead-kicker">{thai ? "ออกนอกชั้นบรรยากาศ" : "Beyond the atmosphere"}</p>
+            <p className="v2-space-lead-title">{thai ? "ทุกโปรเจกต์คือโลกอีกใบ" : "Every project is a world of its own."}</p>
+            <p className="v2-space-lead-copy">
+              {thai
+                ? "โจทย์ต่างกัน เทคโนโลยีต่างกัน แต่เป็นกระบวนการเดียวกันของการเรียนรู้และลงมือสร้าง"
+                : "Different problems. Different technologies. One continuous process of learning and building."}
+            </p>
           </Reveal>
         </div>
       </div>

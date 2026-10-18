@@ -208,7 +208,7 @@ function Contact() {
       viewport={{ once: true, amount: 0.14 }}
       transition={{ duration: reduce ? 0 : 1.1 }}
     >
-      <Reveal><p className="v2-kicker">04 / {t("contactKicker")}</p></Reveal>
+      <Reveal><p className="v2-kicker">05 / {t("contactKicker")}</p></Reveal>
       <Reveal delay={0.1}>
         <h2 id="v2-contact-heading">{t("contactTitle")} <em>{t("contactEm")}</em></h2>
       </Reveal>
@@ -358,8 +358,8 @@ export default function PortfolioV2() {
         <main id="main-content">
           <Hero />
           <SkyIntro />
-          <Capabilities projects={projects} onNavigate={navigateToProject} />
           <SelectedWork projects={projects} onNavigate={navigateToProject} />
+          <Capabilities projects={projects} onNavigate={navigateToProject} />
           <Contact />
         </main>
       )}

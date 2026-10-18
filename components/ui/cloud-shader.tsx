@@ -22,7 +22,18 @@ export type CloudShaderProps = {
    * scrolling feels like moving down through the sky.
    */
   scroll?: () => number;
+  /**
+   * Optional time of day, read every frame: 0 = the colours above, 0.45 =
+   * dusk, 0.7 = twilight, 1 = night in space. The sun sinks toward the edge, clouds fade,
+   * stars come out and the glow of Earth's limb rises at the bottom.
+   */
+  phase?: () => number;
 };
+
+const DUSK = { top: "#2c3a6e", bottom: "#e58f5c", cloud: "#f6c8a8" };
+// Deep blue between dusk and night, so orange never mixes into brown.
+const TWILIGHT = { top: "#0d1838", bottom: "#33447e", cloud: "#8d8fb4" };
+const NIGHT = { top: "#03060f", bottom: "#0a1530", cloud: "#2a3550" };
 
 const VERT = `
 attribute vec2 a_pos;
@@ -46,6 +57,7 @@ uniform vec2 u_res;
 uniform float u_time;
 uniform float u_count;
 uniform float u_scroll;
+uniform float u_night;
 uniform vec3 u_cloud;
 uniform vec3 u_skyTop;
 uniform vec3 u_skyBottom;
@@ -132,6 +144,8 @@ vec3 shadeCloud(vec3 color, vec3 sky, vec2 p, vec2 c, vec2 r, float seed, float 
   // atmospheric perspective: far clouds fade into the sky
   cloudCol = mix(cloudCol, sky, dist * 0.35);
   alpha *= mix(1.0, 0.8, dist);
+  // clouds thin out and vanish as the sky turns to space
+  alpha *= 1.0 - smoothstep(0.5, 0.88, u_night);
 
   return mix(color, cloudCol, alpha);
 }
@@ -159,17 +173,43 @@ void main() {
   // faint haze band near the horizon
   color = mix(color, u_skyBottom * 1.06, smoothstep(0.35, 0.0, v_uv.y) * 0.5);
 
-  // soft sun glow, upper area
-  vec2 sunPos = vec2(aspect * 0.78, 0.92);
+  // soft sun glow: high in the day, sinking toward the edge and warming at
+  // dusk, gone by night
+  float dusk = clamp(u_night / 0.45, 0.0, 1.0);
+  vec2 sunPos = vec2(aspect * mix(0.78, 0.96, dusk), mix(0.92, 0.06, dusk));
   float sunDist = length(p - sunPos);
-  color += vec3(1.0, 0.95, 0.82) * exp(-sunDist * sunDist * 5.0) * 0.28;
+  vec3 sunCol = mix(vec3(1.0, 0.95, 0.82), vec3(1.0, 0.55, 0.26), dusk);
+  float sunGlow = mix(0.28, 0.45, dusk) * (1.0 - smoothstep(0.5, 0.82, u_night));
+  color += sunCol * exp(-sunDist * sunDist * mix(5.0, 3.0, dusk)) * sunGlow;
 
   // thin cirrus streaks, stretched horizontally, high in the sky
   float cirrusBand = smoothstep(0.55, 0.8, v_uv.y) * (1.0 - smoothstep(0.9, 1.0, v_uv.y));
   if (cirrusBand > 0.01) {
     float streak = fbm(vec2(p.x * 1.6 - t * 0.006, (p.y - u_scroll * 0.08) * 12.0));
     float wisp = smoothstep(0.52, 0.78, streak) * cirrusBand;
-    color = mix(color, u_cloud * 0.98, wisp * 0.35);
+    color = mix(color, u_cloud * 0.98, wisp * 0.35 * (1.0 - smoothstep(0.45, 0.8, u_night)));
+  }
+
+  // stars: two layers of sparse points that twinkle and drift slowly
+  float starVis = smoothstep(0.42, 0.95, u_night);
+  if (starVis > 0.0) {
+    for (int layer = 0; layer < 2; layer++) {
+      float scale = layer == 0 ? 70.0 : 150.0;
+      vec2 sp = vec2(p.x, p.y + u_scroll * (layer == 0 ? 0.05 : 0.025)) * scale;
+      vec2 id = floor(sp);
+      vec2 f = fract(sp) - 0.5;
+      float h = hash(id + float(layer) * 31.7);
+      float threshold = layer == 0 ? 0.972 : 0.955;
+      if (h > threshold) {
+        vec2 off = (vec2(hash(id + 3.1), hash(id + 7.7)) - 0.5) * 0.6;
+        float d = length(f - off);
+        float twinkle = 0.65 + 0.35 * sin(t * (1.2 + h * 2.0) + h * 80.0);
+        float size = layer == 0 ? 0.11 : 0.07;
+        float bright = (h - threshold) / (1.0 - threshold);
+        color += mix(vec3(0.75, 0.84, 1.0), vec3(1.0, 0.92, 0.8), hash(id + 9.3))
+          * smoothstep(size, 0.0, d) * twinkle * starVis * (0.45 + bright * 0.9);
+      }
+    }
   }
 
   // far layer: small, high, slow
@@ -193,6 +233,17 @@ void main() {
     color = cloudPass(color, sky, p, aspect, t, 0.016, 0.05, 0.35, vec2(0.46, 0.20), 91.1, 0.15);
   }
   color = cloudPass(color, sky, p, aspect, t, 0.020, 0.48, 0.20, vec2(0.56, 0.24), 57.2, 0.0);
+
+  // Earth's limb: a dark curved horizon with a thin blue atmosphere glow,
+  // rising into view as the sky becomes space
+  float limbVis = smoothstep(0.72, 1.0, u_night);
+  if (limbVis > 0.0) {
+    vec2 center = vec2(aspect * 0.5, -3.1 - (1.0 - limbVis) * 0.35);
+    float edge = length(p - center) - 3.25;
+    float glow = exp(-abs(edge) * 55.0) * 0.85 + exp(-max(edge, 0.0) * 7.0) * 0.32;
+    color = mix(color, vec3(0.012, 0.03, 0.07), limbVis * smoothstep(0.0, -0.012, edge));
+    color += vec3(0.32, 0.66, 1.0) * glow * limbVis;
+  }
 
   gl_FragColor = vec4(color, 1.0);
 }
@@ -222,6 +273,17 @@ function parseHex(color: string): [number, number, number] {
   return [0.95, 0.95, 0.95];
 }
 
+type RGB = [number, number, number];
+const mixRGB = (a: RGB, b: RGB, k: number): RGB => [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+const ease = (k: number) => k * k * (3 - 2 * k);
+
+/** Day colour → dusk (0.45) → twilight (0.7) → night (1). */
+function blend(day: RGB, dusk: string, twilight: string, night: string, k: number): RGB {
+  if (k < 0.45) return mixRGB(day, parseHex(dusk), ease(k / 0.45));
+  if (k < 0.7) return mixRGB(parseHex(dusk), parseHex(twilight), ease((k - 0.45) / 0.25));
+  return mixRGB(parseHex(twilight), parseHex(night), ease((k - 0.7) / 0.3));
+}
+
 function compile(gl: WebGLRenderingContext, type: number, source: string) {
   const shader = gl.createShader(type);
   if (!shader) return null;
@@ -243,6 +305,7 @@ export const CloudShader = ({
   skyTopColor = "#3876ba",
   skyBottomColor = "#8cbfe8",
   scroll,
+  phase,
 }: CloudShaderProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const paramsRef = useRef({
@@ -252,6 +315,7 @@ export const CloudShader = ({
     skyTopColor,
     skyBottomColor,
     scroll,
+    phase,
   });
 
   paramsRef.current = {
@@ -261,6 +325,7 @@ export const CloudShader = ({
     skyTopColor,
     skyBottomColor,
     scroll,
+    phase,
   };
 
   useEffect(() => {
@@ -302,6 +367,7 @@ export const CloudShader = ({
       time: gl.getUniformLocation(program, "u_time"),
       count: gl.getUniformLocation(program, "u_count"),
       scroll: gl.getUniformLocation(program, "u_scroll"),
+      night: gl.getUniformLocation(program, "u_night"),
       cloud: gl.getUniformLocation(program, "u_cloud"),
       skyTop: gl.getUniformLocation(program, "u_skyTop"),
       skyBottom: gl.getUniformLocation(program, "u_skyBottom"),
@@ -337,9 +403,11 @@ export const CloudShader = ({
       if (!running || !visible) return;
       const p = paramsRef.current;
       const elapsed = reduceMotion ? 0 : ((now - start) / 1000) * p.speed;
-      const cloud = parseHex(p.cloudColor);
-      const skyTop = parseHex(p.skyTopColor);
-      const skyBottom = parseHex(p.skyBottomColor);
+      const night = p.phase ? Math.min(1, Math.max(0, p.phase())) : 0;
+      const cloud = blend(parseHex(p.cloudColor), DUSK.cloud, TWILIGHT.cloud, NIGHT.cloud, night);
+      const skyTop = blend(parseHex(p.skyTopColor), DUSK.top, TWILIGHT.top, NIGHT.top, night);
+      const skyBottom = blend(parseHex(p.skyBottomColor), DUSK.bottom, TWILIGHT.bottom, NIGHT.bottom, night);
+      gl.uniform1f(loc.night, night);
 
       gl.uniform1f(loc.time, elapsed);
       gl.uniform1f(loc.count, Math.min(6, Math.max(1, p.count)));

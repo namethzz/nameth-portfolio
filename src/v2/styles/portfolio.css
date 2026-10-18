@@ -2395,9 +2395,9 @@
 .portfolio-v2 .v2-sky-fade {
   position: relative;
   z-index: 1;
-  height: 30vh;
-  margin-top: -30vh;
-  background: linear-gradient(to bottom, rgba(245, 241, 232, 0), var(--nm-paper));
+  height: 45vh;
+  margin-top: -45vh;
+  background: linear-gradient(to bottom, rgba(3, 6, 15, 0), rgba(10, 18, 34, .9) 40%, var(--nm-paper));
   pointer-events: none;
 }
 @media (max-width: 850px) {
@@ -2536,3 +2536,54 @@
 .portfolio-v2 .v2-sky-mist-a { left: -12%; top: 18%; width: 62vw; height: 30vh; }
 .portfolio-v2 .v2-sky-mist-b { right: -16%; top: 48%; width: 56vw; height: 26vh; opacity: .7; }
 .portfolio-v2 .v2-sky-mist-c { left: 28%; top: 96%; width: 72vw; height: 34vh; opacity: .85; }
+
+/* OUT OF THE ATMOSPHERE — the sky has become space; a lead-in to the work. */
+.portfolio-v2 .v2-space-lead {
+  grid-column: 1 / -1;
+  min-height: 115vh;
+  min-height: 115dvh;
+  padding-top: 25vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.portfolio-v2 .v2-space-lead-kicker {
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #9CC8F0;
+}
+.portfolio-v2 .v2-space-lead-title {
+  margin: 0 auto 20px;
+  max-width: 980px;
+  font-size: clamp(42px, 6vw, 100px);
+  font-weight: 650;
+  line-height: 1.04;
+  letter-spacing: -.05em;
+  color: #F4F6FA;
+  text-wrap: balance;
+}
+.portfolio-v2[lang="en"] .v2-space-lead-title { font-family: var(--nm-font-display); font-weight: 400; letter-spacing: .004em; line-height: .98; }
+.portfolio-v2[lang="th"] .v2-space-lead-title { font-size: clamp(38px, 5vw, 80px); line-height: 1.25; letter-spacing: -.02em; }
+.portfolio-v2 .v2-space-lead-copy {
+  margin: 0 auto;
+  max-width: 600px;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.7;
+  color: rgba(214, 224, 240, .82);
+}
+
+/* Header over space: same layout, dark glass instead of paper. */
+body.v2-over-space .portfolio-v2.v2-homepage .v2-header {
+  background: rgba(6, 10, 20, .78);
+  border-bottom-color: rgba(255, 255, 255, .08);
+  color: #E8ECF2;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+body.v2-over-space .portfolio-v2 .v2-language { border-color: rgba(255, 255, 255, .16); }
+body.v2-over-space .portfolio-v2 .v2-language button { color: #9AA4B2; }
+body.v2-over-space .portfolio-v2 .v2-language button.is-active { color: var(--nm-ink); background: #E8ECF2; }
+.portfolio-v2 .v2-header { transition: background-color var(--nm-motion-normal), color var(--nm-motion-normal), border-color var(--nm-motion-normal); }
