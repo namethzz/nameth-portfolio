@@ -5,7 +5,6 @@ import { useLanguage } from "@/lib/language";
 import { projectTotal, type getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
 import Reveal from "@/src/v2/components/Reveal";
-import { stack } from "@/src/v2/content/stack";
 
 type Project = ReturnType<typeof getProjects>[number];
 
@@ -48,11 +47,11 @@ export default function Capabilities({
   const featuredProject = projects[selected.projectIndex];
 
   return (
-    <section className="v2-section v2-capabilities" id="skills" aria-labelledby="v2-skills-heading">
+    <section className="v2-section v2-capabilities" id="capabilities" aria-labelledby="v2-capabilities-heading">
       <div className="v2-cap-heading">
         <Reveal>
-          <p className="v2-kicker">02 / {t("capabilities")}</p>
-          <h2 id="v2-skills-heading">
+          <p className="v2-kicker">02.2 / {t("capabilities")}</p>
+          <h2 id="v2-capabilities-heading">
             {thai ? (
               <>เรียนรู้เพิ่ม <span>ลงมือได้มากขึ้น</span></>
             ) : (
@@ -62,42 +61,12 @@ export default function Capabilities({
         </Reveal>
         <Reveal delay={0.08}>
           <div className="v2-cap-heading-aside">
-            <span className="v2-cap-mini-index">02 <span>/ CAPABILITIES</span></span>
+            <span className="v2-cap-mini-index">02.2 <span>/ CAPABILITIES</span></span>
             <p>{t("skillsIntro")}</p>
             <span className="v2-cap-trace" aria-hidden="true" />
           </div>
         </Reveal>
       </div>
-
-      <Reveal className="v2-stack">
-        <div className="v2-stack-head">
-          <span className="v2-cap-toolbox-index">02.1 / {thai ? "ภาษาและเครื่องมือ" : "STACK"}</span>
-          <h3>{thai ? "ภาษาและเครื่องมือที่ใช้เป็น" : "Languages & tools I use."}</h3>
-        </div>
-        <dl className="v2-stack-list">
-          {stack.map((group, index) => (
-            <div className="v2-stack-row" key={group.id}>
-              <dt>
-                <span className="v2-stack-number">{String(index + 1).padStart(2, "0")}</span>
-                <strong>{group.label[language]}</strong>
-                <small>{group.caption[language]}</small>
-              </dt>
-              <dd>
-                <ul>
-                  {group.items.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <div className="v2-cap-learning">
-          <span className="v2-cap-learning-status">
-            <span className="v2-cap-learning-dot" aria-hidden="true" />
-            {thai ? "กำลังเรียนรู้" : "CURRENTLY LEARNING"}
-          </span>
-          <p>{t("learning")}</p>
-        </div>
-      </Reveal>
 
       <div className="v2-cap-workspace">
         <div

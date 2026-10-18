@@ -2,36 +2,54 @@ import { motion, useMotionTemplate, useReducedMotion, useScroll, useTransform } 
 import { useRef } from "react";
 import CloudShader from "@/components/ui/cloud-shader";
 import { useLanguage } from "@/lib/language";
+import Reveal from "@/src/v2/components/Reveal";
 import { identityCopy } from "@/src/v2/content/identity";
+import { stack } from "@/src/v2/content/stack";
 
 /**
- * The first section after the poster: a sky that opens up as you scroll in
- * (clip-path window from modern-hero), with the introduction written on a
- * paper card and the values drifting past at different speeds.
+ * The first stop after the poster. A window onto the sky rises in, pins and
+ * grows until the sky fills the screen (clip-path reveal from modern-hero).
+ * The introduction, the values and the languages & tools then scroll over
+ * the pinned sky before it fades back to paper.
  */
 export default function SkyIntro() {
   const { language, t } = useLanguage();
   const reduce = useReducedMotion();
-  const sectionRef = useRef<HTMLElement>(null);
+  const revealRef = useRef<HTMLDivElement>(null);
   const values = identityCopy[language].values;
+  const thai = language === "th";
 
-  // 0 when the section's top reaches the bottom of the screen, 1 at the top.
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "start start"] });
-  const inset = useTransform(scrollYProgress, [0, 1], [22, 0]);
-  const radius = useTransform(scrollYProgress, [0, 1], [28, 0]);
-  const clipPath = useMotionTemplate`inset(${inset}% ${inset}% 0% ${inset}% round ${radius}px)`;
+  // The reveal spacer (170vh) opens the section. Progress runs from its top
+  // entering the screen (0) to its bottom leaving it (1). The stage pins at
+  // ~0.37 and the intro card enters at ~0.63, so the window grows to full
+  // screen in between and the greeting is gone before the card arrives.
+  const { scrollYProgress } = useScroll({ target: revealRef, offset: ["start end", "end start"] });
+  const insetY = useTransform(scrollYProgress, [0, 0.37, 0.58], [34, 20, 0]);
+  const insetX = useTransform(scrollYProgress, [0, 0.37, 0.58], [36, 24, 0]);
+  const radius = useTransform(scrollYProgress, [0, 0.37, 0.58], [56, 36, 0]);
+  const clipPath = useMotionTemplate`inset(${insetY}% ${insetX}% ${insetY}% ${insetX}% round ${radius}px)`;
+  const greetingOpacity = useTransform(scrollYProgress, [0.12, 0.3, 0.5, 0.62], [0, 1, 1, 0]);
+  const greetingScale = useTransform(scrollYProgress, [0.12, 0.62], [0.9, 1.1]);
 
   return (
-    <section className="v2-sky" id="about" ref={sectionRef} aria-labelledby="v2-about-heading">
+    <section className="v2-sky" id="about" aria-labelledby="v2-about-heading">
       <motion.div
         className="v2-sky-stage"
         aria-hidden="true"
         style={reduce ? undefined : { clipPath }}
       >
         <CloudShader className="v2-sky-canvas" count={6} speed={0.8} />
+        <motion.p
+          className="v2-sky-greeting"
+          style={reduce ? { opacity: 0 } : { opacity: greetingOpacity, scale: greetingScale }}
+        >
+          {thai ? "สวัสดีครับ" : "Hello there."}
+        </motion.p>
       </motion.div>
 
       <div className="v2-sky-content">
+        <div className="v2-sky-reveal" ref={revealRef} aria-hidden="true" />
+
         <motion.article
           className="v2-sky-card"
           initial={reduce ? false : { opacity: 0, y: 48 }}
@@ -56,7 +74,7 @@ export default function SkyIntro() {
           </div>
         </motion.article>
 
-        <ul className="v2-sky-values" aria-label={language === "th" ? "สิ่งที่ผมยึดถือ" : "What I value"}>
+        <ul className="v2-sky-values" aria-label={thai ? "สิ่งที่ผมยึดถือ" : "What I value"}>
           {values.map((item, index) => (
             <DriftingValue
               key={item.id}
@@ -71,6 +89,38 @@ export default function SkyIntro() {
             />
           ))}
         </ul>
+
+        <div className="v2-stack-wrap" id="skills">
+        <Reveal className="v2-stack">
+          <div className="v2-stack-head">
+            <p className="v2-kicker">02 / {thai ? "ภาษาและเครื่องมือ" : "Languages & tools"}</p>
+            <h2 id="v2-skills-heading">{thai ? "ภาษาและเครื่องมือที่ใช้เป็น" : "Languages & tools I use."}</h2>
+          </div>
+          <dl className="v2-stack-list">
+            {stack.map((group, index) => (
+              <div className="v2-stack-row" key={group.id}>
+                <dt>
+                  <span className="v2-stack-number">{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{group.label[language]}</strong>
+                  <small>{group.caption[language]}</small>
+                </dt>
+                <dd>
+                  <ul>
+                    {group.items.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <div className="v2-cap-learning">
+            <span className="v2-cap-learning-status">
+              <span className="v2-cap-learning-dot" aria-hidden="true" />
+              {thai ? "กำลังเรียนรู้" : "CURRENTLY LEARNING"}
+            </span>
+            <p>{t("learning")}</p>
+          </div>
+        </Reveal>
+        </div>
       </div>
       <div className="v2-sky-fade" aria-hidden="true" />
     </section>
