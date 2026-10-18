@@ -28,20 +28,3 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 }
 
 export const useLanguage = () => useContext(LanguageContext);
-
-export function LanguageSwitch() {
-  const { language, setLanguage, t } = useLanguage();
-  return (
-    <div className="language-switch" role="group" aria-label={t("language")}>
-      {(["en", "th"] as const).map((locale) => (
-        <button key={locale} type="button" lang={locale}
-          aria-label={locale === "en" ? "English" : "ภาษาไทย"}
-          aria-pressed={language === locale}
-          onClick={() => setLanguage(locale)}>
-          {locale.toUpperCase()}
-        </button>
-      ))}
-      <span className="sr-only" role="status" aria-live="polite">{t("languageChanged")}</span>
-    </div>
-  );
-}

@@ -6,7 +6,6 @@ const baseProjects = [
     name: "THAI TAY",
     // Screenshot of the deployed v0.10 frontend (prices shown there are labelled sample data).
     image: assetUrl("assets/work/thaitay-home.jpg"),
-    imageClass: "construction",
     repository: "https://github.com/namethzz/THAITAY",
     website: "https://thaitay.vercel.app/",
     tools: ["React", "TypeScript", "Tailwind CSS", "Recharts", "Python", "Pandas"],
@@ -15,7 +14,6 @@ const baseProjects = [
     number: "02",
     name: "Economic Crops Chat",
     image: assetUrl("assets/project-crops.jpg"),
-    imageClass: "crops",
     repository: "https://github.com/namethzz/chatbot-project",
     website: "https://chatbot-project-phi-nine.vercel.app/",
     tools: ["Data preprocessing", "ChromaDB", "React", "Node.js", "MongoDB"],
@@ -25,7 +23,6 @@ const baseProjects = [
     name: "OTW.SHOP",
     // Screenshot of the deployed storefront, captured by a verified GitHub Actions job.
     image: assetUrl("assets/work/otw-storefront.png"),
-    imageClass: "ecommerce",
     repository: "https://github.com/namethzz/OTW",
     website: "https://otw-production.up.railway.app/",
     tools: [
@@ -43,7 +40,6 @@ const baseProjects = [
     name: "AirClean",
     // Screenshot of the deployed landing page.
     image: assetUrl("assets/work/airclean-home.jpg"),
-    imageClass: "airclean",
     repository: "https://github.com/namethzz/Air-clean-",
     website: "https://aircare-connect-web.onrender.com/",
     tools: ["React", "TypeScript", "C#", "ASP.NET Core 8", "MongoDB", "Docker", "GitHub Actions"],
@@ -53,7 +49,6 @@ const baseProjects = [
     name: "KickHub",
     // Screenshot of the deployed home page.
     image: assetUrl("assets/work/kickhub-home.jpg"),
-    imageClass: "kickhub",
     repository: "https://github.com/namethzz/kickhub",
     website: "https://kickhub-web.onrender.com/home",
     tools: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "JWT"],

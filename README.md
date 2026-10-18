@@ -1,8 +1,10 @@
 # Nameth Wongmongkol — Portfolio
 
-- THAI TAY — Construction Price Intelligence
-- Economic Crops Chat — Agricultural data advisory chatbot
-- OTW.SHOP — ร้านอาหารเสริมด้วย C# / ASP.NET Core MVC พร้อมลิงก์ https://github.com/namethzz/OTW
+- THAI TAY — เว็บดูราคาวัสดุก่อสร้างและราคาคาดการณ์ https://github.com/namethzz/THAITAY
+- Economic Crops Chat — แชตบอตแนะนำการปลูกพืชเศรษฐกิจ https://github.com/namethzz/chatbot-project
+- OTW.SHOP — ร้านอาหารเสริมด้วย C# / ASP.NET Core MVC https://github.com/namethzz/OTW
+- AirClean — แพลตฟอร์มจับคู่ลูกค้ากับช่างล้างแอร์ https://github.com/namethzz/Air-clean-
+- KickHub — เว็บหาเพื่อนเตะฟุตบอล https://github.com/namethzz/kickhub
 
 ## เริ่มรันในเครื่อง
 
@@ -72,10 +74,14 @@ URL ข้างต้นเป็นรูปแบบที่จะได้�
 
 | ต้องการแก้ | ไฟล์ |
 | --- | --- |
-| ชื่อ คำแนะนำตัว ผลงาน ทักษะ และช่องทางติดต่อ | `components/portfolio.tsx` |
-| Hero, navigation และ animation | `components/ui/prisma-hero.tsx` |
-| สี ฟอนต์ ระยะห่าง และ responsive layout | `src/globals.css` |
-| รูป วิดีโอ และไฟล์เรซูเม่ | `public/assets/` |
+| ข้อความทั่วไป และคำอธิบายผลงานแต่ละชิ้น (ไทย/อังกฤษ) | `lib/content.ts` |
+| รายชื่อผลงาน รูปปก ลิงก์ GitHub และเว็บจริง | `lib/projects.ts` |
+| ภาพหน้าจอและลิงก์โค้ดในหน้ารายละเอียดผลงาน | `src/v2/content/proof.ts` |
+| ชื่อ คำแนะนำตัว และช่องทางติดต่อ | `src/v2/content/identity.ts` |
+| โครงหน้าเว็บและ navigation | `src/v2/PortfolioV2.tsx`, `src/v2/components/` |
+| หน้าเปิดแบบโปสเตอร์ | `components/ui/waving-portfolio-landing.tsx` |
+| สี ฟอนต์ ระยะห่าง และ responsive layout | `src/v2/styles/`, `src/globals.css` |
+| รูปและไฟล์เรซูเม่ | `public/assets/` |
 | ชื่อเว็บไซต์ คำอธิบาย และ favicon | `index.html`, `public/favicon.svg` |
 | การเผยแพร่ผ่าน GitHub Pages | `.github/workflows/deploy.yml` |
 
@@ -92,16 +98,16 @@ git push
 
 ## เทคโนโลยี
 
-React, TypeScript, Vite, Tailwind CSS 4, shadcn UI, Radix UI, Framer Motion และ Lucide React
+React, TypeScript, Vite, Tailwind CSS 4, Framer Motion และ Lucide React
 
-- `components/ui/` เป็นที่เก็บ reusable UI และใช้ alias `@/components/ui/...`
-- `components.json` ตั้งค่า shadcn สำหรับโปรเจกต์นี้แล้ว
-- Styles หลักอยู่ใน `src/globals.css`
-- เว็บนี้เป็น portfolio ที่ build เป็น static files ได้ การคลิก OTW.SHOP เปิดรายละเอียดผลงานและลิงก์ source code
+- `src/globals.css` มี Tailwind, ฟอนต์ และ base styles ส่วนหน้าตาของเว็บอยู่ใน `src/v2/styles/`
+- หน้ารายละเอียดผลงานเปิดผ่าน query string เช่น `?project=kickhub` จึงใช้กับ static hosting ได้โดยไม่ต้องตั้ง rewrite
+- `preview-v2.html` เป็นหน้าส่งต่อไปหน้าแรก เพื่อให้ลิงก์เก่ายังใช้ได้
+- ตรวจหน้าเว็บในเบราว์เซอร์ด้วย `node scripts/verify-portfolio-v2.mjs` (ต้องติดตั้ง Playwright ก่อน)
 
 ## เครดิตและเอกสาร
 
-รายละเอียด component: [INTEGRATION.md](INTEGRATION.md)
+โครงสร้างโค้ด: [INTEGRATION.md](INTEGRATION.md)
 
 แหล่งที่มาของรูปและฟอนต์: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) และ `docs/`
 

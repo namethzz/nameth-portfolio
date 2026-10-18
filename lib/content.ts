@@ -1,21 +1,9 @@
 // Editorial copy in both languages. Technical product names intentionally stay unchanged.
 export type Language = "en" | "th";
 export const copy = {
-  "heroRole": {
-    "en": "Developer + data enthusiast",
-    "th": "นักพัฒนาเว็บที่ชอบทำงานกับข้อมูล"
-  },
-  "country": {
-    "en": "Thailand",
-    "th": "ประเทศไทย"
-  },
   "heroDescription": {
     "en": "I enjoy taking something that doesn’t exist yet and figuring out how to make it real. Through code and data, I want to build things that are useful to someone.",
     "th": "ผมสนุกกับการเริ่มจากสิ่งที่ยังไม่มี แล้วหาทางทำให้มันเกิดขึ้นจริง ผ่านการเขียนเว็บและทำงานกับข้อมูล ผมอยากสร้างสิ่งที่ดีและมีประโยชน์กับใครสักคน"
-  },
-  "availability": {
-    "en": "Open for internships",
-    "th": "พร้อมเรียนรู้ผ่านการฝึกงาน"
   },
   "exploreWork": {
     "en": "Explore my work",
@@ -29,17 +17,9 @@ export const copy = {
     "en": "Explore project",
     "th": "อ่านเรื่องราวของงานนี้"
   },
-  "selectedProject": {
-    "en": "Selected project /",
-    "th": "เรื่องราวของโปรเจกต์ /"
-  },
   "role": {
     "en": "My role:",
     "th": "บทบาทของผม:"
-  },
-  "strengths": {
-    "en": "What I did well",
-    "th": "สิ่งที่ผมทำได้ดี"
   },
   "tools": {
     "en": "Tools & technologies",
@@ -49,21 +29,9 @@ export const copy = {
     "en": "View source on GitHub",
     "th": "ดูโค้ดบน GitHub"
   },
-  "skip": {
-    "en": "Skip to selected work",
-    "th": "ข้ามไปดูผลงาน"
-  },
-  "based": {
-    "en": "BASED IN PATHUM THANI, THAILAND",
-    "th": "ปทุมธานี ประเทศไทย"
-  },
   "scroll": {
     "en": "SCROLL TO EXPLORE",
     "th": "เลื่อนลงมารู้จักกัน"
-  },
-  "portfolio": {
-    "en": "PORTFOLIO / 2026",
-    "th": "แฟ้มผลงาน / 2026"
   },
   "selectedWork": {
     "en": "Selected work /",
@@ -76,10 +44,6 @@ export const copy = {
   "workIntro": {
     "en": "Five projects, five different problems. Here’s where I believe I contributed most, and the care I put into each one.",
     "th": "ห้าโปรเจกต์ที่เริ่มจากปัญหาคนละแบบ นี่คือส่วนที่ผมคิดว่าทำได้ดี และความใส่ใจที่ผมลงไปในแต่ละงาน"
-  },
-  "workFooter": {
-    "en": "Curiosity gets me started. Care keeps me going.",
-    "th": "เริ่มด้วยความอยากรู้ ทำต่อด้วยความใส่ใจ"
   },
   "more": {
     "en": "More on GitHub",
@@ -117,10 +81,6 @@ export const copy = {
     "en": "Sripatum University · 2023–Present",
     "th": "มหาวิทยาลัยศรีปทุม · 2566–ปัจจุบัน"
   },
-  "gpa": {
-    "en": "GPAX 3.79 / 4.00 · 6 semesters",
-    "th": "เกรดเฉลี่ย 3.79 / 4.00 · 6 ภาคการศึกษา"
-  },
   "resume": {
     "en": "Download résumé",
     "th": "ดาวน์โหลดเรซูเม่"
@@ -128,10 +88,6 @@ export const copy = {
   "capabilities": {
     "en": "What I work with",
     "th": "ทักษะที่ค่อย ๆ สะสม"
-  },
-  "skillsTitle": {
-    "en": "Still learning. More capable each time.",
-    "th": "เรียนรู้เพิ่ม ลงมือได้มากขึ้น"
   },
   "skillsIntro": {
     "en": "The tools I’ve used to bring ideas to life, with plenty more still to learn.",
@@ -152,14 +108,6 @@ export const copy = {
   "dataDesc": {
     "en": "Collecting, cleaning and organizing data so the next person can work with it, alongside exploratory analysis and visualization.",
     "th": "รวบรวม ตรวจสอบ และจัดระเบียบข้อมูลให้คนที่รับช่วงต่อใช้งานได้ พร้อมสำรวจข้อมูลและนำเสนอผ่านกราฟ"
-  },
-  "databases": {
-    "en": "Tools & databases",
-    "th": "เครื่องมือและฐานข้อมูล"
-  },
-  "databaseDesc": {
-    "en": "Using version control, databases and workflow tools to connect the pieces of a project.",
-    "th": "ใช้ระบบจัดการเวอร์ชัน ฐานข้อมูล และเครื่องมือเชื่อมขั้นตอนการทำงานให้ส่วนต่าง ๆ ของโปรเจกต์ทำงานร่วมกัน"
   },
   "learning": {
     "en": "Currently learning Microsoft Excel for data analysis.",
@@ -185,10 +133,6 @@ export const copy = {
     "en": "Say hello",
     "th": "ทักมาคุยกัน"
   },
-  "made": {
-    "en": "Made with curiosity and care.",
-    "th": "สร้างด้วยความอยากรู้และความใส่ใจ"
-  },
   "top": {
     "en": "Back to top",
     "th": "กลับขึ้นด้านบน"
@@ -209,10 +153,6 @@ export const copy = {
     "en": "Contact",
     "th": "ติดต่อ"
   },
-  "close": {
-    "en": "Close",
-    "th": "ปิด"
-  },
   "introduction": {
     "en": "Introduction",
     "th": "แนะนำตัว"
@@ -221,17 +161,9 @@ export const copy = {
     "en": "Main navigation",
     "th": "เมนูหลัก"
   },
-  "backIntro": {
-    "en": "Back to introduction",
-    "th": "กลับไปส่วนแนะนำตัว"
-  },
   "language": {
     "en": "Language",
     "th": "ภาษา"
-  },
-  "languageChanged": {
-    "en": "English selected",
-    "th": "เปลี่ยนเป็นภาษาไทยแล้ว"
   }
 } as const;
 export type CopyKey = keyof typeof copy;

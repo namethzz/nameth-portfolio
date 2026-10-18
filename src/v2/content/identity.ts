@@ -52,7 +52,7 @@ export const identityCopy = {
 } as const;
 
 /**
- * Preserve live project data and existing links from v1; enrich with v2 identity copy.
+ * Shared project data plus the identity copy shown around it.
  * Do not duplicate descriptions or make unverified impact claims here.
  */
 export function getPortfolioV2Content(language: Language) {

@@ -23,7 +23,7 @@
 /*
  * NAMETH Portfolio v2 — Creative Engineering design foundation.
  * Import this stylesheet only in the v2 app shell; the existing site is unaffected.
- * All custom properties live under .portfolio-v2 to prevent leakage to v1.
+ * All custom properties live under .portfolio-v2 so they stay scoped to the app.
  */
 .portfolio-v2 {
   --nm-paper: #F5F1E8;
