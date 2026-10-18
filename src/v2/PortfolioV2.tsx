@@ -79,7 +79,6 @@ function Hero() {
   const posterY = useTransform(scrollYProgress, [0, 0.46, 1], ["0%", "0%", "-5%"]);
   const posterOpacity = useTransform(scrollYProgress, [0, 0.56, 1], [1, 1, 0.55]);
   const captionOpacity = useTransform(scrollYProgress, [0, 0.52, 0.88], [1, 1, 0]);
-  const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const stickyRef = useRef<HTMLDivElement>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
 
@@ -190,11 +189,6 @@ function Hero() {
           <span className="v2-scroll-text">{t("scroll")}</span>
           <ArrowDown aria-hidden="true" size={15} strokeWidth={1.7} />
         </motion.a>
-        <motion.div
-          className="v2-opening-progress"
-          aria-hidden="true"
-          style={prefersReducedMotion ? { scaleX: 0 } : { scaleX: progressScale }}
-        />
       </div>
     </section>
   );
