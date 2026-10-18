@@ -10,7 +10,7 @@ export const identity = {
   wordmark: "NAMETH®",
   headline: "PORTFOLIO",
   year: "2026",
-  roles: ["Software Developer", "Data Enthusiast"],
+  roles: ["Full-stack Developer", "Data & AI Engineering"],
   coreValues: ["curiosity", "craftsmanship", "purpose", "responsibility"],
 } as const;
 

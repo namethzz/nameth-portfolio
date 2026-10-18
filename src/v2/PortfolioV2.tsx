@@ -113,7 +113,7 @@ function Hero() {
           <WavingPortfolioLanding
             name={identity.name}
             year="PORTFOLIO / 2026"
-            roles={["SOFTWARE DEVELOPER", "DATA ENTHUSIAST"]}
+            roles={["FULL-STACK DEVELOPER", "DATA & AI ENGINEERING"]}
             greeting={language === "th" ? "สวัสดี!" : "HELLO!"}
             title="Portfolio"
             signature="NA/METH"
@@ -141,8 +141,8 @@ function Hero() {
             <p className="v2-internship-line">
               <span className="v2-availability-dot" aria-hidden="true" />
               {language === "th"
-                ? "มองหาที่ฝึกงาน Front-end / Full-stack"
-                : "Looking for a Front-end / Full-stack internship"}
+                ? "มองหาที่ฝึกงาน Full-stack / Data / AI Engineering"
+                : "Looking for a Full-stack / Data / AI Engineering internship"}
             </p>
             <p className="v2-internship-dates">
               {language === "th" ? "พร้อมฝึกงาน 4 ม.ค. – 23 เม.ย. 2570" : "Available Jan 4 – Apr 23, 2027"}
@@ -212,11 +212,11 @@ function About() {
           <h2 id="v2-about-heading">{t("aboutTitle")} <em>{t("aboutEm")}</em></h2>
         </Reveal>
         <Reveal delay={0.18}>
-          <div className="v2-about-signature" aria-label="Nameth Wongmongkol — Software Developer / Data Enthusiast">
+          <div className="v2-about-signature" aria-label="Nameth Wongmongkol — Full-stack Developer / Data & AI Engineering">
             <span className="v2-about-signature-label">PERSONAL / 2026</span>
             <strong>NAMETH<span aria-hidden="true">®</span></strong>
             <span className="v2-about-signature-line" aria-hidden="true" />
-            <span className="v2-about-signature-sub">SOFTWARE DEVELOPMENT / DATA</span>
+            <span className="v2-about-signature-sub">FULL-STACK / DATA / AI</span>
           </div>
         </Reveal>
       </div>

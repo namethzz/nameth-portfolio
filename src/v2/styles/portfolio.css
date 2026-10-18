@@ -497,10 +497,33 @@
 .portfolio-v2.v2-homepage .v2-opening-scroll svg {
   color: var(--nm-copper);
 }
+/* Narrow screens: the poster fills the width, so a vertical indicator would sit
+   on the right-hand role label. Short screens: it would drop into the links.
+   Lay it along the bottom edge instead. */
+@media(max-width:1100px), (max-height:640px) {
+  .portfolio-v2.v2-homepage .v2-opening-scroll {
+    right: 22px;
+    bottom: 16px;
+    min-width: 0;
+    flex-direction: row;
+    gap: 9px;
+  }
+  .portfolio-v2.v2-homepage .v2-scroll-stem,
+  .portfolio-v2.v2-homepage .v2-opening-scroll:hover .v2-scroll-stem {
+    height: 1px;
+    width: 27px;
+  }
+  .portfolio-v2.v2-homepage .v2-scroll-text {
+    max-width: none;
+    white-space: nowrap;
+  }
+}
 @media(max-width:1100px) {
   .portfolio-v2.v2-homepage .v2-opening-links {
     gap: clamp(11px, 1.6vw, 22px);
   }
+  /* The links start where the decorative stamp sits at these widths. */
+  .portfolio-v2.v2-homepage .v2-opening-art .wpl-sign { display: none; }
   .portfolio-v2.v2-homepage .v2-editorial-action {
     min-width: clamp(150px, 16vw, 190px);
     font-size: 14px;

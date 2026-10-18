@@ -74,24 +74,51 @@ const proof = [
     ],
   },
   {
-    stage: { en: "Team project — data preparation and frontend contribution.", th: "โปรเจกต์กลุ่ม — รับผิดชอบเตรียมข้อมูลและงาน Frontend" },
-    screenshots: [] as EvidenceImage[],
-    engineering: [
+    stage: { en: "Team project — I prepared the data and built the frontend, then fixed the retrieval and deployed the full RAG pipeline.", th: "โปรเจกต์กลุ่ม — ผมเตรียมข้อมูลและทำหน้าเว็บ แล้วกลับมาแก้ระบบค้นข้อมูลและ deploy ระบบ RAG ทั้งชุด" },
+    screenshots: [
       {
-        title: { en: "Chat interface", th: "หน้าสนทนา" },
-        description: {
-          en: "The chat view brings together the conversation list, messages and the question composer.",
-          th: "หน้าแชตที่รวมรายการบทสนทนา ข้อความ และช่องพิมพ์คำถามไว้ด้วยกัน",
-        },
-        source: cropsRepo + "/frontend/src/components/chat/ChatView.tsx",
+        src: assetUrl("assets/work/crops-home.jpg"),
+        caption: { en: "Live landing page", th: "หน้าแรกของเว็บจริง" },
+        alt: { en: "Actual screenshot of the Economic Crops Chat landing page", th: "ภาพหน้าจอจริงของหน้าแรก Economic Crops Chat" },
       },
       {
-        title: { en: "A starting point for farmers", th: "หน้าแรกสำหรับเริ่มถาม" },
+        src: assetUrl("assets/work/crops-chat.jpg"),
+        caption: { en: "An answer with its sources (public demo mode)", th: "คำตอบพร้อมแหล่งข้อมูล (โหมดเดโมบนเว็บสาธารณะ)" },
+        alt: { en: "Economic Crops Chat answering which southern provinces suit coconut, with land-suitability figures and sources", th: "Economic Crops Chat ตอบว่ามะพร้าวปลูกได้ที่จังหวัดไหนในภาคใต้ พร้อมตัวเลขพื้นที่เหมาะสมและแหล่งข้อมูล" },
+      },
+    ],
+    engineering: [
+      {
+        title: { en: "Fixing the data at the source", th: "แก้ข้อมูลที่ต้นทาง" },
         description: {
-          en: "The landing page explains what the chatbot answers and offers ready-made questions to start with.",
-          th: "หน้าแรกบอกว่าแชตบอตตอบเรื่องอะไรได้บ้าง และมีคำถามตัวอย่างให้กดเริ่มคุยได้ทันที",
+          en: "Province and admin level now come from the file path and boundary column: 5,135 mislabelled district rows fixed, 3,472 rows no longer missing a province.",
+          th: "อ่านจังหวัดและระดับพื้นที่จาก path และคอลัมน์ขอบเขต แก้แถวอำเภอที่ติดป้ายผิด 5,135 แถว และแถวที่ไม่มีจังหวัด 3,472 แถว",
         },
-        source: cropsRepo + "/frontend/src/components/Landing.tsx",
+        source: cropsRepo + "/RAG/dataset_local.py",
+      },
+      {
+        title: { en: "Matching Thai correctly", th: "จับคำภาษาไทยให้ถูก" },
+        description: {
+          en: "Crop names match longest-first so ข้าวโพด isn't read as ข้าว, and Thai typing variants are normalized before search.",
+          th: "จับชื่อพืชจากคำที่ยาวที่สุดก่อน ข้าวโพดจึงไม่ถูกอ่านเป็นข้าว และปรับรูปแบบการพิมพ์ภาษาไทยให้ตรงกันก่อนค้น",
+        },
+        source: cropsRepo + "/RAG/constants.py",
+      },
+      {
+        title: { en: "The question-answering API", th: "API ตอบคำถาม" },
+        description: {
+          en: "Filters off-topic questions, detects intent, retrieves documents from ChromaDB and asks the LLM to answer from them with sources.",
+          th: "กรองคำถามนอกเรื่อง แยกเจตนา ค้นเอกสารจาก ChromaDB แล้วให้ LLM ตอบจากเอกสารนั้นพร้อมแหล่งที่มา",
+        },
+        source: cropsRepo + "/RAG/rag_prototype.py",
+      },
+      {
+        title: { en: "Deploying the pipeline", th: "Deploy ระบบทั้งชุด" },
+        description: {
+          en: "CI builds the vector database, caches it by data hash and ships the RAG API to Hugging Face Spaces.",
+          th: "CI สร้าง vector database เก็บ cache ตาม hash ของข้อมูล แล้วส่ง RAG API ขึ้น Hugging Face Spaces",
+        },
+        source: cropsRepo + "/.github/workflows/deploy-rag.yml",
       },
     ],
   },

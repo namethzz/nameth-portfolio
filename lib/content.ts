@@ -2,8 +2,8 @@
 export type Language = "en" | "th";
 export const copy = {
   "heroDescription": {
-    "en": "I enjoy taking something that doesn’t exist yet and figuring out how to make it real. Through code and data, I want to build things that are useful to someone.",
-    "th": "ผมสนุกกับการเริ่มจากสิ่งที่ยังไม่มี แล้วหาทางทำให้มันเกิดขึ้นจริง ผ่านการเขียนเว็บและทำงานกับข้อมูล ผมอยากสร้างสิ่งที่ดีและมีประโยชน์กับใครสักคน"
+    "en": "I build full-stack web apps and the data work behind them: cleaning messy datasets, connecting AI to real products and shipping them live. I’m heading toward full-stack, data engineering and AI engineering.",
+    "th": "ผมสร้างเว็บแบบ Full-stack และงานข้อมูลที่อยู่เบื้องหลัง ตั้งแต่ทำความสะอาดข้อมูลที่ยุ่งเหยิง เชื่อม AI เข้ากับระบบจริง ไปจนถึงขึ้นระบบให้คนใช้ได้ ผมมุ่งไปทาง Full-stack, Data Engineering และ AI Engineering"
   },
   "exploreWork": {
     "en": "Explore my work",
@@ -42,8 +42,8 @@ export const copy = {
     "th": "ทุกงานเริ่มจากความตั้งใจ"
   },
   "workIntro": {
-    "en": "Five projects, five different problems. Here’s where I believe I contributed most, and the care I put into each one.",
-    "th": "ห้าโปรเจกต์ที่เริ่มจากปัญหาคนละแบบ นี่คือส่วนที่ผมคิดว่าทำได้ดี และความใส่ใจที่ผมลงไปในแต่ละงาน"
+    "en": "Five projects across full-stack, data and AI. Here’s what I built in each, and how I worked through the hard parts.",
+    "th": "ห้าโปรเจกต์ทั้งด้าน Full-stack ข้อมูล และ AI นี่คือสิ่งที่ผมสร้างในแต่ละงาน และวิธีที่ผมแก้ปัญหาที่ยาก"
   },
   "more": {
     "en": "More on GitHub",
@@ -62,16 +62,16 @@ export const copy = {
     "th": "และตั้งใจทำให้ดี"
   },
   "about1": {
-    "en": "I study Computer Science and Software Development at Sripatum University. I like figuring out how to build things I haven’t tried before, especially websites and tools that solve real problems.",
-    "th": "ผมเรียนวิทยาการคอมพิวเตอร์และการพัฒนาซอฟต์แวร์ที่มหาวิทยาลัยศรีปทุม ผมชอบลองสร้างสิ่งที่ยังไม่เคยทำ โดยเฉพาะเว็บไซต์และงานข้อมูลที่ช่วยแก้ปัญหาได้จริง"
+    "en": "I study Computer Science and Software Development at Sripatum University. I build full-stack web apps, and more and more of my work is on the data and AI side: preparing datasets, retrieval for chatbots and price forecasting.",
+    "th": "ผมเรียนวิทยาการคอมพิวเตอร์และการพัฒนาซอฟต์แวร์ที่มหาวิทยาลัยศรีปทุม ผมพัฒนาเว็บแบบ Full-stack และช่วงหลังทำงานฝั่งข้อมูลและ AI มากขึ้นเรื่อย ๆ ทั้งเตรียมข้อมูล ระบบค้นข้อมูลให้แชตบอต และการพยากรณ์ราคา"
   },
   "about2": {
-    "en": "When I’m working on a project, I get pretty focused. I like finishing early, but not at the cost of quality. I care about the details and how someone will actually use what I make.",
-    "th": "เวลาทำโปรเจกต์ ผมจะค่อนข้างจดจ่อกับงาน ผมชอบทำให้เสร็จเร็วเพื่อมีเวลาของตัวเอง แต่ไม่อยากรีบจนงานเสียคุณภาพ ผมใส่ใจทั้งรายละเอียดและคนที่จะได้ใช้งานจริง"
+    "en": "I usually start from the problem and the data, not the screen. I check whether the numbers mean what they seem to, look for the edge cases that break things, and test before I call something done.",
+    "th": "ผมมักเริ่มจากปัญหาและข้อมูลก่อนหน้าจอ ตรวจว่าตัวเลขหมายถึงสิ่งที่คิดจริงไหม หากรณีขอบที่ทำให้ระบบพัง และทดสอบก่อนจะบอกว่างานเสร็จ"
   },
   "about3": {
-    "en": "When I see someone build something well, I want to learn how they did it. I’m looking for an internship where I can ask questions, take responsibility and contribute to a real development team.",
-    "th": "เวลาเห็นใครทำอะไรเก่ง ๆ ผมก็อยากเรียนรู้ว่าทำได้อย่างไร ผมอยากฝึกงานกับทีมที่ได้ถาม ได้รับผิดชอบงานจริง และช่วยให้งานของทีมเดินหน้าได้"
+    "en": "I’m looking for an internship in full-stack, data engineering or AI engineering, with a team where I can ask questions, take responsibility for real work and keep learning toward data science.",
+    "th": "ผมอยากฝึกงานด้าน Full-stack, Data Engineering หรือ AI Engineering กับทีมที่ได้ถาม ได้รับผิดชอบงานจริง และได้เรียนรู้ต่อไปถึงงาน Data Science"
   },
   "degree": {
     "en": "B.Sc. Computer Science & Software Development",
@@ -90,28 +90,28 @@ export const copy = {
     "th": "ทักษะที่ค่อย ๆ สะสม"
   },
   "skillsIntro": {
-    "en": "The tools I’ve used to bring ideas to life, with plenty more still to learn.",
-    "th": "เครื่องมือที่ผมใช้เปลี่ยนไอเดียให้เป็นงานจริง และยังมีอีกหลายอย่างที่ผมอยากเรียนรู้"
+    "en": "Three kinds of work I can show in real projects, with the tools I used to get there.",
+    "th": "งานสามด้านที่ผมมีผลงานจริงให้ดู พร้อมเครื่องมือที่ใช้ทำ"
   },
   "web": {
-    "en": "Web development",
-    "th": "พัฒนาเว็บไซต์"
+    "en": "Full-stack development",
+    "th": "พัฒนา Full-stack"
   },
   "webDesc": {
-    "en": "Turning user requirements into React interfaces and C# web applications, with attention to both the customer and admin experience.",
-    "th": "นำความต้องการของผู้ใช้มาออกแบบและพัฒนาเว็บด้วย React และ C# ใส่ใจการใช้งานทั้งฝั่งลูกค้าและผู้ดูแลระบบ"
+    "en": "APIs, databases and React frontends that hold up in production: concurrency, payments, privacy and tests in CI.",
+    "th": "API ฐานข้อมูล และหน้าเว็บ React ที่ใช้งานจริงได้ ทั้งเรื่องการแก้ข้อมูลพร้อมกัน การจ่ายเงิน ความเป็นส่วนตัว และการทดสอบใน CI"
   },
   "data": {
-    "en": "Data & analysis",
-    "th": "ข้อมูลและการวิเคราะห์"
+    "en": "Data engineering",
+    "th": "Data Engineering"
   },
   "dataDesc": {
-    "en": "Collecting, cleaning and organizing data so the next person can work with it, alongside exploratory analysis and visualization.",
-    "th": "รวบรวม ตรวจสอบ และจัดระเบียบข้อมูลให้คนที่รับช่วงต่อใช้งานได้ พร้อมสำรวจข้อมูลและนำเสนอผ่านกราฟ"
+    "en": "Collecting, cleaning and checking data until it means what it claims, then shaping it for the systems and models that use it.",
+    "th": "รวบรวม ทำความสะอาด และตรวจข้อมูลจนมั่นใจว่าถูกต้อง แล้วจัดรูปให้พร้อมสำหรับระบบและโมเดลที่จะนำไปใช้"
   },
   "learning": {
-    "en": "Currently learning Microsoft Excel for data analysis.",
-    "th": "กำลังเรียนรู้ Microsoft Excel เพิ่มเติมสำหรับวิเคราะห์ข้อมูล"
+    "en": "Training a 1–3 month price forecasting model for THAI TAY, my first step into data science.",
+    "th": "กำลังฝึกโมเดลพยากรณ์ราคาวัสดุล่วงหน้า 1–3 เดือนให้ THAI TAY ซึ่งเป็นก้าวแรกของผมสู่งาน Data Science"
   },
   "contactKicker": {
     "en": "A next step, together",
@@ -126,8 +126,8 @@ export const copy = {
     "th": "สิ่งดี ๆ ด้วยกัน"
   },
   "contactIntro": {
-    "en": "If your team has room for someone curious, committed, and ready to learn, I’d love to talk about an internship.",
-    "th": "ถ้าทีมของคุณกำลังมองหาเด็กฝึกงานที่อยากเรียนรู้ ใส่ใจงาน และพร้อมพยายามให้เต็มที่ ผมยินดีที่จะได้คุยกันครับ"
+    "en": "If your team has room for a full-stack, data engineering or AI engineering intern who checks the details and finishes the work, I’d love to talk.",
+    "th": "ถ้าทีมของคุณกำลังมองหาเด็กฝึกงานด้าน Full-stack, Data Engineering หรือ AI Engineering ที่ใส่ใจรายละเอียดและทำงานจนจบ ผมยินดีที่จะได้คุยกันครับ"
   },
   "hello": {
     "en": "Say hello",
@@ -191,25 +191,25 @@ export const projectCopy = {
       "alt": "Actual screenshot of the THAI TAY home page"
     },
     {
-      "subtitle": "Better crop planning starts with better information",
-      "category": "AGRICULTURAL DATA · FRONTEND",
-      "description": "I connected the problem of crop planning to data across all 77 provinces, preparing the information for my teammate’s RAG work and designing the frontend.",
-      "status": "Team project",
-      "role": "Data collection & cleaning · frontend design",
+      "subtitle": "From farmers’ questions to answers grounded in real data",
+      "category": "DATA ENGINEERING · RAG · FRONTEND",
+      "description": "A Thai chatbot that answers crop questions from government data. I prepared the data across all 77 provinces, built the frontend, and later fixed the retrieval and deployed the whole AI pipeline.",
+      "status": "Team project · live demo",
+      "role": "Data cleaning · frontend · RAG fixes & deployment",
       "tags": [
-        "Data cleaning",
+        "Data engineering",
         "RAG",
         "React"
       ],
       "details": [
         "I looked at the questions a farmer needs to answer before planting: what suits the land, what the weather means, and which risks to prepare for. Those questions shaped the information I collected.",
-        "I gathered agricultural information covering all 77 Thai provinces, including soil, weather, crop suitability, pests and planting methods. I wanted the knowledge base to reflect local conditions rather than give the same advice everywhere.",
-        "I cleaned and organized that information for a teammate to use in the RAG system. My focus was a useful handoff: preparing the underlying data so it could support retrieval and answers.",
-        "I also designed the website frontend, thinking about how users would reach and interact with the chatbot.",
-        "I believe I contributed most by connecting the intended users’ needs, the data behind the answers and the interface they would see."
+        "I gathered agricultural information covering all 77 Thai provinces, including land suitability, pests and planting methods, and cleaned it for my teammate, who built the first version of the RAG system.",
+        "When I came back to the project, I traced wrong answers to the data and fixed them at the source: 5,135 district rows had been labelled as whole provinces, and 3,472 rows had no province at all.",
+        "I also fixed how retrieval read Thai. “ข้าวโพด” (corn) was being matched as “ข้าว” (rice), and province names like “เลย” or “ตาก” are also everyday words, so crop names now match longest-first and those provinces only count after “จังหวัด”.",
+        "Then I deployed the full pipeline: the RAG API on Hugging Face Spaces with its vector database built in CI, the backend on Render, the frontend on Vercel, and an OpenAI-compatible LLM API behind it."
       ],
-      "note": "A team effort: I collected and cleaned the agricultural data and designed the frontend. My teammate took the data forward into RAG.",
-      "alt": "Agricultural fields representing the crop planning project"
+      "note": "What I take from this project: most wrong answers came from the data and the matching rules, not from the language model.",
+      "alt": "Actual screenshot of the Economic Crops Chat landing page"
     },
     {
       "subtitle": "Listening first. Building for both sides of the shop.",
@@ -298,25 +298,25 @@ export const projectCopy = {
       "alt": "ภาพหน้าจอจริงของหน้าแรกเว็บไซต์ THAI TAY"
     },
     {
-      "subtitle": "การวางแผนปลูกที่ดี เริ่มจากข้อมูลที่เข้าใจพื้นที่",
-      "category": "ข้อมูลเกษตร · ออกแบบหน้าเว็บ",
-      "description": "ผมมองปัญหาการวางแผนปลูกพืช แล้วรวบรวมข้อมูลครอบคลุม 77 จังหวัด เตรียมให้เพื่อนต่อยอดด้าน RAG พร้อมออกแบบหน้าเว็บที่ใช้คุยกับแชตบอต",
-      "status": "โปรเจกต์ร่วมกับทีม",
-      "role": "รวบรวมและทำความสะอาดข้อมูล · ออกแบบ Frontend",
+      "subtitle": "จากคำถามของเกษตรกร สู่คำตอบที่อ้างอิงข้อมูลจริง",
+      "category": "DATA ENGINEERING · RAG · FRONTEND",
+      "description": "แชตบอตภาษาไทยที่ตอบเรื่องปลูกพืชจากข้อมูลหน่วยงานรัฐ ผมเตรียมข้อมูลครอบคลุม 77 จังหวัด ทำหน้าเว็บ และภายหลังกลับมาแก้ระบบค้นข้อมูลพร้อม deploy ระบบ AI ทั้งชุด",
+      "status": "โปรเจกต์กลุ่ม · มีเดโมให้ลอง",
+      "role": "ทำความสะอาดข้อมูล · Frontend · แก้และ deploy ระบบ RAG",
       "tags": [
-        "ทำความสะอาดข้อมูล",
+        "Data Engineering",
         "RAG",
         "React"
       ],
       "details": [
         "ผมเริ่มจากคำถามที่เกษตรกรต้องเจอก่อนปลูกจริง ทั้งพื้นที่เหมาะกับพืชอะไร สภาพอากาศเป็นอย่างไร และต้องระวังอะไรบ้าง แล้วใช้คำถามเหล่านี้เป็นแนวทางในการเก็บข้อมูล",
-        "ผมรวบรวมข้อมูลพืชเศรษฐกิจครอบคลุมทั้ง 77 จังหวัด เช่น ดิน สภาพอากาศ ความเหมาะสมของพืช ศัตรูพืช และวิธีปลูก เพราะอยากให้ข้อมูลสะท้อนบริบทของแต่ละพื้นที่",
-        "ผมทำความสะอาดและจัดระเบียบข้อมูลก่อนส่งให้เพื่อนนำไปทำ RAG โดยใส่ใจว่างานที่ส่งต่อจะนำไปใช้ได้อย่างไร เพื่อวางพื้นฐานให้ระบบค้นข้อมูลและตอบคำถามได้ดีขึ้น",
-        "ผมออกแบบ Frontend ของเว็บไซต์ด้วย โดยคิดถึงเส้นทางที่ผู้ใช้จะเข้ามาถามและใช้งานแชตบอต",
-        "สิ่งที่ผมคิดว่าทำได้ดีคือการมองงานเชื่อมกัน ตั้งแต่ความต้องการของเกษตรกร ข้อมูลเบื้องหลังคำตอบ ไปจนถึงหน้าเว็บที่ผู้ใช้ได้เจอ"
+        "ผมรวบรวมข้อมูลเกษตรครอบคลุมทั้ง 77 จังหวัด เช่น ความเหมาะสมของพื้นที่ ศัตรูพืช และวิธีปลูก แล้วทำความสะอาดส่งให้เพื่อนที่สร้างระบบ RAG เวอร์ชันแรก",
+        "พอกลับมาทำต่อ ผมไล่หาว่าคำตอบที่ผิดมาจากไหน แล้วแก้ที่ต้นทางคือข้อมูล พบว่ามี 5,135 แถวที่เป็นข้อมูลระดับอำเภอแต่ถูกติดป้ายเป็นทั้งจังหวัด และอีก 3,472 แถวที่ไม่มีชื่อจังหวัดเลย",
+        "ผมแก้วิธีที่ระบบอ่านภาษาไทยด้วย เดิม “ข้าวโพด” ถูกจับเป็น “ข้าว” และชื่อจังหวัดอย่าง “เลย” หรือ “ตาก” ก็เป็นคำทั่วไปด้วย ตอนนี้ระบบจับชื่อพืชจากคำที่ยาวที่สุดก่อน และนับจังหวัดเหล่านี้เฉพาะเมื่อตามหลังคำว่า “จังหวัด”",
+        "จากนั้นผม deploy ระบบทั้งชุด RAG API อยู่บน Hugging Face Spaces โดยสร้าง vector database ใน CI ส่วน Backend อยู่บน Render, Frontend อยู่บน Vercel และเชื่อมกับ LLM ผ่าน API แบบเดียวกับ OpenAI"
       ],
-      "note": "งานนี้เติบโตไปด้วยกันกับทีม ผมดูแลการเก็บและทำความสะอาดข้อมูลเกษตร รวมถึงออกแบบ Frontend ก่อนส่งต่อข้อมูลให้เพื่อนนำไปทำ RAG",
-      "alt": "พื้นที่เกษตรประกอบโปรเจกต์วางแผนปลูกพืช"
+      "note": "สิ่งที่ผมได้จากงานนี้คือ คำตอบที่ผิดส่วนใหญ่มาจากข้อมูลและกฎการจับคำ ไม่ใช่จากตัวโมเดลภาษา",
+      "alt": "ภาพหน้าจอจริงของหน้าแรก Economic Crops Chat"
     },
     {
       "subtitle": "ฟังผู้ใช้ แล้วออกแบบให้เข้าใจทั้งคนซื้อและคนขาย",

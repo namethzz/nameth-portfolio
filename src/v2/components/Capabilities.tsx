@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Boxes, GitBranch, Send, Workflow } from "lucide-react";
+import { ArrowUpRight, Boxes, Database, GitBranch, Workflow } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/lib/language";
 import { projectTotal, type getProjects } from "@/lib/projects";
@@ -26,20 +26,20 @@ export default function Capabilities({
       overline: thai ? "สร้าง" : "BUILD",
       title: t("web"),
       detail: t("webDesc"),
-      projectIndex: 2,
+      projectIndex: 3,
     },
     {
-      overline: thai ? "วิเคราะห์" : "ANALYZE",
+      overline: thai ? "ข้อมูล" : "DATA",
       title: t("data"),
       detail: t("dataDesc"),
       projectIndex: 0,
     },
     {
-      overline: thai ? "ทำงานร่วมกัน" : "COLLABORATE",
-      title: thai ? "ข้อมูลและงานหน้าบ้าน" : "Data & interface work",
+      overline: "AI",
+      title: "AI Engineering",
       detail: thai
-        ? "ผมดูแลข้อมูลเกษตรและออกแบบหน้าเว็บ ส่วนระบบ RAG เพื่อนในทีมเป็นคนรับไปพัฒนาต่อ"
-        : "I worked on the crop data and website frontend. My teammate took the data forward into the RAG system.",
+        ? "เชื่อม LLM เข้ากับข้อมูลจริงด้วย RAG แก้การค้นข้อมูลให้เข้าใจภาษาไทย และ deploy ระบบให้คนใช้ได้จริง"
+        : "Connecting LLMs to real data with RAG, making retrieval understand Thai, and deploying the pipeline so people can use it.",
       projectIndex: 1,
     },
   ] as const;
@@ -48,10 +48,10 @@ export default function Capabilities({
 
   // These are reference labels, not links or a claim about expertise level.
   const tools = [
-    { name: "Git / GitHub", caption: thai ? "จัดการเวอร์ชัน" : "Version control", icon: GitBranch },
-    { name: "Docker", caption: thai ? "จัดการ Container" : "Containers", icon: Boxes },
-    { name: "Postman", caption: thai ? "ทดสอบ API" : "API testing", icon: Send },
-    { name: "n8n", caption: thai ? "เชื่อม Workflow" : "Workflows", icon: Workflow },
+    { name: "Python / Pandas", caption: thai ? "ทำความสะอาดและเตรียมข้อมูล" : "Data cleaning & prep", icon: Database },
+    { name: "Git / GitHub Actions", caption: thai ? "จัดการเวอร์ชันและ CI" : "Version control & CI", icon: GitBranch },
+    { name: "Docker", caption: thai ? "Container และการ deploy" : "Containers & deploys", icon: Boxes },
+    { name: "Postman · n8n", caption: thai ? "ทดสอบ API และเชื่อม Workflow" : "API testing & workflows", icon: Workflow },
   ];
 
   return (

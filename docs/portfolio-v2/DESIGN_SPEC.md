@@ -45,8 +45,8 @@ Motion: purposeful, delightful and optional. CTA remains available without waiti
 - Top left: **NAMETH WONGMONGKOL**
 - Top right: **PORTFOLIO / 2026**
 - Headline: **PORTFOLIO**
-- Left role: **SOFTWARE DEVELOPER**
-- Right role: **DATA ENTHUSIAST**
+- Left role: **FULL-STACK DEVELOPER**
+- Right role: **DATA & AI ENGINEERING**
 - Intro: **I build digital experiences with care, clarity, and curiosity.**
 - CTAs: **Explore Work**, **Download Resume**
 - Scroll cue: **SCROLL TO EXPLORE**

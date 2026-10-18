@@ -37,7 +37,7 @@ async function smokeDesktop() {
     assert(await page.locator(".v2-hero-sticky").count() === 1, "Pinned hero missing");
     // An employer can locate role and the actual university dates immediately.
     assert(await page.locator(".v2-internship-line").innerText() ===
-      "Looking for a Front-end / Full-stack internship",
+      "Looking for a Full-stack / Data / AI Engineering internship",
       "Internship target is not clear on the opening screen");
     assert((await page.locator(".v2-internship-dates").innerText()).includes("Apr 23, 2027"),
       "University internship availability missing");
@@ -84,7 +84,7 @@ async function smokeDesktop() {
     // and navigation that does not land the heading behind the fixed header.
     const capabilityOptions = page.locator(".v2-cap-option");
     assert(await capabilityOptions.count() === 3, "Expected three capability options");
-    const expectedProjects = ["OTW.SHOP", "THAI TAY", "Economic Crops Chat"];
+    const expectedProjects = ["AirClean", "THAI TAY", "Economic Crops Chat"];
     for (const index of [0, 2, 1, 0]) {
       await capabilityOptions.nth(index).click();
       assert(await capabilityOptions.nth(index).getAttribute("aria-pressed") === "true",
@@ -244,12 +244,12 @@ async function smokeMobile() {
 
     await page.goto(base + "?project=economic-crops-chat", { waitUntil: "domcontentloaded" });
     const mobileDossier = page.locator(".v2-case-facts");
-    assert(await mobileDossier.locator(".v2-case-tool-list li").count() === 5,
-      "Crop chat should show its five documented project technologies");
+    assert(await mobileDossier.locator(".v2-case-tool-list li").count() === 7,
+      "Crop chat should show its seven documented project technologies");
     assert(await mobileDossier.locator(".v2-case-fact-value").isVisible(),
       "Role copy is not visible on mobile case studies");
-    assert(await page.locator(".v2-proof-code-card").count() === 2,
-      "Crop chatbot frontend evidence missing");
+    assert(await page.locator(".v2-proof-code-card").count() === 4,
+      "Crop chatbot data, retrieval and deployment evidence missing");
     await page.goto(base + "?project=otw-shop", { waitUntil: "domcontentloaded" });
     assert(await page.locator(".v2-proof-code-card").count() === 4,
       "OTW case study should expose technical proof for four workflows");

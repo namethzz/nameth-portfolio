@@ -13,10 +13,11 @@ const baseProjects = [
   {
     number: "02",
     name: "Economic Crops Chat",
-    image: assetUrl("assets/project-crops.jpg"),
+    // Screenshot of the deployed landing page.
+    image: assetUrl("assets/work/crops-home.jpg"),
     repository: "https://github.com/namethzz/chatbot-project",
     website: "https://chatbot-project-phi-nine.vercel.app/",
-    tools: ["Data preprocessing", "ChromaDB", "React", "Node.js", "MongoDB"],
+    tools: ["Python", "Pandas", "ChromaDB", "FastAPI", "React", "Node.js", "MongoDB"],
   },
   {
     number: "03",
