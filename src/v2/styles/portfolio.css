@@ -314,10 +314,6 @@
 .portfolio-v2.v2-homepage .v2-work {
   position: relative;
   z-index: 3;
-  margin-top: -17vh;
-  margin-top: -17dvh;
-  border-radius: clamp(15px, 2.8vw, 38px) clamp(15px, 2.8vw, 38px) 0 0;
-  box-shadow: 0 -12px 55px rgba(30, 41, 44, 0.065);
   padding-top: clamp(85px, 11vw, 170px);
   scroll-margin-top: var(--v2-nav-height);
 }
@@ -2316,4 +2312,178 @@
 @media(max-width:520px) {
   .portfolio-v2 .v2-story-links { gap: 10px 15px; }
   .portfolio-v2 .v2-story-status { font-size: 11px; }
+}
+
+/* ABOUT IN THE SKY — first stop after the poster. The sky (CloudShader) stays
+   pinned while the introduction card and drifting values scroll over it. */
+.portfolio-v2 .v2-sky {
+  position: relative;
+  isolation: isolate;
+  background: var(--nm-paper);
+  scroll-margin-top: 0;
+}
+.portfolio-v2 .v2-sky-stage {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  height: 100dvh;
+  will-change: clip-path;
+}
+.portfolio-v2 .v2-sky-canvas { height: 100%; min-height: 0; }
+.portfolio-v2 .v2-sky-content {
+  position: relative;
+  z-index: 1;
+  margin-top: -100vh;
+  margin-top: -100dvh;
+  padding: clamp(120px, 20vh, 210px) clamp(20px, 4.5vw, 78px) clamp(150px, 26vh, 260px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+  gap: clamp(28px, 5vw, 96px);
+  align-items: start;
+}
+.portfolio-v2 .v2-sky-card {
+  max-width: 760px;
+  padding: clamp(26px, 3.6vw, 58px);
+  background: rgba(245, 241, 232, .95);
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: var(--nm-radius-lg);
+  box-shadow: 0 34px 90px rgba(21, 56, 92, .22);
+  color: var(--nm-ink);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.portfolio-v2 .v2-sky-card .v2-kicker { color: var(--nm-teal); }
+.portfolio-v2 .v2-sky-card h2 {
+  margin: 0 0 30px;
+  font-size: clamp(40px, 4.6vw, 74px);
+  line-height: 1.06;
+  letter-spacing: -.06em;
+}
+.portfolio-v2 .v2-sky-card h2 em { display: block; font-style: normal; color: var(--nm-copper); }
+.portfolio-v2[lang="th"] .v2-sky-card h2 { font-size: clamp(36px, 4vw, 62px); line-height: 1.3; letter-spacing: -.02em; }
+.portfolio-v2 .v2-sky-copy { display: grid; gap: 16px; }
+.portfolio-v2 .v2-sky-copy p { margin: 0; font-size: clamp(15px, 1.1vw, 17px); line-height: 1.8; color: #34443F; }
+.portfolio-v2 .v2-sky-card-foot {
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 22px;
+}
+.portfolio-v2 .v2-sky-card-foot .v2-about-signature { margin-top: 0; min-height: 150px; }
+.portfolio-v2 .v2-sky-card-foot .v2-education {
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--nm-border);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--nm-muted);
+}
+.portfolio-v2 .v2-sky-values {
+  list-style: none;
+  margin: 0;
+  padding: clamp(60px, 16vh, 180px) 0 0;
+  display: grid;
+  gap: clamp(48px, 11vh, 110px);
+}
+.portfolio-v2 .v2-sky-value {
+  width: min(100%, 330px);
+  padding: 20px 24px 22px;
+  display: grid;
+  gap: 6px;
+  background: rgba(255, 255, 255, .86);
+  border: 1px solid rgba(255, 255, 255, .9);
+  border-radius: 16px;
+  box-shadow: 0 22px 50px rgba(21, 56, 92, .16);
+  color: var(--nm-ink);
+}
+.portfolio-v2 .v2-sky-value:nth-child(even) { justify-self: end; }
+.portfolio-v2 .v2-sky-value span { font-size: 11px; font-weight: 700; color: var(--nm-copper); }
+.portfolio-v2 .v2-sky-value strong { font-size: clamp(19px, 1.6vw, 24px); letter-spacing: -.03em; }
+.portfolio-v2 .v2-sky-value small { font-size: 13.5px; line-height: 1.55; color: var(--nm-muted); }
+.portfolio-v2 .v2-sky-fade {
+  position: relative;
+  z-index: 1;
+  height: 30vh;
+  margin-top: -30vh;
+  background: linear-gradient(to bottom, rgba(245, 241, 232, 0), var(--nm-paper));
+  pointer-events: none;
+}
+@media (max-width: 850px) {
+  .portfolio-v2 .v2-sky-content { grid-template-columns: 1fr; padding-top: 110px; }
+  .portfolio-v2 .v2-sky-values { padding-top: 10px; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .portfolio-v2 .v2-sky-value { width: auto; padding: 16px; }
+  .portfolio-v2 .v2-sky-value:nth-child(even) { justify-self: stretch; }
+  /* Cards sit close together here, so they stack without the drift. */
+  .portfolio-v2 .v2-sky-value { transform: none !important; opacity: 1 !important; }
+}
+@media (max-width: 520px) {
+  .portfolio-v2 .v2-sky-content { padding-inline: 14px; }
+  .portfolio-v2 .v2-sky-card { padding: 24px 20px; }
+  .portfolio-v2 .v2-sky-values { grid-template-columns: 1fr; }
+}
+
+/* STACK — languages and tools, read as an index rather than a logo wall. */
+.portfolio-v2 .v2-stack {
+  margin-bottom: clamp(70px, 8vw, 120px);
+  padding: clamp(26px, 3.4vw, 52px);
+  background: #E4E9E2;
+  border: 1px solid #CBD6CB;
+}
+.portfolio-v2 .v2-stack-head h3 {
+  margin: 0 0 clamp(20px, 2.6vw, 36px);
+  font-size: clamp(36px, 4.2vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -.055em;
+  color: var(--nm-ink);
+}
+.portfolio-v2[lang="th"] .v2-stack-head h3 { font-size: clamp(30px, 3.4vw, 50px); line-height: 1.3; letter-spacing: -.02em; }
+.portfolio-v2 .v2-stack-list { margin: 0; border-top: 1px solid #BACBBE; }
+.portfolio-v2 .v2-stack-row {
+  display: grid;
+  grid-template-columns: minmax(170px, .38fr) minmax(0, 1fr);
+  gap: 14px clamp(20px, 4vw, 64px);
+  padding: clamp(16px, 1.8vw, 24px) 0;
+  border-bottom: 1px solid #BACBBE;
+}
+.portfolio-v2 .v2-stack-row dt { display: grid; grid-template-columns: 30px 1fr; align-content: start; column-gap: 8px; }
+.portfolio-v2 .v2-stack-number { grid-row: span 2; padding-top: 5px; font-size: 10px; font-weight: 700; color: var(--nm-copper); }
+.portfolio-v2 .v2-stack-row dt strong { font-size: clamp(17px, 1.5vw, 21px); letter-spacing: -.02em; color: var(--nm-ink); }
+.portfolio-v2 .v2-stack-row dt small { font-size: 12px; line-height: 1.5; color: #51685D; }
+.portfolio-v2 .v2-stack-row dd { margin: 0; }
+.portfolio-v2 .v2-stack-row ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.portfolio-v2 .v2-stack-row li {
+  padding: 7px 13px;
+  background: var(--nm-paper);
+  border: 1px solid #C9D3C8;
+  border-radius: 999px;
+  font-size: clamp(13px, 1vw, 15px);
+  font-weight: 600;
+  color: var(--nm-ink);
+  transition: border-color var(--nm-motion-fast), color var(--nm-motion-fast);
+}
+.portfolio-v2 .v2-stack-row li:hover { border-color: var(--nm-teal); color: var(--nm-teal); }
+@media (max-width: 700px) {
+  .portfolio-v2 .v2-stack { padding: 22px 16px; }
+  .portfolio-v2 .v2-stack-row { grid-template-columns: 1fr; }
+  .portfolio-v2 .v2-stack-row li { padding: 6px 11px; font-size: 13px; }
+}
+/* English headings use the display + script pairing used across the site. */
+.portfolio-v2[lang="en"] .v2-sky-card h2,
+.portfolio-v2[lang="en"] .v2-stack-head h3 {
+  font-family: var(--nm-font-display);
+  font-weight: 400;
+  letter-spacing: 0.004em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+.portfolio-v2[lang="en"] .v2-sky-card h2 { font-size: clamp(58px, 6vw, 100px); }
+.portfolio-v2[lang="en"] .v2-stack-head h3 { font-size: clamp(46px, 5vw, 80px); }
+.portfolio-v2[lang="en"] .v2-sky-card h2 em {
+  font-family: var(--nm-font-script);
+  font-size: 0.73em;
+  letter-spacing: 0;
+  line-height: 1.16;
 }

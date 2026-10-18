@@ -1,10 +1,11 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Boxes, Database, GitBranch, Workflow } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/lib/language";
 import { projectTotal, type getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
 import Reveal from "@/src/v2/components/Reveal";
+import { stack } from "@/src/v2/content/stack";
 
 type Project = ReturnType<typeof getProjects>[number];
 
@@ -46,19 +47,11 @@ export default function Capabilities({
   const selected = groups[activeIndex];
   const featuredProject = projects[selected.projectIndex];
 
-  // These are reference labels, not links or a claim about expertise level.
-  const tools = [
-    { name: "Python / Pandas", caption: thai ? "ทำความสะอาดและเตรียมข้อมูล" : "Data cleaning & prep", icon: Database },
-    { name: "Git / GitHub Actions", caption: thai ? "จัดการเวอร์ชันและ CI" : "Version control & CI", icon: GitBranch },
-    { name: "Docker", caption: thai ? "Container และการ deploy" : "Containers & deploys", icon: Boxes },
-    { name: "Postman · n8n", caption: thai ? "ทดสอบ API และเชื่อม Workflow" : "API testing & workflows", icon: Workflow },
-  ];
-
   return (
     <section className="v2-section v2-capabilities" id="skills" aria-labelledby="v2-skills-heading">
       <div className="v2-cap-heading">
         <Reveal>
-          <p className="v2-kicker">03 / {t("capabilities")}</p>
+          <p className="v2-kicker">02 / {t("capabilities")}</p>
           <h2 id="v2-skills-heading">
             {thai ? (
               <>เรียนรู้เพิ่ม <span>ลงมือได้มากขึ้น</span></>
@@ -69,12 +62,42 @@ export default function Capabilities({
         </Reveal>
         <Reveal delay={0.08}>
           <div className="v2-cap-heading-aside">
-            <span className="v2-cap-mini-index">03 <span>/ CAPABILITIES</span></span>
+            <span className="v2-cap-mini-index">02 <span>/ CAPABILITIES</span></span>
             <p>{t("skillsIntro")}</p>
             <span className="v2-cap-trace" aria-hidden="true" />
           </div>
         </Reveal>
       </div>
+
+      <Reveal className="v2-stack">
+        <div className="v2-stack-head">
+          <span className="v2-cap-toolbox-index">02.1 / {thai ? "ภาษาและเครื่องมือ" : "STACK"}</span>
+          <h3>{thai ? "ภาษาและเครื่องมือที่ใช้เป็น" : "Languages & tools I use."}</h3>
+        </div>
+        <dl className="v2-stack-list">
+          {stack.map((group, index) => (
+            <div className="v2-stack-row" key={group.id}>
+              <dt>
+                <span className="v2-stack-number">{String(index + 1).padStart(2, "0")}</span>
+                <strong>{group.label[language]}</strong>
+                <small>{group.caption[language]}</small>
+              </dt>
+              <dd>
+                <ul>
+                  {group.items.map((item) => <li key={item}>{item}</li>)}
+                </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <div className="v2-cap-learning">
+          <span className="v2-cap-learning-status">
+            <span className="v2-cap-learning-dot" aria-hidden="true" />
+            {thai ? "กำลังเรียนรู้" : "CURRENTLY LEARNING"}
+          </span>
+          <p>{t("learning")}</p>
+        </div>
+      </Reveal>
 
       <div className="v2-cap-workspace">
         <div
@@ -167,51 +190,6 @@ export default function Capabilities({
           </div>
         </div>
       </div>
-
-      <Reveal className="v2-cap-toolbox">
-        <div className="v2-cap-toolbox-top">
-          <div className="v2-cap-toolbox-intro">
-            <span className="v2-cap-toolbox-index">03.2 / {thai ? "เครื่องมือ" : "TOOLKIT"}</span>
-            <h3>{thai ? "เครื่องมือที่ใช้" : "Tools I use."}</h3>
-          </div>
-          <p>{thai ? "เครื่องมือที่ผมเคยใช้ระหว่างทำโปรเจกต์" : "Tools I've used while working on projects."}</p>
-        </div>
-
-        <div className="v2-cap-toolbox-items">
-          {tools.map((tool, index) => {
-            const Icon = tool.icon;
-            return (
-              <motion.div
-                className="v2-cap-tool-item"
-                key={tool.name}
-                initial={reduce ? false : { opacity: 0, y: 18 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: reduce ? 0 : 0.56,
-                  delay: reduce ? 0 : index * 0.08,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <div className="v2-cap-tool-item-top">
-                  <Icon aria-hidden="true" size={23} strokeWidth={1.45} />
-                  <span>0{index + 1}</span>
-                </div>
-                <strong>{tool.name}</strong>
-                <span className="v2-cap-tool-caption">{tool.caption}</span>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        <div className="v2-cap-learning">
-          <span className="v2-cap-learning-status">
-            <span className="v2-cap-learning-dot" aria-hidden="true" />
-            {thai ? "กำลังเรียนรู้" : "CURRENTLY LEARNING"}
-          </span>
-          <p>{t("learning")}</p>
-        </div>
-      </Reveal>
     </section>
   );
 }

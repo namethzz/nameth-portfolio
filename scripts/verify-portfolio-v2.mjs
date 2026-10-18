@@ -110,14 +110,14 @@ async function smokeDesktop() {
         return values.reduce((sum, value) => sum + value, 0) / (values.length * 255);
       };
       return {
-        about: lightness(bg(".v2-about")),
+        about: lightness(bg(".v2-sky-card")),
         evidence: lightness(bg(".v2-cap-evidence")),
-        value: lightness(bg(".v2-value")),
+        value: lightness(bg(".v2-sky-value")),
       };
     });
-    assert(paperPalette.about > .7, "About panel should be warm light sage");
+    assert(paperPalette.about > .7, "About card should be warm paper over the sky");
     assert(paperPalette.evidence > .7, "Capabilities project evidence should use light paper");
-    assert(paperPalette.value > .7, "About highlight cards should use light paper");
+    assert(paperPalette.value > .7, "Value cards over the sky should stay light");
     assert(await page.locator(".v2-about-signature strong").innerText() === "NAMETH®",
       "Personal identity plaque is missing");
 

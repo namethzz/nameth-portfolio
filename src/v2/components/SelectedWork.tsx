@@ -94,7 +94,7 @@ export default function SelectedWork({
     <section className="v2-section v2-work" id="work" aria-labelledby="v2-work-heading">
       <div className="v2-section-heading">
         <Reveal>
-          <p className="v2-kicker">01 / {t("selectedWork")}</p>
+          <p className="v2-kicker">03 / {t("selectedWork")}</p>
           <h2 id="v2-work-heading">{t("workTitle")}</h2>
         </Reveal>
         <Reveal delay={0.12}><p className="v2-work-intro">{t("workIntro")}</p></Reveal>

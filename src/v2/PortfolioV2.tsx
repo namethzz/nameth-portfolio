@@ -5,12 +5,13 @@ import { flushSync } from "react-dom";
 import Reveal from "@/src/v2/components/Reveal";
 import SelectedWork from "@/src/v2/components/SelectedWork";
 import Capabilities from "@/src/v2/components/Capabilities";
+import SkyIntro from "@/src/v2/components/SkyIntro";
 import ProjectEvidence from "@/src/v2/components/ProjectEvidence";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { getProjects, projectTotal } from "@/lib/projects";
 import WavingPortfolioLanding from "@/components/ui/waving-portfolio-landing";
-import { identity, identityCopy } from "@/src/v2/content/identity";
+import { identity } from "@/src/v2/content/identity";
 import { getProjectIndex, homePath, projectHref, sectionHref } from "@/src/v2/lib/routes";
 
 type Project = ReturnType<typeof getProjects>[number];
@@ -18,9 +19,9 @@ type Project = ReturnType<typeof getProjects>[number];
 function Header({ caseStudy, scrolled, onBackToWork, onBackToTop }: { caseStudy: boolean; scrolled: boolean; onBackToWork: () => void; onBackToTop: () => void }) {
   const { language, setLanguage, t } = useLanguage();
   const navigation = [
-    { href: sectionHref("work"), label: t("navWork") },
     { href: sectionHref("about"), label: t("navAbout") },
     { href: sectionHref("skills"), label: t("navSkills") },
+    { href: sectionHref("work"), label: t("navWork") },
     { href: sectionHref("contact"), label: t("navContact") },
   ];
 
@@ -178,7 +179,7 @@ function Hero() {
         </motion.div>
         <motion.a
           className="v2-opening-scroll"
-          href="#work"
+          href="#about"
           initial="hidden"
           animate={revealCopy ? "visible" : "hidden"}
           variants={revealVariants}
@@ -199,52 +200,6 @@ function Hero() {
   );
 }
 
-
-function About() {
-  const { language, t } = useLanguage();
-  const values = identityCopy[language].values;
-  const reduce = useReducedMotion();
-  return (
-    <section className="v2-section v2-about" id="about" aria-labelledby="v2-about-heading">
-      <div>
-        <Reveal>
-          <p className="v2-kicker">02 / {t("aboutKicker")}</p>
-          <h2 id="v2-about-heading">{t("aboutTitle")} <em>{t("aboutEm")}</em></h2>
-        </Reveal>
-        <Reveal delay={0.18}>
-          <div className="v2-about-signature" aria-label="Nameth Wongmongkol — Full-stack Developer / Data & AI Engineering">
-            <span className="v2-about-signature-label">PERSONAL / 2026</span>
-            <strong>NAMETH<span aria-hidden="true">®</span></strong>
-            <span className="v2-about-signature-line" aria-hidden="true" />
-            <span className="v2-about-signature-sub">FULL-STACK / DATA / AI</span>
-          </div>
-        </Reveal>
-      </div>
-      <div className="v2-about-copy">
-        <Reveal><p>{t("about1")}</p></Reveal>
-        <Reveal delay={0.08}><p>{t("about2")}</p></Reveal>
-        <Reveal delay={0.13}><p>{t("about3")}</p></Reveal>
-        <div className="v2-values">
-          {values.map((item, index) => (
-            <motion.div
-              key={item.id}
-              className="v2-value"
-              initial={reduce ? false : { opacity: 0, y: 22 }}
-              whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : index * 0.09 }}
-              whileHover={reduce ? undefined : { y: -5 }}
-            >
-              <span>0{index + 1}</span><strong>{item.title}</strong>
-              <small>{item.description}</small>
-            </motion.div>
-          ))}
-        </div>
-        <Reveal><p className="v2-education">{t("degree")}<br />{t("university")}</p></Reveal>
-      </div>
-    </section>
-  );
-}
 
 function Contact() {
   const { t } = useLanguage();
@@ -408,9 +363,9 @@ export default function PortfolioV2() {
       {project ? <CaseStudy project={project} onBackToWork={() => navigateHome("work")} /> : (
         <main id="main-content">
           <Hero />
-          <SelectedWork projects={projects} onNavigate={navigateToProject} />
-          <About />
+          <SkyIntro />
           <Capabilities projects={projects} onNavigate={navigateToProject} />
+          <SelectedWork projects={projects} onNavigate={navigateToProject} />
           <Contact />
         </main>
       )}
