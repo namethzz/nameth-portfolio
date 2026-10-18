@@ -79,10 +79,29 @@ function Hero() {
   const posterOpacity = useTransform(scrollYProgress, [0, 0.56, 1], [1, 1, 0.55]);
   const captionOpacity = useTransform(scrollYProgress, [0, 0.52, 0.88], [1, 1, 0]);
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // The intro copy's height depends on language, fonts and zoom, so the
+    // poster reads how much of the bottom it takes and stays clear of it.
+    const sticky = stickyRef.current;
+    const actions = actionsRef.current;
+    if (!sticky || !actions) return;
+    const update = () => {
+      sticky.style.setProperty("--v2-copy-clearance", `${sticky.clientHeight - actions.offsetTop}px`);
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(sticky);
+    observer.observe(actions);
+    void document.fonts?.ready.then(update);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="v2-opening" ref={openingRef} id="home" aria-label={t("introduction")}>
-      <div className="v2-hero-sticky">
+      <div className="v2-hero-sticky" ref={stickyRef}>
         <motion.div
           className="v2-opening-art"
           style={prefersReducedMotion ? undefined : {
@@ -106,6 +125,7 @@ function Hero() {
           />
         </motion.div>
         <motion.div
+          ref={actionsRef}
           className="v2-opening-actions"
           style={prefersReducedMotion ? undefined : { opacity: captionOpacity }}
           onFocusCapture={() => setFocusRequested(true)}

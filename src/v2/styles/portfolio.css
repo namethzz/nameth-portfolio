@@ -374,6 +374,18 @@
   .portfolio-v2.v2-homepage .v2-opening-actions .v2-button { min-height: 36px; padding-block: 7px; }
   .portfolio-v2.v2-homepage .v2-opening-art .wpl-poster { top: 13%; height: 56%; }
 }
+/* Side-by-side layouts: end the poster a gap above the intro copy, whose
+   height (--v2-copy-clearance, measured in Hero) varies with language and zoom. */
+@media(min-width:851px) {
+  .portfolio-v2.v2-homepage .v2-opening-art .wpl-poster {
+    height: min(70%, calc(90% - var(--v2-copy-clearance, 0px) - 16px));
+  }
+}
+@media(min-width:851px) and (max-height:640px) {
+  .portfolio-v2.v2-homepage .v2-opening-art .wpl-poster {
+    height: min(56%, calc(87% - var(--v2-copy-clearance, 0px) - 12px));
+  }
+}
 @media(prefers-reduced-motion:reduce) {
   .portfolio-v2.v2-homepage .v2-opening-scroll svg { animation: none; }
   .portfolio-v2.v2-homepage .v2-opening-art { will-change: auto; }
