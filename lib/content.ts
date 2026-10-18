@@ -318,15 +318,15 @@ export const projectCopy = {
         "Technicians pay a monthly membership through a PromptPay QR the app builds itself. The transfer slip is checked with the bank through Slip2Go, and the same slip can’t be used twice.",
         "The API is ASP.NET Core 8 on MongoDB, with Web Push implemented directly from the RFC standards. Every pull request runs xUnit and Vitest unit tests plus an end-to-end smoke test against a throwaway database."
       ],
-      "note": "Built with Claude Code as an AI coding assistant. I set the problems, made the product decisions, tested with real users and real payments, and run the deployment.",
+      "note": "What I take from this project: privacy and fair pricing have to be designed into the data and the API, not added to the screens afterwards.",
       "alt": "Actual screenshot of the deployed AirClean landing page"
     },
     {
       "subtitle": "Turn up alone. Leave with a team.",
       "category": "FULL-STACK · NODE.JS · FOOTBALL COMMUNITY",
-      "description": "A full-stack web app for finding people to play football with. Players join parties, hosts manage their team, and field owners list their pitches.",
+      "description": "A full-stack web app I built on my own for finding people to play football with. Players join parties, hosts manage their team, and field owners list their pitches.",
       "status": "Live · full-stack project",
-      "role": "Full-stack developer · API · database",
+      "role": "Solo developer · full-stack · API & database",
       "tags": [
         "React",
         "Express",
@@ -425,15 +425,15 @@ export const projectCopy = {
         "ช่างจ่ายค่าสมาชิกรายเดือนผ่าน QR พร้อมเพย์ที่ระบบสร้างเอง แล้วระบบตรวจสลิปกับธนาคารผ่าน Slip2Go อัตโนมัติ สลิปเดียวใช้ซ้ำไม่ได้",
         "API เขียนด้วย ASP.NET Core 8 บน MongoDB และทำ Web Push เองตามมาตรฐาน RFC ทุก pull request ต้องผ่าน unit test ทั้ง xUnit และ Vitest และ smoke test ที่เรียก API จริงกับฐานข้อมูลทดสอบ"
       ],
-      "note": "พัฒนาโดยใช้ Claude Code เป็นผู้ช่วยเขียนโค้ด ผมเป็นคนตั้งโจทย์ ตัดสินใจเรื่องผลิตภัณฑ์ ทดสอบกับผู้ใช้และการจ่ายเงินจริง และดูแลการ Deploy",
+      "note": "สิ่งที่ผมได้จากงานนี้คือ ความเป็นส่วนตัวและราคาที่เป็นธรรมต้องออกแบบตั้งแต่ข้อมูลและ API ไม่ใช่มาเติมที่หน้าจอทีหลัง",
       "alt": "ภาพหน้าจอจริงของหน้าแรกเว็บไซต์ AirClean"
     },
     {
       "subtitle": "มาคนเดียวก็มีทีม",
       "category": "FULL-STACK · NODE.JS · ชุมชนฟุตบอล",
-      "description": "เว็บ Full-stack สำหรับหาเพื่อนเตะบอล ผู้เล่นขอเข้าร่วมปาร์ตี้ หัวตี้จัดการทีม และเจ้าของสนามลงข้อมูลสนามของตัวเองได้",
+      "description": "เว็บ Full-stack ที่ผมพัฒนาคนเดียว สำหรับหาเพื่อนเตะบอล ผู้เล่นขอเข้าร่วมปาร์ตี้ หัวตี้จัดการทีม และเจ้าของสนามลงข้อมูลสนามของตัวเองได้",
       "status": "เปิดใช้งานจริง · โปรเจกต์ Full-stack",
-      "role": "พัฒนา Full-stack · API · ฐานข้อมูล",
+      "role": "พัฒนาคนเดียว · Full-stack · API และฐานข้อมูล",
       "tags": [
         "React",
         "Express",
