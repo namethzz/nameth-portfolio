@@ -6,6 +6,7 @@ import Reveal from "@/src/v2/components/Reveal";
 import SelectedWork from "@/src/v2/components/SelectedWork";
 import Capabilities from "@/src/v2/components/Capabilities";
 import SkyIntro from "@/src/v2/components/SkyIntro";
+import Planet from "@/src/v2/components/Planet";
 import ProjectEvidence from "@/src/v2/components/ProjectEvidence";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
@@ -236,7 +237,7 @@ function CaseStudy({ project, onBackToWork }: { project: Project; onBackToWork: 
     <main id="main-content" className="v2-case-study">
       <div className="v2-case-hero">
         <a className="v2-inline-link" href={sectionHref("work")} onClick={(event) => { event.preventDefault(); onBackToWork(); }}><ArrowLeft size={17} aria-hidden="true" /> {t("navWork")}</a>
-        <p className="v2-kicker">{project.number} / {project.category}</p>
+        <p className="v2-kicker"><Planet number={project.number} className="v2-planet-mini" />{project.number} / {project.category}</p>
         <motion.h1
           initial={reduce ? false : { opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}

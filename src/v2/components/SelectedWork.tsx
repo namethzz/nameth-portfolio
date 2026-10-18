@@ -6,6 +6,7 @@ import { projectTotal, type getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
 import ProjectPreviewModal from "@/src/v2/components/ProjectPreviewModal";
 import Reveal from "@/src/v2/components/Reveal";
+import Planet from "@/src/v2/components/Planet";
 
 type Project = ReturnType<typeof getProjects>[number];
 
@@ -21,6 +22,7 @@ export default function SelectedWork({
   const [previewIndex, setPreviewIndex] = useState<number | null>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
   const cardRefs = useRef<Array<HTMLElement | null>>([]);
+  const sectionRef = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const activeProject = projects[activeIndex] ?? projects[0];
   const previewProject = previewIndex == null ? null : projects[previewIndex];
@@ -74,6 +76,24 @@ export default function SelectedWork({
     };
   }, [projects.length]);
 
+  useEffect(() => {
+    // The work section sits in space, so the header uses its dark treatment here.
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const box = sectionRef.current?.getBoundingClientRect();
+      document.body.classList.toggle("v2-over-space-work", box ? box.top < 80 && box.bottom > 80 : false);
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      cancelAnimationFrame(frame);
+      document.body.classList.remove("v2-over-space-work");
+    };
+  }, []);
+
   function openPreview(index: number, trigger: HTMLElement) {
     triggerRef.current = trigger;
     setPreviewIndex(index);
@@ -91,7 +111,7 @@ export default function SelectedWork({
   }
 
   return (
-    <section className="v2-section v2-work" id="work" aria-labelledby="v2-work-heading">
+    <section className="v2-section v2-work" id="work" ref={sectionRef} aria-labelledby="v2-work-heading">
       <div className="v2-section-heading">
         <Reveal>
           <p className="v2-kicker">03 / {t("selectedWork")}</p>
@@ -111,7 +131,18 @@ export default function SelectedWork({
             aria-label={t("explore") + " " + activeProject.name}
             onClick={(event) => { event.preventDefault(); onNavigate(activeIndex); }}
           >
+            <span className="v2-orbit-path" aria-hidden="true" />
+            <motion.span
+              key={"planet-" + activeProject.number}
+              className="v2-orbit-planet"
+              initial={reduce ? false : { opacity: 0, scale: 0.8, rotate: -12 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: reduce ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Planet number={activeProject.number} />
+            </motion.span>
             <motion.img
+              className="v2-orbit-screen"
               key={activeProject.number}
               src={activeProject.image}
               alt={activeProject.alt}
@@ -139,7 +170,10 @@ export default function SelectedWork({
               ref={(node) => { cardRefs.current[index] = node; }}
             >
               <Reveal>
-                <p className="v2-story-index">{project.number} <span>/ {projectTotal}</span></p>
+                <p className="v2-story-index">
+                  <Planet number={project.number} className="v2-planet-mini" />
+                  {project.number} <span>/ {projectTotal}</span>
+                </p>
                 <p className="v2-kicker">{project.category}</p>
                 <a className="v2-story-title" href={projectHref(index)} onClick={(event) => { event.preventDefault(); onNavigate(index); }}>
                   <h3>{project.name}</h3><ArrowUpRight aria-hidden="true" size={25} />
