@@ -2759,3 +2759,174 @@ body.v2-over-space-work .portfolio-v2.v2-homepage .v2-header {
 body.v2-over-space-work .portfolio-v2 .v2-language { border-color: rgba(255, 255, 255, .16); }
 body.v2-over-space-work .portfolio-v2 .v2-language button { color: #9AA4B2; }
 body.v2-over-space-work .portfolio-v2 .v2-language button.is-active { color: var(--nm-ink); background: #E8ECF2; }
+
+/* CAPABILITIES IN SPACE — the constellation section continues the night. */
+.portfolio-v2.v2-homepage .v2-capabilities {
+  color: #E8ECF2;
+  background-color: #050914;
+  background-image:
+    radial-gradient(1.2px 1.2px at 40px 60px, rgba(255, 255, 255, .7), transparent),
+    radial-gradient(1px 1px at 170px 140px, rgba(200, 215, 255, .6), transparent),
+    radial-gradient(1.4px 1.4px at 260px 40px, rgba(255, 255, 255, .7), transparent),
+    radial-gradient(1px 1px at 90px 230px, rgba(255, 238, 215, .5), transparent),
+    radial-gradient(50% 30% at 12% 20%, rgba(53, 107, 104, .2), transparent 70%),
+    radial-gradient(45% 30% at 92% 70%, rgba(80, 90, 170, .16), transparent 70%);
+  background-size: 290px 290px, 290px 290px, 290px 290px, 290px 290px, 100% 100%, 100% 100%;
+}
+.portfolio-v2.v2-homepage .v2-capabilities::before { display: none; }
+.portfolio-v2.v2-homepage .v2-capabilities .v2-kicker { color: #9CC8F0; }
+.portfolio-v2.v2-homepage .v2-cap-heading h2 { color: #F4F6FA; }
+.portfolio-v2.v2-homepage .v2-cap-heading h2 > span { color: #F2A37E; }
+.portfolio-v2.v2-homepage .v2-cap-heading-aside p { color: #AEB8C6; }
+.portfolio-v2.v2-homepage .v2-cap-mini-index { color: #F2A37E; }
+.portfolio-v2.v2-homepage .v2-cap-mini-index span { color: #7DD3C0; }
+.portfolio-v2.v2-homepage .v2-cap-trace { background: #F2A37E; }
+.portfolio-v2.v2-homepage .v2-cap-options { border-top-color: rgba(255, 255, 255, .12); }
+.portfolio-v2.v2-homepage .v2-cap-option { color: #E8ECF2; border-bottom-color: rgba(255, 255, 255, .12); }
+.portfolio-v2.v2-homepage .v2-cap-option.is-active { background: rgba(255, 255, 255, .06); }
+.portfolio-v2.v2-homepage .v2-cap-option:hover:not(.is-active) { background: rgba(255, 255, 255, .035); }
+.portfolio-v2.v2-homepage .v2-cap-option::before { background: #F2A37E; }
+.portfolio-v2.v2-homepage .v2-cap-option-number { color: #F2A37E; }
+.portfolio-v2.v2-homepage .v2-cap-option-overline { color: #7DD3C0; }
+.portfolio-v2.v2-homepage .v2-cap-option-description { color: #AEB8C6; }
+.portfolio-v2.v2-homepage .v2-cap-option-arrow { color: #AEB8C6; }
+.portfolio-v2.v2-homepage .v2-cap-option.is-active .v2-cap-option-arrow,
+.portfolio-v2.v2-homepage .v2-cap-option:hover .v2-cap-option-arrow { color: #F2A37E; }
+.portfolio-v2.v2-homepage .v2-cap-evidence { box-shadow: 0 30px 80px rgba(0, 0, 0, .45); border-radius: 18px; }
+
+/* The constellation: three named stars, each carrying its project's planet. */
+.portfolio-v2 .v2-constellation { margin: 0 0 clamp(36px, 4.5vw, 64px); }
+.portfolio-v2 .v2-constellation-sky { position: relative; height: clamp(230px, 24vw, 330px); }
+.portfolio-v2 .v2-constellation-sky svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.portfolio-v2 .v2-constellation-line {
+  fill: none;
+  stroke: rgba(156, 200, 240, .45);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 7;
+  vector-effect: non-scaling-stroke;
+  animation: v2-constellation-flow 30s linear infinite;
+}
+.portfolio-v2 .v2-constellation-line.is-faint { stroke: rgba(156, 200, 240, .16); animation-direction: reverse; }
+.portfolio-v2 .v2-constellation-minor { fill: rgba(255, 255, 255, .7); }
+@keyframes v2-constellation-flow { to { stroke-dashoffset: -240; } }
+.portfolio-v2 .v2-constellation-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #E8ECF2;
+  cursor: pointer;
+  transform: translate(-50%, -38px);
+}
+.portfolio-v2 .v2-constellation-star {
+  display: block;
+  width: 44px;
+  transition: width var(--nm-motion-normal) var(--nm-motion-ease), filter var(--nm-motion-normal);
+  filter: saturate(.75) brightness(.85);
+}
+.portfolio-v2 .v2-constellation-star .v2-planet { display: block; }
+.portfolio-v2 .v2-constellation-star .v2-planet-ring { border-width: 1px; box-shadow: none; }
+.portfolio-v2 .v2-constellation-node:hover .v2-constellation-star { filter: none; }
+.portfolio-v2 .v2-constellation-node.is-active .v2-constellation-star { width: 76px; filter: none; }
+.portfolio-v2 .v2-constellation-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: clamp(14px, 1.3vw, 19px);
+  font-weight: 650;
+  white-space: nowrap;
+  opacity: .7;
+  transition: opacity var(--nm-motion-normal);
+}
+.portfolio-v2 .v2-constellation-label small { font-size: 10px; letter-spacing: .18em; color: #7DD3C0; }
+.portfolio-v2 .v2-constellation-node.is-active .v2-constellation-label,
+.portfolio-v2 .v2-constellation-node:hover .v2-constellation-label { opacity: 1; }
+.portfolio-v2 .v2-constellation-caption {
+  margin: 8px auto 0;
+  max-width: 640px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #AEB8C6;
+}
+@media (max-width: 640px) {
+  .portfolio-v2 .v2-constellation-star { width: 34px; }
+  .portfolio-v2 .v2-constellation-node.is-active .v2-constellation-star { width: 52px; }
+  .portfolio-v2 .v2-constellation-label { font-size: 12px; white-space: normal; text-align: center; max-width: 110px; }
+}
+@media (prefers-reduced-motion: reduce) { .portfolio-v2 .v2-constellation-line { animation: none; } }
+
+/* The work section now stays in space down into the constellation. */
+.portfolio-v2.v2-homepage .v2-work {
+  padding-bottom: 110px;
+  background-image:
+    radial-gradient(1.3px 1.3px at 30px 40px, rgba(255, 255, 255, .8), transparent),
+    radial-gradient(1px 1px at 140px 170px, rgba(200, 215, 255, .65), transparent),
+    radial-gradient(1.5px 1.5px at 230px 90px, rgba(255, 255, 255, .75), transparent),
+    radial-gradient(1px 1px at 280px 250px, rgba(255, 238, 215, .6), transparent),
+    radial-gradient(1px 1px at 80px 260px, rgba(255, 255, 255, .5), transparent),
+    radial-gradient(60% 30% at 88% 8%, rgba(53, 107, 104, .22), transparent 70%),
+    radial-gradient(55% 25% at 4% 55%, rgba(184, 79, 58, .14), transparent 70%);
+  background-size: 310px 310px, 310px 310px, 310px 310px, 310px 310px, 310px 310px, 100% 100%, 100% 100%;
+  background-repeat: repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat;
+}
+
+/* CONTACT — the end of the journey: Earth rising over the horizon. */
+.portfolio-v2.v2-homepage .v2-contact {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: clamp(200px, 30vh, 320px);
+  color: #E8ECF2;
+  background-color: #050914;
+  background-image:
+    radial-gradient(1.2px 1.2px at 50px 70px, rgba(255, 255, 255, .75), transparent),
+    radial-gradient(1px 1px at 190px 160px, rgba(200, 215, 255, .6), transparent),
+    radial-gradient(1.4px 1.4px at 280px 30px, rgba(255, 255, 255, .7), transparent);
+  background-size: 310px 310px;
+}
+.portfolio-v2.v2-homepage .v2-contact > :not(.v2-contact-horizon) { position: relative; z-index: 1; }
+.portfolio-v2.v2-homepage .v2-contact .v2-kicker { color: #9CC8F0; }
+.portfolio-v2.v2-homepage .v2-contact h2 { color: #F4F6FA; }
+.portfolio-v2.v2-homepage .v2-contact h2 em { color: #F2A37E; }
+.portfolio-v2.v2-homepage .v2-contact-copy { color: #C9D1DC; }
+.portfolio-v2.v2-homepage .v2-contact .v2-button-dark { color: var(--nm-ink); background: #F4F6FA; }
+.portfolio-v2.v2-homepage .v2-contact .v2-button-outline { color: #F4F6FA; border-color: rgba(244, 246, 250, .5); }
+.portfolio-v2.v2-homepage .v2-contact-bottom { border-top-color: rgba(255, 255, 255, .16); color: #E8ECF2; }
+.portfolio-v2 .v2-contact-horizon { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.portfolio-v2 .v2-contact-earth {
+  position: absolute;
+  left: 50%;
+  bottom: calc(-1 * min(190vw, 2600px) + clamp(150px, 24vh, 260px));
+  width: min(190vw, 2600px);
+  aspect-ratio: 1;
+  margin-left: calc(-1 * min(95vw, 1300px));
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(120, 170, 230, .35) 0%, transparent 9%),
+    radial-gradient(circle at 34% 3%, rgba(40, 110, 90, .55) 0%, transparent 5%),
+    radial-gradient(circle at 63% 2%, rgba(90, 120, 70, .45) 0%, transparent 4%),
+    radial-gradient(circle at 50% 50%, #0A1E3C 0%, #0D2A52 46%, #123A6E 50%);
+  box-shadow: 0 -2px 0 rgba(150, 210, 255, .55), 0 -10px 40px rgba(90, 170, 255, .45);
+}
+.portfolio-v2 .v2-contact-atmosphere {
+  position: absolute;
+  inset: -3%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, transparent 48.4%, rgba(120, 190, 255, .55) 49.6%, rgba(90, 150, 255, .18) 50.6%, transparent 53%);
+}
+.portfolio-v2.v2-homepage + .v2-footer,
+.portfolio-v2.v2-homepage .v2-footer { color: #AEB8C6; background: #03060F; border-top: 1px solid rgba(255, 255, 255, .08); }
+.portfolio-v2.v2-homepage .v2-footer .v2-brand { color: #F4F6FA; }
+@media (max-width: 640px) {
+  /* The thin atmosphere ring reads as a second arc on narrow screens. */
+  .portfolio-v2 .v2-contact-atmosphere { display: none; }
+  .portfolio-v2 .v2-constellation-caption { margin-top: 28px; }
+}

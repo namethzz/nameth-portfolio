@@ -114,16 +114,16 @@ export const copy = {
     "th": "กำลังฝึกโมเดลพยากรณ์ราคาวัสดุล่วงหน้า 1–3 เดือนให้ THAI TAY ซึ่งเป็นก้าวแรกของผมสู่งาน Data Science"
   },
   "contactKicker": {
-    "en": "A next step, together",
-    "th": "โอกาสครั้งต่อไป"
+    "en": "Beyond the horizon",
+    "th": "ไกลกว่าเส้นขอบฟ้า"
   },
   "contactTitle": {
-    "en": "Something worth",
-    "th": "มาร่วมสร้าง"
+    "en": "The next idea",
+    "th": "ไอเดียต่อไป"
   },
   "contactEm": {
-    "en": "building together?",
-    "th": "สิ่งดี ๆ ด้วยกัน"
+    "en": "could start here.",
+    "th": "อาจเริ่มต้นที่นี่"
   },
   "contactIntro": {
     "en": "If your team has room for a full-stack, data engineering or AI engineering intern who checks the details and finishes the work, I’d love to talk.",

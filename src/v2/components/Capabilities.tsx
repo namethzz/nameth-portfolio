@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/language";
 import { projectTotal, type getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
 import Reveal from "@/src/v2/components/Reveal";
+import Planet from "@/src/v2/components/Planet";
 
 type Project = ReturnType<typeof getProjects>[number];
 
@@ -67,6 +68,15 @@ export default function Capabilities({
           </div>
         </Reveal>
       </div>
+
+      <Constellation
+        nodes={groups.map((group) => ({ label: group.title, overline: group.overline, planet: projects[group.projectIndex].number }))}
+        active={activeIndex}
+        onSelect={setActiveIndex}
+        caption={thai
+          ? "สามมุมของปัญหาเดียวกัน: สร้างระบบ ดูแลข้อมูล และเพิ่มความฉลาด เลือกดาวเพื่อดูผลงานที่เกี่ยวข้อง"
+          : "Three ways into the same problem: build the app, work its data, add intelligence. Pick a star to see the work behind it."}
+      />
 
       <div className="v2-cap-workspace">
         <div
@@ -160,5 +170,54 @@ export default function Capabilities({
         </div>
       </div>
     </section>
+  );
+}
+
+// Node positions in a 1000 x 300 box; minor stars only fill the sky.
+const NODE_POS = [[150, 200], [500, 90], [850, 190]] as const;
+const MINOR: ReadonlyArray<readonly [number, number]> = [[60, 90], [300, 250], [330, 60], [680, 260], [700, 40], [940, 70], [420, 180], [600, 160]];
+
+/**
+ * The capabilities as a constellation: three named stars linked by faint
+ * lines, each carrying the planet of the project that proves it. The stars
+ * mirror the option buttons below (which remain the accessible controls).
+ */
+function Constellation({ nodes, active, onSelect, caption }: {
+  nodes: { label: string; overline: string; planet: string }[];
+  active: number;
+  onSelect: (index: number) => void;
+  caption: string;
+}) {
+  return (
+    <Reveal className="v2-constellation">
+      <div className="v2-constellation-sky">
+        <svg viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+          <polyline
+            className="v2-constellation-line"
+            points={NODE_POS.map(([x, y]) => `${x},${y}`).join(" ")}
+          />
+          <line className="v2-constellation-line is-faint" x1={NODE_POS[0][0]} y1={NODE_POS[0][1]} x2={NODE_POS[2][0]} y2={NODE_POS[2][1]} />
+          {MINOR.map(([x, y], i) => <circle key={i} cx={x} cy={y} r={1.6} className="v2-constellation-minor" />)}
+        </svg>
+        {nodes.map((node, index) => (
+          <button
+            key={node.label}
+            type="button"
+            tabIndex={-1}
+            aria-hidden="true"
+            className={"v2-constellation-node" + (index === active ? " is-active" : "")}
+            style={{ left: `${NODE_POS[index][0] / 10}%`, top: `${NODE_POS[index][1] / 3}%` }}
+            onClick={() => onSelect(index)}
+          >
+            <span className="v2-constellation-star"><Planet number={node.planet} /></span>
+            <span className="v2-constellation-label">
+              <small>{node.overline}</small>
+              {node.label}
+            </span>
+          </button>
+        ))}
+      </div>
+      <p className="v2-constellation-caption">{caption}</p>
+    </Reveal>
   );
 }

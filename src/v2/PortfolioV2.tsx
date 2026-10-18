@@ -199,16 +199,23 @@ function Hero() {
 function Contact() {
   const { t } = useLanguage();
   const reduce = useReducedMotion();
+  const contactRef = useRef<HTMLElement>(null);
+  // Earth rises over the horizon as the journey comes to an end.
+  const { scrollYProgress } = useScroll({ target: contactRef, offset: ["start end", "end end"] });
+  const earthY = useTransform(scrollYProgress, [0, 1], ["38%", "0%"]);
+  const glow = useTransform(scrollYProgress, [0.3, 1], [0.35, 1]);
   return (
-    <motion.section
+    <section
       className="v2-contact"
       id="contact"
+      ref={contactRef}
       aria-labelledby="v2-contact-heading"
-      initial={reduce ? false : { backgroundColor: "#EAE4D9" }}
-      whileInView={reduce ? undefined : { backgroundColor: "#D6DDD3" }}
-      viewport={{ once: true, amount: 0.14 }}
-      transition={{ duration: reduce ? 0 : 1.1 }}
     >
+      <div className="v2-contact-horizon" aria-hidden="true">
+        <motion.span className="v2-contact-earth" style={reduce ? undefined : { y: earthY }}>
+          <motion.span className="v2-contact-atmosphere" style={reduce ? undefined : { opacity: glow }} />
+        </motion.span>
+      </div>
       <Reveal><p className="v2-kicker">05 / {t("contactKicker")}</p></Reveal>
       <Reveal delay={0.1}>
         <h2 id="v2-contact-heading">{t("contactTitle")} <em>{t("contactEm")}</em></h2>
@@ -226,7 +233,7 @@ function Contact() {
           <a href="https://github.com/namethzz" target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight aria-hidden="true" size={15} /></a>
         </div>
       </Reveal>
-    </motion.section>
+    </section>
   );
 }
 

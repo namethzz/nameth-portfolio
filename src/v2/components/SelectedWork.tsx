@@ -77,12 +77,13 @@ export default function SelectedWork({
   }, [projects.length]);
 
   useEffect(() => {
-    // The work section sits in space, so the header uses its dark treatment here.
+    // From the work section to the end of the page everything sits in space,
+    // so the header keeps its dark treatment past this point.
     let frame = 0;
     const update = () => {
       frame = 0;
       const box = sectionRef.current?.getBoundingClientRect();
-      document.body.classList.toggle("v2-over-space-work", box ? box.top < 80 && box.bottom > 80 : false);
+      document.body.classList.toggle("v2-over-space-work", box ? box.top < 80 : false);
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     update();
