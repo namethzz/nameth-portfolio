@@ -88,35 +88,54 @@ export default function SkyIntro() {
         </ul>
 
         <div className="v2-stack-wrap" id="skills">
-        <Reveal className="v2-stack">
-          <div className="v2-stack-head">
+          <Reveal className="v2-stack-head">
             <p className="v2-kicker">02 / {thai ? "ภาษาและเครื่องมือ" : "Languages & tools"}</p>
-            <h2 id="v2-skills-heading">{thai ? "ภาษาและเครื่องมือที่ใช้เป็น" : "Languages & tools I use."}</h2>
-          </div>
-          <dl className="v2-stack-list">
-            {stack.map((group, index) => (
-              <div className="v2-stack-row" key={group.id}>
-                <dt>
-                  <span className="v2-stack-number">{String(index + 1).padStart(2, "0")}</span>
-                  <strong>{group.label[language]}</strong>
-                  <small>{group.caption[language]}</small>
-                </dt>
-                <dd>
-                  <ul>
-                    {group.items.map((item) => <li key={item}>{item}</li>)}
+            <h2 id="v2-skills-heading">{thai ? "เครื่องมือที่ใช้ทำงานจริง" : "The tools I build with."}</h2>
+            <p>
+              {thai
+                ? "ภาษาและเครื่องมือที่ผมใช้ในโปรเจกต์ ตั้งแต่หน้าเว็บ API ฐานข้อมูล งานข้อมูลและ AI ไปจนถึงการทดสอบและ deploy"
+                : "What my projects are built with, from web apps, APIs and databases to data, AI, testing and deployment."}
+            </p>
+          </Reveal>
+          <ul className="v2-stack-grid">
+            {stack.map((group, index) => {
+              const GroupIcon = group.icon;
+              return (
+                <motion.li
+                  className="v2-stack-card"
+                  key={group.id}
+                  initial={reduce ? false : { opacity: 0, y: 36 }}
+                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.7, delay: reduce ? 0 : (index % 2) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="v2-stack-card-head">
+                    <GroupIcon aria-hidden="true" />
+                    <div>
+                      <h3>{group.label[language]}</h3>
+                      <p>{group.caption[language]}</p>
+                    </div>
+                  </div>
+                  <ul className="v2-stack-chips">
+                    {group.items.map((item) => {
+                      const ItemIcon = item.icon;
+                      return (
+                        <li key={item.name}>
+                          <ItemIcon aria-hidden="true" style={{ color: item.color }} />
+                          {item.name}
+                        </li>
+                      );
+                    })}
                   </ul>
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <div className="v2-cap-learning">
-            <span className="v2-cap-learning-status">
-              <span className="v2-cap-learning-dot" aria-hidden="true" />
-              {thai ? "กำลังเรียนรู้" : "CURRENTLY LEARNING"}
-            </span>
+                </motion.li>
+              );
+            })}
+          </ul>
+          <Reveal className="v2-stack-learning">
+            <span className="v2-cap-learning-dot" aria-hidden="true" />
+            <strong>{thai ? "กำลังเรียนรู้" : "Currently learning"}</strong>
             <p>{t("learning")}</p>
-          </div>
-        </Reveal>
+          </Reveal>
         </div>
       </div>
       <div className="v2-sky-fade" aria-hidden="true" />
