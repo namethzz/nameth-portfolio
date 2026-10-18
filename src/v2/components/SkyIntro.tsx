@@ -1,5 +1,5 @@
-import { motion, useMotionTemplate, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useCallback, useRef } from "react";
 import CloudShader from "@/components/ui/cloud-shader";
 import { useLanguage } from "@/lib/language";
 import Reveal from "@/src/v2/components/Reveal";
@@ -7,55 +7,52 @@ import { identityCopy } from "@/src/v2/content/identity";
 import { stack } from "@/src/v2/content/stack";
 
 /**
- * The first stop after the poster. A window onto the sky rises in, pins and
- * grows until the sky fills the screen (clip-path reveal from modern-hero).
- * The introduction, the values and the languages & tools then scroll over
- * the pinned sky before it fades back to paper.
+ * The first stop after the poster: scrolling carries you down through a sky.
+ * The sky rises out of the paper, clouds and mist pass at different depths
+ * (far ones slowly, near ones faster), and the
+ * cards float up out of the haze before the sky fades back to paper.
  */
 export default function SkyIntro() {
   const { language, t } = useLanguage();
   const reduce = useReducedMotion();
-  const revealRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const values = identityCopy[language].values;
   const thai = language === "th";
 
-  // The reveal spacer (170vh) opens the section. Progress runs from its top
-  // entering the screen (0) to its bottom leaving it (1). The stage pins at
-  // ~0.37 and the intro card enters at ~0.63, so the window grows to full
-  // screen in between and the greeting is gone before the card arrives.
-  const { scrollYProgress } = useScroll({ target: revealRef, offset: ["start end", "end start"] });
-  const insetY = useTransform(scrollYProgress, [0, 0.37, 0.58], [34, 20, 0]);
-  const insetX = useTransform(scrollYProgress, [0, 0.37, 0.58], [36, 24, 0]);
-  const radius = useTransform(scrollYProgress, [0, 0.37, 0.58], [56, 36, 0]);
-  const clipPath = useMotionTemplate`inset(${insetY}% ${insetX}% ${insetY}% ${insetX}% round ${radius}px)`;
-  const greetingOpacity = useTransform(scrollYProgress, [0.12, 0.3, 0.5, 0.62], [0, 1, 1, 0]);
-  const greetingScale = useTransform(scrollYProgress, [0.12, 0.62], [0.9, 1.1]);
+  // Screens scrolled since the section's top reached the top of the window;
+  // read by the shader every frame.
+  const readScroll = useCallback(() => {
+    const section = sectionRef.current;
+    return section ? -section.getBoundingClientRect().top / window.innerHeight : 0;
+  }, []);
+
+  // Two bands of mist add depth layers between the clouds and the cards.
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const mistNear = useTransform(scrollYProgress, [0, 1], ["60vh", "-300vh"]);
+  const mistFar = useTransform(scrollYProgress, [0, 1], ["100vh", "-160vh"]);
 
   return (
-    <section className="v2-sky" id="about" aria-labelledby="v2-about-heading">
-      <motion.div
-        className="v2-sky-stage"
-        aria-hidden="true"
-        style={reduce ? undefined : { clipPath }}
-      >
-        <CloudShader className="v2-sky-canvas" count={6} speed={0.8} />
-        <motion.p
-          className="v2-sky-greeting"
-          style={reduce ? { opacity: 0 } : { opacity: greetingOpacity, scale: greetingScale }}
-        >
-          {thai ? "สวัสดีครับ" : "Hello there."}
-        </motion.p>
-      </motion.div>
+    <section className="v2-sky" id="about" ref={sectionRef} aria-labelledby="v2-about-heading">
+      <div className="v2-sky-stage" aria-hidden="true">
+        <CloudShader className="v2-sky-canvas" count={6} speed={0.8} scroll={reduce ? undefined : readScroll} />
+        {!reduce && (
+          <>
+            <motion.span className="v2-sky-mist v2-sky-mist-a" style={{ y: mistNear }} />
+            <motion.span className="v2-sky-mist v2-sky-mist-b" style={{ y: mistFar }} />
+            <motion.span className="v2-sky-mist v2-sky-mist-c" style={{ y: mistNear }} />
+          </>
+        )}
+      </div>
 
       <div className="v2-sky-content">
-        <div className="v2-sky-reveal" ref={revealRef} aria-hidden="true" />
+        <div className="v2-sky-rise" aria-hidden="true" />
 
         <motion.article
           className="v2-sky-card"
-          initial={reduce ? false : { opacity: 0, y: 48 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial={reduce ? false : { opacity: 0, y: 90, scale: 0.97, filter: "blur(8px)" }}
+          whileInView={reduce ? undefined : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="v2-kicker">01 / {t("aboutKicker")}</p>
           <h2 id="v2-about-heading">{t("aboutTitle")} <em>{t("aboutEm")}</em></h2>
@@ -141,12 +138,13 @@ function DriftingValue({ index, title, description, start, end, reduce }: {
   const { scrollYProgress } = useScroll({ target: ref, offset: [`${start}px end`, `end ${end * -1}px`] });
   const y = useTransform(scrollYProgress, [0, 1], [start, end]);
   const opacity = useTransform(scrollYProgress, [0, 0.12, 0.85, 1], [0, 1, 1, 0.2]);
+  const rotate = useTransform(scrollYProgress, [0, 1], index % 2 ? [-2.5, 1.5] : [2.5, -1.5]);
 
   return (
     <motion.li
       ref={ref}
       className={`v2-sky-value v2-sky-value-${index + 1}`}
-      style={reduce ? undefined : { y, opacity }}
+      style={reduce ? undefined : { y, opacity, rotate }}
     >
       <span>0{index + 1}</span>
       <strong>{title}</strong>

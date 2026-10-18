@@ -16,6 +16,12 @@ export type CloudShaderProps = {
   skyTopColor?: string;
   /** Sky color at the bottom (hex or rgb string). */
   skyBottomColor?: string;
+  /**
+   * Optional scroll position in screen heights, read every frame. Clouds rise
+   * with it at a speed set by their depth (near clouds move faster), so
+   * scrolling feels like moving down through the sky.
+   */
+  scroll?: () => number;
 };
 
 const VERT = `
@@ -39,6 +45,7 @@ varying vec2 v_uv;
 uniform vec2 u_res;
 uniform float u_time;
 uniform float u_count;
+uniform float u_scroll;
 uniform vec3 u_cloud;
 uniform vec3 u_skyTop;
 uniform vec3 u_skyBottom;
@@ -133,7 +140,11 @@ vec3 shadeCloud(vec3 color, vec3 sky, vec2 p, vec2 c, vec2 r, float seed, float 
 vec3 cloudPass(vec3 color, vec3 sky, vec2 p, float aspect, float t,
                float spd, float phase, float y, vec2 r, float seed, float dist) {
   float cx = mix(-r.x - 0.25, aspect + r.x + 0.25, fract(t * spd + phase));
-  float cy = y + sin(t * 0.05 + phase * 6.2831) * 0.012;
+  // scroll parallax: far clouds (dist 1) rise slowly, near ones (dist 0) fast;
+  // wrap through [-0.32, 1.32) so they leave and re-enter just off screen
+  float cy = y + u_scroll * mix(0.52, 0.14, dist);
+  cy = mod(cy + 0.32, 1.64) - 0.32;
+  cy += sin(t * 0.05 + phase * 6.2831) * 0.012;
   return shadeCloud(color, sky, p, vec2(cx, cy), r, seed, t, dist);
 }
 
@@ -156,7 +167,7 @@ void main() {
   // thin cirrus streaks, stretched horizontally, high in the sky
   float cirrusBand = smoothstep(0.55, 0.8, v_uv.y) * (1.0 - smoothstep(0.9, 1.0, v_uv.y));
   if (cirrusBand > 0.01) {
-    float streak = fbm(vec2(p.x * 1.6 - t * 0.006, p.y * 12.0));
+    float streak = fbm(vec2(p.x * 1.6 - t * 0.006, (p.y - u_scroll * 0.08) * 12.0));
     float wisp = smoothstep(0.52, 0.78, streak) * cirrusBand;
     color = mix(color, u_cloud * 0.98, wisp * 0.35);
   }
@@ -231,6 +242,7 @@ export const CloudShader = ({
   cloudColor = "#fbf8f2",
   skyTopColor = "#3876ba",
   skyBottomColor = "#8cbfe8",
+  scroll,
 }: CloudShaderProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const paramsRef = useRef({
@@ -239,6 +251,7 @@ export const CloudShader = ({
     cloudColor,
     skyTopColor,
     skyBottomColor,
+    scroll,
   });
 
   paramsRef.current = {
@@ -247,6 +260,7 @@ export const CloudShader = ({
     cloudColor,
     skyTopColor,
     skyBottomColor,
+    scroll,
   };
 
   useEffect(() => {
@@ -287,6 +301,7 @@ export const CloudShader = ({
       res: gl.getUniformLocation(program, "u_res"),
       time: gl.getUniformLocation(program, "u_time"),
       count: gl.getUniformLocation(program, "u_count"),
+      scroll: gl.getUniformLocation(program, "u_scroll"),
       cloud: gl.getUniformLocation(program, "u_cloud"),
       skyTop: gl.getUniformLocation(program, "u_skyTop"),
       skyBottom: gl.getUniformLocation(program, "u_skyBottom"),
@@ -328,6 +343,7 @@ export const CloudShader = ({
 
       gl.uniform1f(loc.time, elapsed);
       gl.uniform1f(loc.count, Math.min(6, Math.max(1, p.count)));
+      gl.uniform1f(loc.scroll, p.scroll ? p.scroll() : 0);
       gl.uniform3f(loc.cloud, cloud[0], cloud[1], cloud[2]);
       gl.uniform3f(loc.skyTop, skyTop[0], skyTop[1], skyTop[2]);
       gl.uniform3f(loc.skyBottom, skyBottom[0], skyBottom[1], skyBottom[2]);

@@ -2328,7 +2328,7 @@
   z-index: 0;
   height: 100vh;
   height: 100dvh;
-  will-change: clip-path;
+  overflow: hidden;
 }
 .portfolio-v2 .v2-sky-canvas { height: 100%; min-height: 0; }
 .portfolio-v2 .v2-sky-content {
@@ -2497,20 +2497,23 @@
   line-height: 1.16;
 }
 
-/* Reveal: a first screen of sky that the window grows across while pinned. */
-.portfolio-v2 .v2-sky-reveal { grid-column: 1 / -1; height: 170vh; height: 170dvh; }
-.portfolio-v2 .v2-sky-greeting {
+/* Motion through the sky: the sky rises out of the paper, mist drifts at its
+   own depth, and cards float up out of the haze. */
+.portfolio-v2 .v2-sky-rise {
+  grid-column: 1 / -1;
+  height: 85vh;
+  height: 85dvh;
+  margin-inline: calc(-1 * clamp(20px, 4.5vw, 78px));
+  background: linear-gradient(to bottom, var(--nm-paper) 0%, rgba(245, 241, 232, .82) 16%, rgba(245, 241, 232, 0) 58%);
+}
+.portfolio-v2 .v2-sky-mist {
   position: absolute;
-  inset: 0;
   z-index: 1;
-  display: grid;
-  place-items: center;
-  margin: 0;
-  font-size: clamp(52px, 9vw, 150px);
-  font-weight: 650;
-  letter-spacing: -.04em;
-  color: #fff;
-  text-shadow: 0 10px 44px rgba(20, 52, 92, .35);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, .78), rgba(255, 255, 255, 0));
+  filter: blur(14px);
   pointer-events: none;
 }
-.portfolio-v2[lang="en"] .v2-sky-greeting { font-family: var(--nm-font-display); font-weight: 400; letter-spacing: 0; }
+.portfolio-v2 .v2-sky-mist-a { left: -12%; top: 18%; width: 62vw; height: 30vh; }
+.portfolio-v2 .v2-sky-mist-b { right: -16%; top: 48%; width: 56vw; height: 26vh; opacity: .7; }
+.portfolio-v2 .v2-sky-mist-c { left: 28%; top: 96%; width: 72vw; height: 34vh; opacity: .85; }
