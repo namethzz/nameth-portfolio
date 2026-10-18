@@ -20,7 +20,7 @@ Until a webfont/redistribution license is obtained, our `@font-face` rules resol
 2. In File Explorer, right-click each of the two `.otf` files and choose **Install** (or **Install for all users**, if permitted).
 3. Completely close and reopen Chrome so it sees the newly installed fonts.
 4. Run `git pull origin feat/portfolio-v2` and `npm run dev` in the repository.
-5. Open `http://localhost:5173/preview-v2.html#work`. Confirm the Selected Work headline and project names render in Marion, while the body paragraphs remain readable.
+5. Open `http://localhost:5173/#work`. Confirm the Selected Work headline and project names render in Marion, while the body paragraphs remain readable.
 6. Change EN to TH: Thai headings intentionally continue to use the supported font.
 
 If the typeface does not appear after installation, check that Windows lists the family names `Marion Marijola` and `Marion Marijola Script` in Settings → Personalization → Fonts.

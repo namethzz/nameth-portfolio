@@ -25,7 +25,7 @@ jobs:
         run: npm ci
       - name: Typecheck and build both HTML entries
         run: npm run build
-      - name: Verify both published pages exist
+      - name: Verify the home page and the old preview redirect exist
         run: |
           test -f dist/index.html
           test -f dist/preview-v2.html

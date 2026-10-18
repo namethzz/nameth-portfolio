@@ -15,7 +15,7 @@ export default defineConfig({
     alias: { "@": fileURLToPath(new URL("./", import.meta.url)) },
   },
   build: {
-    // Keep v1 as the homepage; emit v2 as a separate, reviewable preview.
+    // v2 is the homepage; preview-v2.html only redirects old preview links to it.
     rollupOptions: {
       input: {
         index: fileURLToPath(new URL("./index.html", import.meta.url)),

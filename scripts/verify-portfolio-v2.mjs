@@ -3,7 +3,7 @@ import { spawn } from "node:child_process";
 import { setTimeout as delay } from "node:timers/promises";
 
 const port = 4177;
-const base = `http://127.0.0.1:${port}/preview-v2.html`;
+const base = `http://127.0.0.1:${port}/`;
 const server = spawn("npx", ["vite", "--host", "127.0.0.1", "--port", String(port), "--strictPort"], {
   stdio: "ignore",
   env: { ...process.env, CI: "1" },

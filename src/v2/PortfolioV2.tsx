@@ -11,7 +11,7 @@ import { useLanguage } from "@/lib/language";
 import { getProjects, projectTotal } from "@/lib/projects";
 import WavingPortfolioLanding from "@/components/ui/waving-portfolio-landing";
 import { identity, identityCopy } from "@/src/v2/content/identity";
-import { getProjectIndex, previewPath, projectHref, sectionHref } from "@/src/v2/lib/routes";
+import { getProjectIndex, homePath, projectHref, sectionHref } from "@/src/v2/lib/routes";
 
 type Project = ReturnType<typeof getProjects>[number];
 
@@ -395,7 +395,7 @@ export default function PortfolioV2() {
         </main>
       )}
       <footer className="v2-footer">
-        <a href={previewPath} className="v2-brand">{identity.wordmark}</a>
+        <a href={homePath} className="v2-brand">{identity.wordmark}</a>
         <span>© {identity.year} {identity.name}</span>
         <a href={project ? sectionHref("home") : "#home"}>{t("top")} ↑</a>
       </footer>

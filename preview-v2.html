@@ -2,14 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#F5F1E8" />
-    <meta name="description" content="Nameth Wongmongkol — software development, data, and the work behind the projects." />
-    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
-    <title>Nameth — Portfolio v2 Preview</title>
+    <meta name="robots" content="noindex" />
+    <title>Nameth Wongmongkol — Portfolio</title>
+    <!-- v2 is now the home page. Keep old preview links (with ?project= and #section) working. -->
+    <script>location.replace("./" + location.search + location.hash);</script>
+    <meta http-equiv="refresh" content="0; url=./" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/v2/main.tsx"></script>
+    <p><a href="./">Continue to the portfolio</a></p>
   </body>
 </html>
