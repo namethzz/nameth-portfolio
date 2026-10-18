@@ -82,7 +82,10 @@ Keep the current content and links from `lib/content.ts`, `lib/projects.ts`, `li
 - Economic Crops Chat — https://github.com/namethzz/chatbot-project
 - OTW.SHOP — https://github.com/namethzz/OTW
 - OTW live site — https://otw-production.up.railway.app/
-- THAI TAY live site — https://namethzz.github.io/THAITAY/#overview
+- THAI TAY live site — https://thaitay.vercel.app/
+- Economic Crops Chat live site — https://chatbot-project-phi-nine.vercel.app/
+- AirClean — https://github.com/namethzz/Air-clean- · live site https://aircare-connect-web.onrender.com/
+- KickHub — https://github.com/namethzz/kickhub · live site https://kickhub-web.onrender.com/home
 
 Data and links must be checked for accuracy during the redesign; do not silently drop them. Use the actual stored `public/assets/resume.pdf`.
 

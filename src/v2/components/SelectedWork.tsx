@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, GitBranch, ScanEye } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/language";
-import type { getProjects } from "@/lib/projects";
+import { projectTotal, type getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
 import ProjectPreviewModal from "@/src/v2/components/ProjectPreviewModal";
 import Reveal from "@/src/v2/components/Reveal";
@@ -120,7 +120,7 @@ export default function SelectedWork({
               transition={{ duration: reduce ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
               style={{ viewTransitionName: "v2-feature-image" }}
             />
-            <span className="v2-story-photo-number">{activeProject.number} / 03</span>
+            <span className="v2-story-photo-number">{activeProject.number} / {projectTotal}</span>
             <span className="v2-story-feature-title">{activeProject.name}</span>
             <span className="v2-story-photo-arrow" aria-hidden="true"><ArrowUpRight size={22} /></span>
           </a>
@@ -139,7 +139,7 @@ export default function SelectedWork({
               ref={(node) => { cardRefs.current[index] = node; }}
             >
               <Reveal>
-                <p className="v2-story-index">{project.number} <span>/ 03</span></p>
+                <p className="v2-story-index">{project.number} <span>/ {projectTotal}</span></p>
                 <p className="v2-kicker">{project.category}</p>
                 <a className="v2-story-title" href={projectHref(index)} onClick={(event) => { event.preventDefault(); onNavigate(index); }}>
                   <h3>{project.name}</h3><ArrowUpRight aria-hidden="true" size={25} />

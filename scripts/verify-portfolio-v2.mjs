@@ -46,7 +46,7 @@ async function smokeDesktop() {
     const work = page.locator("#work");
     await work.scrollIntoViewIfNeeded();
     const chapters = page.locator(".v2-story-chapter");
-    assert(await chapters.count() === 3, "Expected three project chapters");
+    assert(await chapters.count() === 5, "Expected five project chapters");
 
     // Regression: source index, photo, label and progress must agree for
     // every chapter, including rapid forward/backward scroll. The old
@@ -78,7 +78,7 @@ async function smokeDesktop() {
         (await chapters.nth(index).locator(".v2-story-mobile-image img").getAttribute("src")),
         "Project photo src mismatch on chapter " + expectedNumber);
     }
-    for (const i of [0, 1, 2, 1, 0, 2]) await checkSynchronizedProject(i);
+    for (const i of [0, 1, 2, 3, 4, 1, 0, 4]) await checkSynchronizedProject(i);
 
     // Editorial capabilities: explicit selection, honest project evidence,
     // and navigation that does not land the heading behind the fixed header.
@@ -151,7 +151,7 @@ async function smokeDesktop() {
     assert(await page.locator(".v2-proof-code-card").count() === 3,
       "THAI TAY evidence should include directly verifiable source links");
     const screenshotsFromRepo = await page.locator(".v2-proof-gallery img").evaluateAll(nodes =>
-      nodes.every(node => node.getAttribute("src")?.includes("/namethzz/THAITAY/main/preview/")));
+      nodes.every(node => node.getAttribute("src")?.includes("/assets/work/thaitay-")));
     assert(screenshotsFromRepo, "Proof gallery contains a non-source screenshot");
 
     const contrast = await dossier.locator(".v2-case-fact-value").evaluate(node => {
@@ -175,7 +175,7 @@ async function smokeDesktop() {
 
     await page.locator(".v2-case-study .v2-inline-link").first().click();
     await page.waitForURL(/#work/);
-    assert(await page.locator(".v2-story-chapter").count() === 3, "Returning home lost the work section");
+    assert(await page.locator(".v2-story-chapter").count() === 5, "Returning home lost the work section");
 
     await page.getByRole("button", { name: "ภาษาไทย" }).click();
     assert(await page.locator(".portfolio-v2").getAttribute("lang") === "th", "Language switch failed");
@@ -193,7 +193,7 @@ async function smokeAnimatedScroll() {
   try {
     await page.goto(base, { waitUntil: "domcontentloaded" });
     await page.locator(".v2-story-chapter").first().waitFor();
-    for (const index of [2, 1, 0, 2]) {
+    for (const index of [2, 4, 1, 0, 3]) {
       await page.evaluate((i) => {
         const card = document.querySelectorAll(".v2-story-chapter")[i];
         const rect = card.getBoundingClientRect();
@@ -255,6 +255,13 @@ async function smokeMobile() {
       "OTW case study should expose technical proof for four workflows");
     assert((await page.locator(".v2-case-status").innerText()).includes("Full-stack project"),
       "OTW case study status missing");
+    for (const slug of ["airclean", "kickhub"]) {
+      await page.goto(base + "?project=" + slug, { waitUntil: "domcontentloaded" });
+      assert(await page.locator(".v2-proof-code-card").count() === 4,
+        slug + " case study should link four source files");
+      assert(await page.locator(".v2-proof-gallery img").count() === 3,
+        slug + " case study screenshots missing");
+    }
 
     assert(await page.locator(".v2-case-tool-list li").first().isVisible(),
       "Mobile technology item missing after palette change");

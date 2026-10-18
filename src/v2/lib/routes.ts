@@ -4,7 +4,7 @@
  */
 export const previewPath = import.meta.env.BASE_URL + "preview-v2.html";
 
-export const projectSlugs = ["thai-tay", "economic-crops-chat", "otw-shop"] as const;
+export const projectSlugs = ["thai-tay", "economic-crops-chat", "otw-shop", "airclean", "kickhub"] as const;
 export type ProjectSlug = typeof projectSlugs[number];
 
 export function getProjectIndex(): number {

@@ -8,7 +8,7 @@ import Capabilities from "@/src/v2/components/Capabilities";
 import ProjectEvidence from "@/src/v2/components/ProjectEvidence";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
-import { getProjects } from "@/lib/projects";
+import { getProjects, projectTotal } from "@/lib/projects";
 import WavingPortfolioLanding from "@/components/ui/waving-portfolio-landing";
 import { identity, identityCopy } from "@/src/v2/content/identity";
 import { getProjectIndex, previewPath, projectHref, sectionHref } from "@/src/v2/lib/routes";
@@ -281,7 +281,7 @@ function CaseStudy({ project, onBackToWork }: { project: Project; onBackToWork: 
         <aside className="v2-case-facts" aria-label={language === "th" ? "บทบาทและเทคโนโลยีที่ใช้" : "Role and technologies"}>
           <div className="v2-case-facts-header">
             <span>{language === "th" ? "ข้อมูลโปรเจกต์" : "PROJECT NOTES"}</span>
-            <span>{project.number} / 03</span>
+            <span>{project.number} / {projectTotal}</span>
           </div>
           <div className="v2-case-fact-section v2-case-fact-role">
             <h2 className="v2-case-fact-label"><span aria-hidden="true">01</span> {t("role").replace(/:$/, "")}</h2>

@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, GitBranch, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { useLanguage } from "@/lib/language";
-import type { getProjects } from "@/lib/projects";
+import { projectTotal, type getProjects } from "@/lib/projects";
 
 type Project = ReturnType<typeof getProjects>[number];
 
@@ -82,7 +82,7 @@ export default function ProjectPreviewModal({
           >
             <div className="v2-preview-media">
               <img src={project.image} alt={project.alt} />
-              <span className="v2-preview-index">{project.number} / 03</span>
+              <span className="v2-preview-index">{project.number} / {projectTotal}</span>
               <button type="button" className="v2-preview-close" onClick={requestClose} aria-label={language === "th" ? "ปิดหน้าต่าง" : "Close preview"}>
                 <X size={19} aria-hidden="true" />
               </button>

@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Boxes, GitBranch, Send, Workflow } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "@/lib/language";
-import type { getProjects } from "@/lib/projects";
+import { projectTotal, type getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
 import Reveal from "@/src/v2/components/Reveal";
 
@@ -113,7 +113,7 @@ export default function Capabilities({
                 <span className={activeIndex === index ? "is-active" : ""} key={group.projectIndex} />
               ))}
             </div>
-            <span>{featuredProject.number} / 03</span>
+            <span>{featuredProject.number} / {projectTotal}</span>
           </div>
 
           <div className="v2-cap-photo">
