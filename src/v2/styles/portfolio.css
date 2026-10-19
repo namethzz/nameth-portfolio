@@ -3023,3 +3023,115 @@ body.v2-over-space-work .portfolio-v2 .v2-language button.is-active { color: var
   .portfolio-v2 .v2-work-log > div > a { gap: 14px; align-items: flex-start; flex-direction: column; }
   .portfolio-v2 .v2-work-log-details { padding-left: 12px; }
 }
+
+/* GLYPH HERO — NAMETH on paper; scrolling flies into a letter whose inside is
+   the sky, so the page falls through the name into the About sky. */
+.portfolio-v2 .v2-glyph-hero { position: relative; z-index: 1; background: var(--nm-paper); }
+.portfolio-v2 .v2-glyph-placeholder { height: 100vh; height: 100svh; }
+.portfolio-v2 .v2-glyph-hero > section { font-family: var(--nm-font-body); }
+/* Inside the letter: the daytime colours of the sky shader, with soft clouds. */
+.portfolio-v2 .v2-glyph-sky {
+  position: absolute;
+  inset: 0;
+  transform: scale(var(--gp-field-scale, 1));
+  background:
+    radial-gradient(38% 16% at 22% 30%, rgba(251, 248, 242, .55), transparent 70%),
+    radial-gradient(30% 12% at 76% 58%, rgba(251, 248, 242, .42), transparent 70%),
+    radial-gradient(44% 18% at 50% 88%, rgba(251, 248, 242, .5), transparent 70%),
+    linear-gradient(to bottom, #3876ba 0%, #8cbfe8 100%);
+}
+.portfolio-v2 .v2-glyph-front { position: absolute; inset: 0; color: var(--nm-ink); }
+.portfolio-v2 .v2-glyph-eyebrow {
+  position: absolute;
+  inset: auto 24px calc(100% - var(--gp-word-top, 30%) + 26px);
+  margin: 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--nm-muted);
+}
+.portfolio-v2 .v2-glyph-below {
+  position: absolute;
+  inset: calc(var(--gp-word-bottom, 65%) + 26px) 24px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.portfolio-v2 .v2-glyph-below h1 {
+  margin: 0;
+  font-size: clamp(17px, 1.6vw, 22px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.portfolio-v2 .v2-glyph-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--nm-muted);
+}
+.portfolio-v2 .v2-glyph-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 6px; }
+.portfolio-v2 .v2-glyph-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 20px;
+  border: 1px solid var(--nm-ink);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--nm-ink);
+  text-decoration: none;
+  transition: background var(--nm-motion-normal), color var(--nm-motion-normal);
+}
+.portfolio-v2 .v2-glyph-action.is-primary,
+.portfolio-v2 .v2-glyph-action:hover { background: var(--nm-ink); color: var(--nm-paper); }
+.portfolio-v2 .v2-glyph-action.is-primary:hover { background: var(--nm-copper); border-color: var(--nm-copper); }
+.portfolio-v2 .v2-glyph-action:focus-visible { outline: 2px solid var(--nm-copper); outline-offset: 3px; }
+/* The component's caption becomes a quiet scroll cue in the corner. */
+.portfolio-v2 .v2-glyph-hero [data-gp-hint],
+.portfolio-v2 .v2-glyph-hero [data-gp-touch-picker] { display: none; }
+.portfolio-v2 .v2-glyph-hero [data-gp-caption] { inset: auto clamp(20px, 4.5vw, 78px) clamp(18px, 3svh, 30px) auto; }
+.portfolio-v2 .v2-glyph-hero [data-gp-enter] {
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--nm-ink);
+}
+/* Revealed inside the letter, on the sky. */
+.portfolio-v2 .v2-glyph-hero [data-gp-content] { padding-inline: clamp(20px, 4.5vw, 78px); }
+.portfolio-v2 .v2-glyph-inside { max-width: 760px; text-shadow: 0 4px 28px rgba(15, 40, 80, .35); }
+.portfolio-v2 .v2-glyph-greeting {
+  margin: 0 0 18px;
+  font-family: var(--nm-font-display);
+  font-size: clamp(56px, 8vw, 128px);
+  line-height: .95;
+}
+.portfolio-v2[lang="th"] .v2-glyph-greeting { font-family: var(--nm-font-body); font-weight: 700; letter-spacing: -.03em; line-height: 1.2; }
+.portfolio-v2 .v2-glyph-intro { margin: 0; font-size: clamp(17px, 1.6vw, 23px); line-height: 1.6; }
+/* The About sky continues straight from the inside of the letter: the sky
+   section is tucked up under the portal's last two screens, and as the
+   camera finishes entering, the letter's gradient and the paper fade so the
+   live cloud sky takes over without a seam. */
+.portfolio-v2.v2-homepage .v2-sky-rise { background: none; height: 30vh; height: 30dvh; }
+.portfolio-v2 .v2-glyph-hero [data-gp-motion="on"] [data-gp-pin] { background: rgb(245 241 232 / calc(1 - var(--gp-reveal, 0))); }
+.portfolio-v2 .v2-glyph-hero > section[data-gp-motion="on"] { background: transparent; }
+.portfolio-v2 .v2-glyph-hero [data-gp-motion="on"] [data-gp-field] { opacity: calc(1 - var(--gp-reveal, 0)); }
+.portfolio-v2 .v2-glyph-hero:has(> section[data-gp-motion="on"]) { background: transparent; }
+.portfolio-v2 .v2-glyph-hero:has(> section[data-gp-motion="on"]) + .v2-sky { margin-top: -200svh; }
+.portfolio-v2 .v2-glyph-hero:has(> section[data-gp-motion="on"]) + .v2-sky .v2-sky-rise { height: 210svh; }
+@media (max-width: 850px) {
+  .portfolio-v2 .v2-glyph-eyebrow { letter-spacing: .1em; font-size: 10px; }
+  .portfolio-v2 .v2-glyph-availability { display: block; font-size: 12px; }
+  .portfolio-v2 .v2-glyph-availability .v2-availability-dot { margin-right: 8px; vertical-align: 1px; }
+  .portfolio-v2 .v2-glyph-hero [data-gp-caption] { right: 50%; transform: translateX(50%); }
+}
