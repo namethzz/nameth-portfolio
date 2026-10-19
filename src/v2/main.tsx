@@ -9,6 +9,7 @@ import "@/src/folio/sections.css";
 import "@/src/folio/project.css";
 import "@/src/folio/mindset.css";
 import "@/src/folio/contact.css";
+import "@/src/folio/header.css";
 
 const root = document.getElementById("root");
 if (!root) throw new Error("Missing #root");

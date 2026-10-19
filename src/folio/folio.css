@@ -61,34 +61,6 @@ body { background: #0b0f19; }
 }
 .fo-skip:focus { top: 12px; }
 
-/* Header. */
-.fo-header {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 24px;
-  min-height: var(--fo-header);
-  padding: 0 var(--fo-gutter);
-  background: rgba(11, 15, 25, .9);
-  border-bottom: 1px solid var(--fo-line);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-.fo-brand { font: 400 26px/1 var(--fo-display); letter-spacing: .03em; color: var(--mist); }
-.fo-nav { display: flex; justify-content: center; gap: clamp(16px, 3vw, 40px); }
-.fo-nav a { position: relative; padding: 6px 0; font-size: 13px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: #c6d3df; transition: color .2s; }
-.fo-site[lang="th"] .fo-nav a { font-size: 14px; letter-spacing: .02em; }
-.fo-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--mist); transform: scaleX(0); transform-origin: right; transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
-.fo-nav a:hover { color: var(--mist); }
-.fo-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
-.fo-lang { display: inline-flex; border: 1px solid var(--fo-line); padding: 2px; }
-.fo-lang button { min-width: 40px; min-height: 32px; border: 0; background: transparent; color: #c6d3df; font: 600 12px var(--fo-sans); letter-spacing: .08em; cursor: pointer; }
-.fo-lang button.is-active { background: var(--mist); color: var(--navy); }
-.fo-progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--mist); transform-origin: 0 50%; }
-
 /* Sections: each sets its colours, and everything inside reads them. */
 .fo-section {
   position: relative;
@@ -250,23 +222,6 @@ body { background: #0b0f19; }
   .fo-experience-head { flex-direction: column-reverse; align-items: stretch; }
   .fo-experience-head .fo-heading .fo-fit-line { justify-content: flex-start; }
   .fo-experience-head .fo-heading-label { text-align: left; }
-}
-/* Phone. */
-@media (max-width: 760px) {
-  .fo-site { --fo-header: 104px; }
-  .fo-header { grid-template-columns: 1fr auto; gap: 0 12px; padding-top: 10px; }
-  .fo-nav {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-content: flex-start;
-    gap: 24px;
-    margin: 0 calc(-1 * var(--fo-gutter));
-    padding: 10px var(--fo-gutter);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .fo-nav::-webkit-scrollbar { display: none; }
-  .fo-nav a { flex: none; }
 }
 @media (max-width: 560px) {
   .fo-roles { grid-template-columns: minmax(0, 1fr); }

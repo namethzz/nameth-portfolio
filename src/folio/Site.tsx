@@ -1,4 +1,3 @@
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import { useLanguage } from "@/lib/language";
@@ -6,6 +5,7 @@ import { getProjects } from "@/lib/projects";
 import { identity } from "@/src/v2/content/identity";
 import { getProjectIndex, homePath, projectHref, sectionHref } from "@/src/v2/lib/routes";
 import { EMAIL, FACEBOOK, GITHUB, INSTAGRAM, folio, pick } from "@/src/folio/content";
+import Header from "@/src/folio/Header";
 import Home from "@/src/folio/Home";
 import ProjectPage from "@/src/folio/ProjectPage";
 
@@ -15,13 +15,10 @@ import ProjectPage from "@/src/folio/ProjectPage";
  * project page share this shell.
  */
 export default function Site() {
-  const { language, setLanguage, t } = useLanguage();
+  const { language } = useLanguage();
   const projects = getProjects(language);
   const [routeIndex, setRouteIndex] = useState(() => getProjectIndex());
   const project = routeIndex < 0 ? undefined : projects[routeIndex];
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 24, restDelta: 0.001 });
 
   useEffect(() => {
     const handleLocation = () => setRouteIndex(getProjectIndex());
@@ -54,61 +51,10 @@ export default function Site() {
     });
   }
 
-  const navigation = [
-    { id: "about", label: pick(folio.nav.about, language) },
-    { id: "skills", label: pick(folio.nav.skills, language) },
-    { id: "work", label: pick(folio.nav.work, language) },
-    { id: "contact", label: pick(folio.nav.contact, language) },
-  ];
-
   return (
     <div className="fo-site" lang={language}>
       <a className="fo-skip" href="#main-content">{pick(folio.skip, language)}</a>
-      <header className="fo-header">
-        <a
-          className="fo-brand"
-          href={sectionHref("home")}
-          onClick={(event) => {
-            if (!project) return;
-            event.preventDefault();
-            goHome("home");
-          }}
-          aria-label={identity.name + ", home"}
-        >
-          NAMETH
-        </a>
-        <nav className="fo-nav" aria-label={t("navigation")}>
-          {navigation.map((item) => (
-            <a
-              key={item.id}
-              href={sectionHref(item.id)}
-              onClick={(event) => {
-                if (!project) return;
-                event.preventDefault();
-                goHome(item.id);
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <div className="fo-lang" role="group" aria-label={t("language")}>
-          {(["th", "en"] as const).map((locale) => (
-            <button
-              key={locale}
-              type="button"
-              lang={locale}
-              aria-label={locale === "en" ? "English" : "ภาษาไทย"}
-              aria-pressed={language === locale}
-              className={language === locale ? "is-active" : ""}
-              onClick={() => setLanguage(locale)}
-            >
-              {locale.toUpperCase()}
-            </button>
-          ))}
-        </div>
-        {reduce ? null : <motion.span className="fo-progress" style={{ scaleX: progress }} aria-hidden="true" />}
-      </header>
+      <Header onProjectPage={Boolean(project)} goHome={goHome} />
 
       {project ? (
         <ProjectPage

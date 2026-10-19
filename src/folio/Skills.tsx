@@ -39,7 +39,7 @@ export default function Skills({ projects }: { projects: Project[] }) {
               <Reveal as="li" key={card.title.en} delay={(index % 2) * 0.08} className="fo-skillcard">
                 <div className="fo-skillcard-top">
                   <span className="fo-skillcard-icon" aria-hidden="true"><Icon /></span>
-                  <span className="fo-skillcard-tag" lang="en">{pick(s.skill, language).toUpperCase()} {String(index + 1).padStart(2, "0")}</span>
+                  <span className="fo-skillcard-tag" lang="en">SKILL {String(index + 1).padStart(2, "0")}</span>
                 </div>
                 <h3 className="fo-skillcard-title">{pick(card.title, language)}</h3>
                 <p className="fo-skillcard-can">{pick(card.can, language)}</p>

@@ -184,7 +184,6 @@ export const folio = {
         projects: [3, 4],
       },
     ],
-    skill: { en: "Skill", th: "สกิล" },
     usedIn: { en: "Built in", th: "ทำจริงใน" },
     training: { en: "In training", th: "กำลังฝึก" },
   },
