@@ -132,45 +132,47 @@ export default function SkyIntro() {
                 : "What my projects are built with, from web apps, APIs and databases to data, AI, testing and deployment."}
             </p>
           </Reveal>
-          <ul className="v2-stack-grid">
-            {stack.map((group, index) => {
-              const GroupIcon = group.icon;
-              return (
-                <motion.li
-                  className="v2-stack-card"
-                  key={group.id}
-                  initial={reduce ? false : { opacity: 0, y: 36 }}
-                  whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.7, delay: reduce ? 0 : (index % 2) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="v2-stack-card-head">
-                    <GroupIcon aria-hidden="true" />
-                    <div>
-                      <h3>{group.label[language]}</h3>
+          {/* One spec sheet instead of eight boxes: each category is a row
+              sized to its own list, so short groups leave no empty card. */}
+          <div className="v2-stack-sheet">
+            <ul className="v2-stack-rows">
+              {stack.map((group, index) => {
+                const GroupIcon = group.icon;
+                return (
+                  <motion.li
+                    className="v2-stack-row"
+                    key={group.id}
+                    initial={reduce ? false : { opacity: 0, y: 24 }}
+                    whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.6, delay: reduce ? 0 : (index % 4) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <span className="v2-stack-row-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                    <div className="v2-stack-row-label">
+                      <h3><GroupIcon aria-hidden="true" />{group.label[language]}</h3>
                       <p>{group.caption[language]}</p>
                     </div>
-                  </div>
-                  <ul className="v2-stack-chips">
-                    {group.items.map((item) => {
-                      const ItemIcon = item.icon;
-                      return (
-                        <li key={item.name}>
-                          <ItemIcon aria-hidden="true" style={{ color: item.color }} />
-                          {item.name}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </motion.li>
-              );
-            })}
-          </ul>
-          <Reveal className="v2-stack-learning">
-            <span className="v2-cap-learning-dot" aria-hidden="true" />
-            <strong>{thai ? "กำลังเรียนรู้" : "Currently learning"}</strong>
-            <p>{t("learning")}</p>
-          </Reveal>
+                    <ul className="v2-stack-chips">
+                      {group.items.map((item) => {
+                        const ItemIcon = item.icon;
+                        return (
+                          <li key={item.name}>
+                            <ItemIcon aria-hidden="true" style={{ color: item.color }} />
+                            {item.name}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </motion.li>
+                );
+              })}
+            </ul>
+            <div className="v2-stack-learning">
+              <span className="v2-cap-learning-dot" aria-hidden="true" />
+              <strong>{thai ? "กำลังเรียนรู้" : "Currently learning"}</strong>
+              <p>{t("learning")}</p>
+            </div>
+          </div>
         </div>
 
         {/* Out of the atmosphere: a moment of space that leads into the work. */}

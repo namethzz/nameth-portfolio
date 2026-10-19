@@ -1,8 +1,10 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, GitBranch, ScanEye } from "lucide-react";
+import { FiArrowUpRight } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
+import { ParallaxHero, ParallaxImg, ScheduleItem } from "@/components/ui/modern-hero";
 import { useLanguage } from "@/lib/language";
-import { projectTotal, type getProjects } from "@/lib/projects";
+import type { getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
 import ProjectPreviewModal from "@/src/v2/components/ProjectPreviewModal";
 import Reveal from "@/src/v2/components/Reveal";
@@ -10,6 +12,21 @@ import Planet from "@/src/v2/components/Planet";
 
 type Project = ReturnType<typeof getProjects>[number];
 
+// Where each screenshot floats and how far it drifts (the modern-hero layout:
+// a third left, two thirds centred, a third right, five twelfths indented).
+const GALLERY = [
+  { className: "v2-work-shot w-1/3", start: -200, end: 200 },
+  { className: "v2-work-shot mx-auto w-2/3", start: 200, end: -250 },
+  { className: "v2-work-shot ml-auto w-1/3", start: -200, end: 200 },
+  { className: "v2-work-shot ml-24 w-5/12", start: 0, end: -500 },
+  { className: "v2-work-shot ml-auto mr-12 w-5/12", start: 120, end: -180 },
+] as const;
+
+/**
+ * The work, told with the modern-hero pieces: the first project opens from a
+ * small window to the full screen, every project's screenshot drifts past it,
+ * and the mission log lists them all with their details and links.
+ */
 export default function SelectedWork({
   projects,
   onNavigate,
@@ -18,63 +35,13 @@ export default function SelectedWork({
   onNavigate: (index: number) => void;
 }) {
   const { language, t } = useLanguage();
-  const [activeIndex, setActiveIndex] = useState(0);
   const [previewIndex, setPreviewIndex] = useState<number | null>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
-  const cardRefs = useRef<Array<HTMLElement | null>>([]);
   const sectionRef = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const activeProject = projects[activeIndex] ?? projects[0];
+  const thai = language === "th";
+  const featured = projects[0];
   const previewProject = previewIndex == null ? null : projects[previewIndex];
-
-  useEffect(() => {
-    // One canonical scroll position determines both the photo AND chapter state.
-    // IntersectionObserver's partial entries and pointer hover previously
-    // competed, leaving 02 in the photo while 03 was the active chapter.
-    let frame = 0;
-    const updateFromScroll = () => {
-      frame = 0;
-      const focusLine = window.innerHeight * 0.5;
-      let nearest = 0;
-      let bestDistance = Number.POSITIVE_INFINITY;
-
-      cardRefs.current.forEach((card, index) => {
-        if (!card) return;
-        const rect = card.getBoundingClientRect();
-        // Select the chapter crossing the viewport's focal line. When the
-        // line falls outside all chapters, select the nearest chapter edge.
-        const distance = focusLine < rect.top
-          ? rect.top - focusLine
-          : focusLine > rect.bottom
-            ? focusLine - rect.bottom
-            : 0;
-        if (distance < bestDistance) {
-          bestDistance = distance;
-          nearest = index;
-        }
-      });
-      setActiveIndex((current) => current === nearest ? current : nearest);
-    };
-    const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(updateFromScroll);
-    };
-    // Re-evaluate continuously from current geometry, not just IO event
-    // entries, so swift scrolling and reverse scrolling remain deterministic.
-    schedule();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    const resizeObserver = typeof ResizeObserver === "undefined"
-      ? null
-      : new ResizeObserver(schedule);
-    cardRefs.current.forEach((card) => { if (card) resizeObserver?.observe(card); });
-    void document.fonts?.ready.then(schedule);
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      resizeObserver?.disconnect();
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, [projects.length]);
 
   useEffect(() => {
     // From the work section to the end of the page everything sits in space,
@@ -111,101 +78,100 @@ export default function SelectedWork({
     requestAnimationFrame(() => onNavigate(index));
   }
 
+  const openProject = (index: number) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    onNavigate(index);
+  };
+
   return (
     <section className="v2-section v2-work" id="work" ref={sectionRef} aria-labelledby="v2-work-heading">
-      <div className="v2-section-heading">
+      <div className="v2-section-heading v2-work-heading">
         <Reveal>
           <p className="v2-kicker">03 / {t("selectedWork")}</p>
           <h2 id="v2-work-heading">{t("workTitle")}</h2>
         </Reveal>
         <Reveal delay={0.12}><p className="v2-work-intro">{t("workIntro")}</p></Reveal>
       </div>
-      <div className="v2-story-layout">
-        <div
-          className="v2-story-visual"
-          data-active-project={activeProject.number}
-          aria-label={language === "th" ? "ภาพผลงานที่กำลังอ่าน" : "Current project showcase"}
-        >
-          <a
-            className="v2-story-feature"
-            href={projectHref(activeIndex)}
-            aria-label={t("explore") + " " + activeProject.name}
-            onClick={(event) => { event.preventDefault(); onNavigate(activeIndex); }}
-          >
-            <span className="v2-orbit-path" aria-hidden="true" />
-            <motion.span
-              key={"planet-" + activeProject.number}
-              className="v2-orbit-planet"
-              initial={reduce ? false : { opacity: 0, scale: 0.8, rotate: -12 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ duration: reduce ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Planet number={activeProject.number} />
-            </motion.span>
-            <motion.img
-              className="v2-orbit-screen"
-              key={activeProject.number}
-              src={activeProject.image}
-              alt={activeProject.alt}
-              initial={reduce ? false : { opacity: 0.55, scale: 1.014 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: reduce ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
-              style={{ viewTransitionName: "v2-feature-image" }}
-            />
-            <span className="v2-story-photo-number">{activeProject.number} / {projectTotal}</span>
-            <span className="v2-story-feature-title">{activeProject.name}</span>
-            <span className="v2-story-photo-arrow" aria-hidden="true"><ArrowUpRight size={22} /></span>
-          </a>
-          <div className="v2-story-progress" aria-hidden="true">
-            {projects.map((project, index) => (
-              <span key={project.number} className={index === activeIndex ? "is-active" : ""} />
-            ))}
-          </div>
+
+      <ParallaxHero
+        className="v2-work-hero"
+        image={featured.image}
+        imageAlt={featured.alt}
+        fadeClassName="v2-work-hero-fade"
+        overlay={
+          <p className="v2-work-hero-caption" aria-hidden="true">
+            <Planet number={featured.number} className="v2-planet-mini" />
+            <span>{featured.number}</span>{featured.name}
+          </p>
+        }
+      >
+        <div className="v2-work-gallery mx-auto max-w-5xl px-4 pt-[200px]">
+          {projects.map((project, index) => {
+            const place = GALLERY[index % GALLERY.length];
+            return (
+              <ParallaxImg
+                key={project.number}
+                src={project.image}
+                alt={project.alt}
+                start={place.start}
+                end={place.end}
+                className={place.className}
+                href={projectHref(index)}
+                onClick={openProject(index)}
+                linkLabel={t("explore") + " " + project.name}
+                caption={<><span>{project.number}</span>{project.name}<small>{project.category.split(" · ")[0]}</small></>}
+              />
+            );
+          })}
         </div>
-        <div className="v2-story-chapters">
-          {projects.map((project, index) => (
-            <article
-              className={"v2-story-chapter" + (index === activeIndex ? " is-active" : "")}
-              key={project.number}
-              data-project-index={index}
-              ref={(node) => { cardRefs.current[index] = node; }}
-            >
-              <Reveal>
-                <p className="v2-story-index">
-                  <Planet number={project.number} className="v2-planet-mini" />
-                  {project.number} <span>/ {projectTotal}</span>
-                </p>
-                <p className="v2-kicker">{project.category}</p>
-                <a className="v2-story-title" href={projectHref(index)} onClick={(event) => { event.preventDefault(); onNavigate(index); }}>
-                  <h3>{project.name}</h3><ArrowUpRight aria-hidden="true" size={25} />
-                </a>
-                <p className="v2-story-description">{project.description}</p>
-                <p className="v2-story-status"><span aria-hidden="true" />{project.status}</p>
+      </ParallaxHero>
+
+      <div className="v2-work-log mx-auto max-w-5xl px-4 text-white">
+        <motion.h3
+          initial={reduce ? false : { y: 48, opacity: 0 }}
+          whileInView={reduce ? undefined : { y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ ease: "easeInOut", duration: 0.75 }}
+          className="mb-20 text-4xl font-black uppercase text-zinc-50"
+        >
+          {thai ? "บันทึกภารกิจ" : "Mission log"}
+        </motion.h3>
+        {projects.map((project, index) => (
+          <ScheduleItem
+            key={project.number}
+            title={project.name}
+            date={project.status}
+            location={project.category.split(" · ")[0]}
+            icon={FiArrowUpRight}
+            leading={<Planet number={project.number} className="v2-planet-mini" />}
+            href={projectHref(index)}
+            onClick={openProject(index)}
+            details={
+              <div className="v2-work-log-details">
+                <p>{project.description}</p>
                 <div className="v2-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-                <a className="v2-story-mobile-image" href={projectHref(index)} onClick={(event) => { event.preventDefault(); onNavigate(index); }}>
-                  <img src={project.image} alt={project.alt} loading="lazy" style={{ viewTransitionName: index === activeIndex ? "v2-feature-image" : "none" }} />
-                </a>
                 <div className="v2-story-links">
                   <button type="button" className="v2-quick-preview" onClick={(event) => openPreview(index, event.currentTarget)}>
-                    <ScanEye size={17} aria-hidden="true" /> {language === "th" ? "ดูตัวอย่าง" : "Quick preview"}
+                    <ScanEye size={17} aria-hidden="true" /> {thai ? "ดูตัวอย่าง" : "Quick preview"}
                   </button>
-                  <a href={projectHref(index)} onClick={(event) => { event.preventDefault(); onNavigate(index); }}>
-                    {language === "th" ? "อ่านรายละเอียด" : "Full case study"} <ArrowUpRight aria-hidden="true" size={17} />
+                  <a href={projectHref(index)} onClick={openProject(index)}>
+                    {thai ? "อ่านรายละเอียด" : "Full case study"} <ArrowUpRight aria-hidden="true" size={17} />
                   </a>
                   {project.website && (
                     <a href={project.website} target="_blank" rel="noopener noreferrer">
-                      {language === "th" ? "เปิดเว็บจริง" : "Live demo"} <ArrowUpRight size={15} aria-hidden="true" />
+                      {thai ? "เปิดเว็บจริง" : "Live demo"} <ArrowUpRight size={15} aria-hidden="true" />
                     </a>
                   )}
                   <a href={project.repository} target="_blank" rel="noopener noreferrer">
                     <GitBranch size={15} aria-hidden="true" /> GitHub
                   </a>
                 </div>
-              </Reveal>
-            </article>
-          ))}
-        </div>
+              </div>
+            }
+          />
+        ))}
       </div>
+
       <Reveal className="v2-story-github">
         <a className="v2-inline-link" href="https://github.com/namethzz" target="_blank" rel="noopener noreferrer">
           <GitBranch aria-hidden="true" size={17} /> {t("more")}

@@ -7,6 +7,8 @@ import SelectedWork from "@/src/v2/components/SelectedWork";
 import Capabilities from "@/src/v2/components/Capabilities";
 import SkyIntro from "@/src/v2/components/SkyIntro";
 import Planet from "@/src/v2/components/Planet";
+import { SmoothScroll } from "@/components/ui/modern-hero";
+import { useLenis } from "lenis/react";
 import ProjectEvidence from "@/src/v2/components/ProjectEvidence";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
@@ -19,6 +21,7 @@ type Project = ReturnType<typeof getProjects>[number];
 
 function Header({ caseStudy, scrolled, onBackToWork, onBackToTop }: { caseStudy: boolean; scrolled: boolean; onBackToWork: () => void; onBackToTop: () => void }) {
   const { language, setLanguage, t } = useLanguage();
+  const lenis = useLenis();
   const navigation = [
     { href: sectionHref("about"), label: t("navAbout") },
     { href: sectionHref("skills"), label: t("navSkills") },
@@ -33,7 +36,23 @@ function Header({ caseStudy, scrolled, onBackToWork, onBackToTop }: { caseStudy:
       </a>
       <nav aria-label={t("navigation")} className="v2-nav">
         {caseStudy && <a href={sectionHref("work")} onClick={(event) => { event.preventDefault(); onBackToWork(); }} className="v2-back"><ArrowLeft aria-hidden="true" size={15} /> {t("navWork")}</a>}
-        {!caseStudy && navigation.map((item) => <a href={item.href} key={item.href}>{item.label}</a>)}
+        {!caseStudy && navigation.map((item) => (
+          <a
+            href={item.href}
+            key={item.href}
+            onClick={(event) => {
+              // Scroll through Lenis so smooth scrolling lands on the section.
+              const id = item.href.split("#")[1];
+              const target = id ? document.getElementById(id) : null;
+              if (!lenis || !target) return;
+              event.preventDefault();
+              lenis.scrollTo(target, { offset: -80 });
+              window.history.replaceState(null, "", item.href);
+            }}
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
       <div className="v2-language" role="group" aria-label={t("language")}>
         {(["en", "th"] as const).map((locale) => (
@@ -359,6 +378,7 @@ export default function PortfolioV2() {
   }
 
   return (
+    <SmoothScroll>
     <div className={`portfolio-v2 ${project ? "v2-case-page" : "v2-homepage"}`} lang={language}>
       <a className="v2-skip-link" href="#main-content">{language === "th" ? "ข้ามไปยังเนื้อหา" : "Skip to content"}</a>
       <Header caseStudy={Boolean(project)} scrolled={scrolled} onBackToWork={() => navigateHome("work")} onBackToTop={() => navigateHome("home")} />
@@ -377,5 +397,6 @@ export default function PortfolioV2() {
         <a href={project ? sectionHref("home") : "#home"}>{t("top")} ↑</a>
       </footer>
     </div>
+    </SmoothScroll>
   );
 }
