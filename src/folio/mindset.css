@@ -1,0 +1,112 @@
+/* MINDSET and ENDING: the level-up story with a game HUD beside it, and
+   the closing screen with the proverb. */
+.fo-mindset-head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 5cqi; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
+.fo-mindset-head .fo-lead { color: #c9d5e1; }
+.fo-mindset-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 5cqi; align-items: start; }
+.fo-hud {
+  position: sticky;
+  top: calc(var(--fo-header) + 28px);
+  display: grid;
+  gap: 18px;
+  padding: clamp(18px, 2vw, 28px);
+  border: 1px solid rgba(168, 190, 209, .22);
+  border-radius: 18px;
+  background:
+    linear-gradient(rgba(168, 190, 209, .05) 1px, transparent 1px) 0 0 / 100% 6px,
+    #111827;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+.fo-hud-label { font: 600 11px/1 var(--fo-mono); letter-spacing: .18em; text-transform: uppercase; color: #8a9bad; }
+.fo-hud-level { display: flex; align-items: baseline; gap: 12px; }
+.fo-hud-lv { display: inline-flex; align-items: baseline; overflow: hidden; font: 400 clamp(54px, 6vw, 92px)/.9 var(--fo-display); color: var(--mist); }
+.fo-hud-lv b { display: inline-block; font-weight: 400; color: var(--red-ink); }
+.fo-hud-of { font: 400 20px/1 var(--fo-display); color: #5d6d80; }
+.fo-hud-quest { min-height: 1.4em; font-size: 15px; font-weight: 600; color: #e6edf4; }
+.fo-xp { display: grid; grid-template-columns: auto minmax(0, 1fr) 3.4em; align-items: center; gap: 10px; }
+.fo-xp-bar { position: relative; height: 14px; overflow: hidden; border: 1px solid rgba(168, 190, 209, .3); border-radius: 3px; background: #0b0f19; }
+.fo-xp-bar i, .fo-endless-bar i { position: absolute; inset: 0; background: repeating-linear-gradient(90deg, var(--red) 0 10px, #ff7a6e 10px 12px); transform-origin: 0 50%; }
+.fo-xp-num { font: 600 13px/1 var(--fo-mono); color: #e6edf4; text-align: right; }
+.fo-inventory { display: grid; gap: 10px; }
+.fo-inventory ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.fo-inventory li { display: grid; place-items: center; aspect-ratio: 1; border: 1.5px dashed rgba(168, 190, 209, .25); border-radius: 10px; color: #3d4a5c; transition: background .35s, border-color .35s, color .35s; }
+.fo-inventory li svg { width: 46%; height: 46%; }
+.fo-inventory li.is-unlocked { border-style: solid; border-color: var(--mist); background: var(--mist); color: var(--navy); animation: fo-unlock .5s cubic-bezier(.34, 1.56, .64, 1); }
+@keyframes fo-unlock { from { scale: .6; } to { scale: 1; } }
+.fo-stages { display: grid; gap: 16px; }
+.fo-stage {
+  padding: clamp(20px, 2.2vw, 30px);
+  border: 1px solid rgba(168, 190, 209, .14);
+  border-left: 4px solid #2b3646;
+  border-radius: 14px;
+  background: #121a29;
+  opacity: .45;
+  transition: opacity .5s, border-color .5s;
+}
+.fo-stage.is-reached { opacity: 1; border-left-color: var(--red); }
+.fo-stage-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; margin-bottom: 12px; }
+.fo-stage-lv { font: 400 28px/1 var(--fo-display); color: var(--mist); }
+.fo-stage.is-reached .fo-stage-lv { color: var(--red-ink); }
+.fo-stage-item { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(168, 190, 209, .1); color: #c9d5e1; font: 600 12px var(--fo-mono); }
+.fo-stage-item svg { width: 15px; height: 15px; }
+.fo-stage-title { font-size: clamp(19px, 1.7vw, 24px); font-weight: 700; line-height: 1.25; color: #fff; }
+.fo-stage p { margin-top: 8px; font-size: clamp(15px, 1.1vw, 17px); line-height: 1.7; color: #c3cfdb; }
+
+/* ENDING: thanks for reading. */
+.fo-ending { text-align: center; }
+.fo-ending .fo-wrap { display: grid; justify-items: center; }
+.fo-ending .fo-fit-line { justify-content: center; }
+.fo-ending-flower { position: absolute; z-index: 0; width: clamp(160px, 22vw, 340px); fill: #18223a; animation: fo-spin 60s linear infinite; }
+.fo-ending-flower.is-left { left: -6vw; top: 8%; }
+.fo-ending-flower.is-right { right: -5vw; bottom: 6%; animation-direction: reverse; }
+.fo-ending-thanks { max-width: 40em; margin-top: clamp(28px, 4vw, 48px); font-size: clamp(16px, 1.3vw, 20px); line-height: 1.7; color: #c9d5e1; }
+.fo-proverb { position: relative; margin: clamp(44px, 6vw, 80px) 0 0; padding: clamp(28px, 4vw, 48px) clamp(20px, 5vw, 64px); border-radius: 24px; background: var(--mist); color: var(--navy); rotate: -1.5deg; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .8); }
+.fo-proverb-th { font: 700 clamp(30px, 5vw, 68px)/1.25 "Noto Sans Thai", var(--fo-sans); }
+.fo-proverb-th span { display: inline-block; margin-inline: .15em; white-space: nowrap; }
+.fo-proverb-en { margin-top: 10px; font-size: clamp(15px, 1.3vw, 19px); font-weight: 500; color: #2f3e52; }
+.fo-proverb footer { display: flex; justify-content: center; align-items: baseline; gap: 12px; margin-top: 18px; font-size: 13px; font-weight: 600; color: #2f3e52; }
+.fo-proverb-sign { font: 400 clamp(30px, 3vw, 40px)/1 "Herr Von Muellerhoff", cursive; color: var(--red); }
+.fo-endless { width: min(100%, 560px); margin-top: clamp(44px, 6vw, 72px); }
+.fo-endless-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.fo-endless-lv { font: 400 clamp(36px, 4vw, 52px)/1 var(--fo-display); color: var(--mist); }
+.fo-endless-status { display: inline-flex; align-items: center; gap: 8px; font: 600 12.5px var(--fo-mono); letter-spacing: .08em; text-transform: uppercase; color: #ff9a90; }
+.fo-endless-status i { width: 8px; height: 8px; border-radius: 50%; background: var(--red); animation: fo-ping 2s infinite; }
+.fo-endless-bar { position: relative; display: block; height: 16px; overflow: hidden; border: 1px solid rgba(168, 190, 209, .3); border-radius: 3px; background: #0b0f19; }
+.fo-endless-bar i { animation: fo-farm 3.2s cubic-bezier(.65, 0, .35, 1) infinite; }
+@keyframes fo-farm { 0% { transform: scaleX(.08); } 85% { transform: scaleX(.97); } 100% { transform: scaleX(.97); opacity: .4; } }
+.fo-endless p { margin-top: 14px; font-size: 15px; line-height: 1.6; color: #c9d5e1; }
+.fo-again { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; margin-top: clamp(36px, 5vw, 56px); padding: 0 26px; border: 0; border-radius: 999px; background: var(--red); color: #fff; font: 600 14px var(--fo-sans); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: transform .25s, box-shadow .25s; }
+.fo-site[lang="th"] .fo-again { font-size: 15px; letter-spacing: .01em; }
+.fo-again:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -14px var(--red); }
+.fo-again svg { width: 20px; height: 20px; transition: rotate .5s; }
+.fo-again:hover svg { rotate: -180deg; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fo-inventory li.is-unlocked, .fo-ending-flower, .fo-endless-bar i, .fo-endless-status i { animation: none; }
+  .fo-endless-bar i { transform: scaleX(.97); }
+}
+@media (max-width: 900px) {
+  .fo-mindset-head { grid-template-columns: minmax(0, 1fr); }
+  .fo-mindset-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  /* The HUD rides along as a slim bar under the header. */
+  .fo-hud {
+    z-index: 3;
+    top: calc(var(--fo-header) + 8px);
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 6px 14px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(17, 24, 39, .95);
+  }
+  .fo-hud-level { grid-row: 1 / span 2; gap: 6px; }
+  .fo-hud-level > .fo-hud-label, .fo-hud-of, .fo-hud-quest, .fo-inventory > .fo-hud-label, .fo-xp > .fo-hud-label { display: none; }
+  .fo-hud-lv { font-size: 40px; }
+  .fo-xp { grid-template-columns: minmax(0, 1fr) 3em; }
+  .fo-xp-bar { height: 10px; }
+  .fo-inventory ul { grid-template-columns: repeat(5, 30px); gap: 6px; }
+  .fo-inventory li { border-radius: 7px; }
+}
+@media (max-width: 560px) {
+  .fo-proverb { rotate: -1deg; }
+  .fo-ending-flower { width: 150px; }
+}

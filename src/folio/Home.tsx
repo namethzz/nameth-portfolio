@@ -6,8 +6,10 @@ import type { getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
 import { EMAIL, GITHUB, HANDLE, folio, pick, sections } from "@/src/folio/content";
 import { Globe, Marquee, Torus } from "@/src/folio/decor";
+import Ending from "@/src/folio/Ending";
 import Hero from "@/src/folio/Hero";
 import Index from "@/src/folio/Index";
+import Mindset from "@/src/folio/Mindset";
 import About from "@/src/folio/About";
 import ProjectDeck from "@/src/folio/ProjectDeck";
 import Route from "@/src/folio/Route";
@@ -35,6 +37,7 @@ export default function Home({ projects, onOpen }: { projects: Project[]; onOpen
       <Marquee items={folio.marquee.intro} />
       <Index />
       <Introduction />
+      <Mindset />
       <About />
       <Route />
       <SkillMatrix projects={projects} />
@@ -42,6 +45,7 @@ export default function Home({ projects, onOpen }: { projects: Project[]; onOpen
       <ProjectDeck projects={projects} open={open} />
       <Marquee items={projects.map((project) => project.name.toUpperCase())} reverse />
       <Contact />
+      <Ending />
     </main>
   );
 }

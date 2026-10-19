@@ -17,6 +17,7 @@ export const THAI_NAME = "ณเมธ วงค์มงคล";
 export const sections = {
   contents: { word: "TABLE OF CONTENTS", label: { en: "Table of contents", th: "สารบัญ" } },
   introduction: { word: "INTRODUCTION", label: { en: "Introduction", th: "แนะนำตัว" } },
+  mindset: { word: "LEVEL UP", label: { en: "How I think", th: "วิธีคิดของผม" } },
   about: { word: "NAMETH\nWONGMONGKOL", label: { en: "About me", th: "เกี่ยวกับผม" } },
   education: { word: "EDUCATION", label: { en: "Education", th: "การศึกษา" } },
   skills: { word: "PERSONAL\nSKILLS", label: { en: "Personal skills", th: "ทักษะ" } },
@@ -43,6 +44,7 @@ export const folio = {
     principlesTitle: { en: "What I hold to", th: "สิ่งที่ผมยึดถือ" },
     items: [
       { href: "introduction", word: "INTRODUCTION", desc: { en: "Where I'm coming from", th: "แนะนำตัว" } },
+      { href: "mindset", word: "LEVEL UP", desc: { en: "How I think", th: "วิธีคิดของผม" } },
       { href: "about", word: "ABOUT ME", desc: { en: "My ID page", th: "เกี่ยวกับผม" } },
       { href: "education", word: "EDUCATION", desc: { en: "The route so far", th: "เส้นทางการเรียน" } },
       { href: "skills", word: "SKILLS", desc: { en: "Tools, with proof", th: "ทักษะพร้อมหลักฐาน" } },
@@ -103,8 +105,8 @@ export const folio = {
     ],
     goalStamp: { en: "Next stop: build a game", th: "ปลายทาง: สร้างเกมของตัวเอง" },
     goal: {
-      en: "I grew up playing games, then stopped as I got older. One day I want to build one of my own. The full-stack, data and AI work I'm doing now is the road there.",
-      th: "ตอนเด็กผมชอบเล่นเกม พอโตขึ้นก็แทบไม่ได้เล่นอีก สักวันผมอยากสร้างเกมของตัวเอง งาน Full-stack ข้อมูล และ AI ที่ทำอยู่ตอนนี้คือทางที่จะไปถึงตรงนั้น",
+      en: "Games taught me to farm levels. One day I want to build a game of my own, and the full-stack, data and AI work I do now is how I get there.",
+      th: "เกมสอนให้ผมรู้จักการฟาร์มเลเวล สักวันผมอยากสร้างเกมของตัวเอง และงาน Full-stack ข้อมูล และ AI ที่ทำอยู่ตอนนี้คือทางที่จะพาผมไปถึง",
     },
   },
   education: {
@@ -138,8 +140,8 @@ export const folio = {
   },
   skills: {
     lead: {
-      en: "No percentage bars. Every tool below is checked against the projects it was actually used in.",
-      th: "ไม่มีหลอดเปอร์เซ็นต์ ทุกเครื่องมือด้านล่างเทียบกับโปรเจกต์ที่ใช้จริง",
+      en: "No percentage bars. I matched each tool below to the projects that use it.",
+      th: "ไม่มีหลอดเปอร์เซ็นต์ ผมจับคู่เครื่องมือแต่ละตัวกับโปรเจกต์ที่ใช้มันจริง",
     },
     disciplines: [
       {
@@ -167,9 +169,72 @@ export const folio = {
     toolbox: { en: "Also in my toolbox", th: "เครื่องมืออื่นที่ใช้" },
     training: { en: "In training", th: "กำลังฝึก" },
   },
+  mindset: {
+    lead: {
+      en: "I treat learning the way I used to treat a game: farm the levels, then take on the boss.",
+      th: "ผมเรียนรู้แบบเดียวกับที่เคยเล่นเกม ฟาร์มเลเวลให้พอ แล้วค่อยไปสู้บอส",
+    },
+    hud: { level: { en: "Level", th: "เลเวล" }, xp: { en: "XP", th: "XP" }, inventory: { en: "Inventory", th: "ไอเทม" } },
+    stages: [
+      {
+        item: { en: "Sword", th: "ดาบ" },
+        title: { en: "Farming levels", th: "ฟาร์มเลเวล" },
+        text: {
+          en: "I grew up farming levels in games. I ground away so I could beat the boss, find the drop I wanted and buy better armour and a better sword, and I had fun doing it.",
+          th: "ตอนเด็กผมชอบเล่นเกม และชอบฟาร์มเลเวลให้สู้บอสได้ หาของที่อยากได้ ซื้อชุดเกราะดี ๆ กับดาบดี ๆ แล้วผมก็สนุกไปกับมัน",
+        },
+      },
+      {
+        item: { en: "Skill tree", th: "ต้นสกิล" },
+        title: { en: "Real-life XP", th: "XP ในชีวิตจริง" },
+        text: {
+          en: "Growing up, I found real life runs on the same rule. The more I level up my skills, the more I can do and the more value I can create. I need a good plan and a lot of study to get there.",
+          th: "พอโตขึ้น ชีวิตจริงก็บอกผมแบบเดียวกัน ถ้าเราอัปสกิลตัวเองให้เก่งขึ้น เราจะทำอะไรได้มากกว่าเดิม และสร้างคุณค่าให้ตัวเองได้ แค่ต้องวางแผนชีวิตให้ดีและเรียนให้เยอะ",
+        },
+      },
+      {
+        item: { en: "Companion", th: "ผู้ช่วย" },
+        title: { en: "A new training ground", th: "สนามฝึกใหม่" },
+        text: {
+          en: "Learning is wide open now. AI lets me keep levelling up one skill after another, and that makes learning fun for me.",
+          th: "ทุกวันนี้การเรียนรู้เปิดกว้างมาก มี AI ที่ช่วยให้ผมอัปสกิลได้เรื่อย ๆ และทำให้ผมสนุกกับการเรียนรู้สิ่งต่าง ๆ",
+        },
+      },
+      {
+        item: { en: "Foundation", th: "พื้นฐาน" },
+        title: { en: "Basics first", th: "พื้นฐานมาก่อน" },
+        text: {
+          en: "AI makes writing code easier. I take that as my cue to go back over the fundamentals of programming more often.",
+          th: "AI ทำให้การเขียนโค้ดสบายขึ้น แต่ผมไม่เคยลืมคำว่าพื้นฐาน ยิ่งมี AI ผมยิ่งต้องกลับไปทบทวนพื้นฐานการเขียนโค้ดไว้ก่อน",
+        },
+      },
+      {
+        item: { en: "Crafting", th: "งานคราฟต์" },
+        title: { en: "Thought through", th: "คิดกับทุกงาน" },
+        text: {
+          en: "I'm proud of each project on this site. I put a lot of thought into each one before I called it done.",
+          th: "ผมภูมิใจกับงานทุกชิ้นที่ทำ เพราะผมคิดกับงานแต่ละชิ้นเยอะมาก",
+        },
+      },
+    ],
+  },
+  ending: {
+    proverb: "ลำบากวันนี้ สบายตอนไหนไม่รู้",
+    proverbEn: { en: "Hard today. Easy someday, whenever that turns out to be.", th: "ลำบากวันนี้ สบายวันไหนก็ยังไม่รู้" },
+    farming: {
+      en: "I keep farming my level every day so that one day I make it.",
+      th: "ทุกวันนี้ผมยังฟาร์มเลเวลของตัวเองทุกวัน เพื่อให้สักวันผมประสบความสำเร็จ",
+    },
+    thanks: {
+      en: "I don't know if anyone sees what I tried to do here, or reads this far. If you did, I'm glad, and thank you.",
+      th: "ผมไม่รู้ว่าจะมีใครเห็นสิ่งที่ผมตั้งใจทำไหม หรือจะมีใครอ่านมาถึงตรงนี้หรือเปล่า แต่ถ้าคุณอ่านมาถึงตรงนี้ ผมดีใจและขอบคุณมากครับ",
+    },
+    status: { en: "Still farming", th: "ยังฟาร์มอยู่" },
+    again: { en: "Play again", th: "เล่นอีกรอบ" },
+  },
   experience: {
     lead: {
-      en: "I'm a student, so my experience is the roles I've taken on in real projects: alone, in a team, and from the first idea to deployment.",
+      en: "I'm a student, so my experience is the roles I've taken on in real projects, alone and in a team, from the first idea to deployment.",
       th: "ผมยังเป็นนักศึกษา ประสบการณ์ของผมจึงเป็นบทบาทที่รับผิดชอบในโปรเจกต์จริง ทั้งทำคนเดียว ทำเป็นทีม และตั้งแต่ไอเดียแรกจนถึงขึ้นระบบ",
     },
   },

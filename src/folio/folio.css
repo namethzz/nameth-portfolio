@@ -132,7 +132,7 @@ body { background: #0b0f19; }
 .fo-fit-line + .fo-fit-line { margin-top: .05em; }
 .fo-fit-letter { display: block; clip-path: inset(-20% -6% 0 -6%); }
 .fo-fit-letter > span { display: block; }
-.fo-fit-space { display: block; width: .234em; }
+.fo-fit-space { display: block; flex: none; width: .234em; }
 .is-right .fo-fit-line { justify-content: flex-end; }
 .fo-heading-label { display: block; margin-top: 14px; font-size: clamp(16px, 1.6vw, 22px); font-weight: 600; color: var(--head); }
 .is-right .fo-heading-label { text-align: right; }

@@ -20,11 +20,11 @@ export const identityCopy = {
     heroIntro: "I build digital experiences with care, clarity, and curiosity.",
     aboutHeadline: "Curious enough to start. Careful enough to finish.",
     aboutBody:
-      "I enjoy starting from zero, teaching myself what I do not yet know, and turning ideas into useful work. I aim to deliver work I can stand behind and contribute to the people around me.",
+      "I like starting from zero and teaching myself what I don't know yet. I think hard about each piece of work before I ship it, and I'm proud of what I've built. I want my work to help the people around me.",
     values: [
       { id: "curiosity", title: "Curiosity", description: "Learning by exploring and doing." },
       { id: "craftsmanship", title: "Craftsmanship", description: "Caring about quality and the details." },
-      { id: "purpose", title: "Purpose", description: "Building things people can actually use." },
+      { id: "purpose", title: "Purpose", description: "Building things people use." },
       { id: "responsibility", title: "Responsibility", description: "Following through and supporting the team." },
     ],
     actions: { work: "Explore Work", resume: "Download Resume", contact: "Contact Me" },
@@ -37,7 +37,7 @@ export const identityCopy = {
     heroIntro: "ผมชอบสร้างประสบการณ์ดิจิทัลที่มีประโยชน์ ด้วยความใส่ใจ ความชัดเจน และความอยากเรียนรู้",
     aboutHeadline: "กล้าที่จะเริ่มจากศูนย์ และตั้งใจทำให้ดีจนจบ",
     aboutBody:
-      "ผมชอบเริ่มต้นสิ่งใหม่ เรียนรู้ด้วยตัวเองในสิ่งที่ยังไม่เป็น และเปลี่ยนไอเดียให้เป็นงานที่ใช้ประโยชน์ได้จริง ผมให้ความสำคัญกับคุณภาพของสิ่งที่ส่งต่อ และอยากเป็นคนที่ช่วยทีมได้",
+      "ผมชอบเริ่มจากศูนย์ และสอนตัวเองในสิ่งที่ยังไม่รู้ ก่อนส่งงานแต่ละชิ้นผมคิดกับมันเยอะมาก และผมภูมิใจกับทุกชิ้นที่ทำออกมา ผมอยากให้งานของผมช่วยคนรอบตัวได้",
     values: [
       { id: "curiosity", title: "ความอยากรู้", description: "เรียนรู้ผ่านการสำรวจและลงมือทำ" },
       { id: "craftsmanship", title: "ความใส่ใจ", description: "ให้ความสำคัญกับคุณภาพและรายละเอียด" },

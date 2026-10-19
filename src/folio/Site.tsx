@@ -73,7 +73,7 @@ export default function Site() {
             event.preventDefault();
             goHome("home");
           }}
-          aria-label={identity.name + " — home"}
+          aria-label={identity.name + ", home"}
         >
           NAMETH
         </a>

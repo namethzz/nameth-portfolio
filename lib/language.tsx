@@ -19,8 +19,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = language === "th"
-      ? "ณเมธ วงค์มงคล — ผลงานและตัวตน"
-      : "Nameth Wongmongkol — Full-stack, Data & AI";
+      ? "ณเมธ วงค์มงคล · ผลงานและตัวตน"
+      : "Nameth Wongmongkol · Full-stack, Data & AI";
     document.querySelector('meta[name="description"]')?.setAttribute("content", copy.heroDescription[language]);
     try { window.localStorage.setItem(STORAGE_KEY, language); } catch { /* Optional persistence. */ }
   }, [language]);

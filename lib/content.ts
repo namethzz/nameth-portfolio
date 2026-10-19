@@ -2,8 +2,8 @@
 export type Language = "en" | "th";
 export const copy = {
   "heroDescription": {
-    "en": "I build full-stack web apps and the data work behind them: cleaning messy datasets, connecting AI to real products and shipping them live. I’m heading toward full-stack, data engineering and AI engineering.",
-    "th": "ผมสร้างเว็บแบบ Full-stack และงานข้อมูลที่อยู่เบื้องหลัง ตั้งแต่ทำความสะอาดข้อมูลที่ยุ่งเหยิง เชื่อม AI เข้ากับระบบจริง ไปจนถึงขึ้นระบบให้คนใช้ได้ ผมมุ่งไปทาง Full-stack, Data Engineering และ AI Engineering"
+    "en": "I build full-stack web apps and the data work behind them. I clean messy datasets, connect AI to real products and ship them live. I’m aiming for full-stack, data engineering and AI engineering.",
+    "th": "ผมสร้างเว็บแบบ Full-stack และงานข้อมูลที่อยู่เบื้องหลัง ผมทำความสะอาดข้อมูลที่รก เชื่อม AI เข้ากับระบบจริง แล้วขึ้นระบบให้คนใช้ได้ ตอนนี้ผมมุ่งไปทาง Full-stack, Data Engineering และ AI Engineering"
   },
   "exploreWork": {
     "en": "Explore my work",
@@ -42,8 +42,8 @@ export const copy = {
     "th": "ทุกงานเริ่มจากความตั้งใจ"
   },
   "workIntro": {
-    "en": "Five projects across full-stack, data and AI. Here’s what I built in each, and how I worked through the hard parts.",
-    "th": "ห้าโปรเจกต์ทั้งด้าน Full-stack ข้อมูล และ AI นี่คือสิ่งที่ผมสร้างในแต่ละงาน และวิธีที่ผมแก้ปัญหาที่ยาก"
+    "en": "Five projects across full-stack, data and AI. Each card shows what I built, the role I took and the hard parts I worked through.",
+    "th": "ห้าโปรเจกต์ทั้งด้าน Full-stack ข้อมูล และ AI แต่ละใบบอกว่าผมสร้างอะไร รับบทไหน และผ่านส่วนที่ยากมาได้อย่างไร"
   },
   "more": {
     "en": "More on GitHub",
@@ -66,11 +66,11 @@ export const copy = {
     "th": "ผมเรียนวิทยาการคอมพิวเตอร์และการพัฒนาซอฟต์แวร์ที่มหาวิทยาลัยศรีปทุม ผมพัฒนาเว็บแบบ Full-stack และช่วงหลังทำงานฝั่งข้อมูลและ AI มากขึ้นเรื่อย ๆ ทั้งเตรียมข้อมูล ระบบค้นข้อมูลให้แชตบอต และการพยากรณ์ราคา"
   },
   "about2": {
-    "en": "I usually start from the problem and the data, not the screen. I check whether the numbers mean what they seem to, look for the edge cases that break things, and test before I call something done.",
-    "th": "ผมมักเริ่มจากปัญหาและข้อมูลก่อนหน้าจอ ตรวจว่าตัวเลขหมายถึงสิ่งที่คิดจริงไหม หากรณีขอบที่ทำให้ระบบพัง และทดสอบก่อนจะบอกว่างานเสร็จ"
+    "en": "I start from the problem and the data, and get to the screen after that. I check that the numbers mean what they seem to, hunt for the edge cases that break things, and test before I call a job done.",
+    "th": "ผมเริ่มจากปัญหาและข้อมูลก่อน แล้วค่อยไปที่หน้าจอ ผมตรวจว่าตัวเลขหมายถึงสิ่งที่คิดไว้ไหม ไล่หากรณีที่ทำให้ระบบพัง และทดสอบก่อนจะบอกว่างานเสร็จ"
   },
   "about3": {
-    "en": "I’m looking for an internship in full-stack, data engineering or AI engineering, with a team where I can ask questions, take responsibility for real work and keep learning toward data science.",
+    "en": "I’m looking for an internship in full-stack, data engineering or AI engineering, with a team where I can ask questions and own real work while I keep learning toward data science.",
     "th": "ผมอยากฝึกงานด้าน Full-stack, Data Engineering หรือ AI Engineering กับทีมที่ได้ถาม ได้รับผิดชอบงานจริง และได้เรียนรู้ต่อไปถึงงาน Data Science"
   },
   "degree": {
@@ -126,7 +126,7 @@ export const copy = {
     "th": "อาจเริ่มต้นที่นี่"
   },
   "contactIntro": {
-    "en": "If your team has room for a full-stack, data engineering or AI engineering intern who checks the details and finishes the work, I’d love to talk.",
+    "en": "If your team has room for a full-stack, data engineering or AI engineering intern who checks the details and finishes the work, send me a message. I’d love to talk.",
     "th": "ถ้าทีมของคุณกำลังมองหาเด็กฝึกงานด้าน Full-stack, Data Engineering หรือ AI Engineering ที่ใส่ใจรายละเอียดและทำงานจนจบ ผมยินดีที่จะได้คุยกันครับ"
   },
   "hello": {
@@ -182,12 +182,12 @@ export const projectCopy = {
       ],
       "details": [
         "I started with the problem: a quoted construction cost can drift away from the price paid later. I brought this idea to the team and helped shape a project around material price uncertainty.",
-        "For the data, I collected the monthly reference prices for structural materials published by the Ministry of Commerce and prepared them for training. They are a consistent reference for analysis, rather than a promise of the price a supplier will charge.",
-        "I paid attention to whether the same material code, specification and unit really refer to the same item over time. Missing values and inconsistencies need to be understood before the data is used for training.",
+        "For the data, I collected the monthly reference prices for structural materials published by the Ministry of Commerce and prepared them for training. They give a consistent reference for analysis. A supplier can still charge a different price.",
+        "I checked whether the same material code, specification and unit refer to the same item over time. I want to understand the missing values and inconsistencies before I train on the data.",
         "The web app (v0.10) is complete. It searches 287 structural materials using the words people use on site, such as “sd40” or “4 หุน”, shows the latest price, a 1–3 month forecast range and a 12-month chart, prices rebar per bar as well as per tonne, and builds an estimate you can print, export as CSV or share through LINE.",
         "Every price on the site is sample data for now, and each card says so. The pages already read prices through one service layer with a defined API contract, so the next step is building that backend and training a forecasting model for each material, planned on Vertex AI."
       ],
-      "note": "Frontend complete (v0.10). Next: a backend that serves price history and forecasts, and a model that forecasts each material 1–3 months ahead. Until then, prices on the live site are clearly labelled sample data.",
+      "note": "Frontend complete (v0.10). Next: a backend that serves price history and forecasts, and a model that forecasts each material 1–3 months ahead. Until then, the live site labels its prices as sample data.",
       "alt": "Actual screenshot of the THAI TAY home page"
     },
     {
@@ -223,11 +223,11 @@ export const projectCopy = {
         "MySQL"
       ],
       "details": [
-        "I worked directly from user requirements, trying to understand what the user actually wanted before deciding how the website should work. Getting that fit right mattered to me as much as writing the code.",
+        "I worked from the users’ own requirements and found out what they wanted before I decided how the website should work. Getting that fit right mattered to me as much as writing the code.",
         "I designed the customer journey around finding products, choosing items and placing orders. Search, category filters, price sorting, a shopping cart and order history support that flow.",
         "I gave the admin side the same attention: product and stock management, order statuses, promotions and return requests. A store needs to make sense to the person running it too.",
         "I connected the storefront, admin pages and database using C#, ASP.NET Core MVC, Entity Framework Core and MySQL.",
-        "The part I believe I did well was keeping the user’s needs in view across the whole build, rather than treating each page as a separate feature."
+        "The part I think I did well: I kept the users’ needs in view across the whole build and treated the pages as one journey."
       ],
       "note": "What I take from this project: understanding the person using the system is part of the development work, from the first requirement to the admin pages.",
       "alt": "Actual screenshot of the deployed OTW.SHOP storefront"
@@ -245,10 +245,10 @@ export const projectCopy = {
       ],
       "details": [
         "The customer sends one request, technicians in the area send quotes, and the customer compares them and chooses. I designed the system around four roles: customers, technicians, building managers who book room by room, and administrators.",
-        "A technician shouldn’t be able to work out where a customer lives before being chosen. The nearby-jobs feed measures distance to a randomly offset point stored with the job, rounds it up, and hides the name, address and other quotes until the customer confirms.",
+        "A technician shouldn’t be able to work out where a customer lives before being chosen. The nearby-jobs feed measures distance to a point offset at random and stored with the job, rounds it up, and hides the name, address and other quotes until the customer confirms.",
         "Prices had to be something a customer could follow. Each quote is calculated line by line from the technician’s own price list, the going rate across technicians is shown beside it, and any change on site needs the customer’s approval first.",
-        "Technicians pay a monthly membership through a PromptPay QR the app builds itself. The transfer slip is checked with the bank through Slip2Go, and the same slip can’t be used twice.",
-        "The API is ASP.NET Core 8 on MongoDB, with Web Push implemented directly from the RFC standards. Every pull request runs xUnit and Vitest unit tests plus an end-to-end smoke test against a throwaway database."
+        "Technicians pay a monthly membership through a PromptPay QR the app builds itself. The app checks each transfer slip with the bank through Slip2Go and rejects a slip it has seen before.",
+        "The API is ASP.NET Core 8 on MongoDB, with Web Push written from the RFC standards. Every pull request runs xUnit and Vitest unit tests plus an end-to-end smoke test against a throwaway database."
       ],
       "note": "What I take from this project: privacy and fair pricing have to be designed into the data and the API, not added to the screens afterwards.",
       "alt": "Actual screenshot of the deployed AirClean landing page"

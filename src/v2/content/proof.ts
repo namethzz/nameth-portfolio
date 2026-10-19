@@ -26,13 +26,13 @@ const kickRepo = "https://github.com/namethzz/kickhub/blob/main";
 const proof = [
   {
     stage: {
-      en: "Frontend complete (v0.10) — backend and price forecasting model in progress; prices on the site are labelled sample data.",
-      th: "หน้าเว็บเสร็จแล้ว (v0.10) — กำลังทำ Backend และโมเดลพยากรณ์ราคา ราคาบนเว็บตอนนี้เป็นข้อมูลตัวอย่างที่มีป้ายบอก",
+      en: "Frontend complete (v0.10). The backend and the price forecasting model are in progress, and the site labels its prices as sample data.",
+      th: "หน้าเว็บเสร็จแล้ว (v0.10) กำลังทำ Backend และโมเดลพยากรณ์ราคา ราคาบนเว็บตอนนี้เป็นข้อมูลตัวอย่างที่มีป้ายบอก",
     },
     screenshots: [
       {
         src: assetUrl("assets/work/thaitay-home.jpg"),
-        caption: { en: "Live site — search from the home page", th: "เว็บจริง — ค้นหาวัสดุจากหน้าแรก" },
+        caption: { en: "Live site: search from the home page", th: "เว็บจริง: ค้นหาวัสดุจากหน้าแรก" },
         alt: { en: "Actual screenshot of the deployed THAI TAY home page", th: "ภาพหน้าจอจริงของหน้าแรกเว็บไซต์ THAI TAY" },
       },
       {
@@ -74,7 +74,7 @@ const proof = [
     ],
   },
   {
-    stage: { en: "Team project — I prepared the data and built the frontend, then fixed the retrieval and deployed the full RAG pipeline.", th: "โปรเจกต์กลุ่ม — ผมเตรียมข้อมูลและทำหน้าเว็บ แล้วกลับมาแก้ระบบค้นข้อมูลและ deploy ระบบ RAG ทั้งชุด" },
+    stage: { en: "Team project. I prepared the data and built the frontend, then fixed the retrieval and deployed the full RAG pipeline.", th: "โปรเจกต์กลุ่ม ผมเตรียมข้อมูลและทำหน้าเว็บ แล้วกลับมาแก้ระบบค้นข้อมูลและ deploy ระบบ RAG ทั้งชุด" },
     screenshots: [
       {
         src: assetUrl("assets/work/crops-home.jpg"),
@@ -97,7 +97,7 @@ const proof = [
         source: cropsRepo + "/RAG/dataset_local.py",
       },
       {
-        title: { en: "Matching Thai correctly", th: "จับคำภาษาไทยให้ถูก" },
+        title: { en: "Getting Thai matches right", th: "จับคำภาษาไทยให้ถูก" },
         description: {
           en: "Crop names match longest-first so ข้าวโพด isn't read as ข้าว, and Thai typing variants are normalized before search.",
           th: "จับชื่อพืชจากคำที่ยาวที่สุดก่อน ข้าวโพดจึงไม่ถูกอ่านเป็นข้าว และปรับรูปแบบการพิมพ์ภาษาไทยให้ตรงกันก่อนค้น",
@@ -123,11 +123,11 @@ const proof = [
     ],
   },
   {
-    stage: { en: "Implemented e-commerce project — public storefront and source available.", th: "โปรเจกต์ร้านค้าออนไลน์ — มีหน้าร้านและ Source Code ให้ตรวจสอบ" },
+    stage: { en: "Finished e-commerce project. The storefront and the source code are public.", th: "โปรเจกต์ร้านค้าออนไลน์ที่ทำเสร็จแล้ว มีหน้าร้านและ Source Code ให้ตรวจสอบ" },
     screenshots: [
       {
         src: assetUrl("assets/work/otw-home.png"),
-        caption: { en: "Actual deployed storefront — captured Oct 2026", th: "ภาพหน้าร้านจริงจากเว็บที่ Deploy — ต.ค. 2569" },
+        caption: { en: "The deployed storefront, captured Oct 2026", th: "ภาพหน้าร้านจริงจากเว็บที่ Deploy เมื่อ ต.ค. 2569" },
         alt: { en: "Actual screenshot of the deployed OTW.SHOP storefront", th: "ภาพหน้าจอเว็บไซต์ OTW.SHOP ที่เปิดใช้งานจริง" },
       },
       {
@@ -172,7 +172,7 @@ const proof = [
     ],
   },
   {
-    stage: { en: "Live full-stack marketplace — deployed on Render with CI and an end-to-end smoke test.", th: "แพลตฟอร์ม Full-stack ที่เปิดใช้งานจริง — Deploy บน Render มี CI และ smoke test ทั้งระบบ" },
+    stage: { en: "Live full-stack marketplace, deployed on Render with CI and an end-to-end smoke test.", th: "แพลตฟอร์ม Full-stack ที่เปิดใช้งานจริง Deploy บน Render มี CI และ smoke test ทั้งระบบ" },
     screenshots: [
       {
         src: assetUrl("assets/work/airclean-home.jpg"),
@@ -195,7 +195,7 @@ const proof = [
       {
         title: { en: "Distance without the address", th: "บอกระยะโดยไม่เผยที่อยู่" },
         description: {
-          en: "FuzzPoint and BlurredDistanceKm measure to a fixed, randomly offset point, so repeated searches can't reveal where a customer lives.",
+          en: "FuzzPoint and BlurredDistanceKm measure to a fixed point offset at random, so repeated searches can't reveal where a customer lives.",
           th: "FuzzPoint และ BlurredDistanceKm วัดระยะไปยังจุดสุ่มที่เก็บไว้ตายตัว ค้นหาซ้ำกี่ครั้งก็หาที่อยู่ลูกค้าไม่ได้",
         },
         source: airRepo + "/backend/AirClean.Api/Controllers/ApiHelpers.cs",
@@ -227,7 +227,7 @@ const proof = [
     ],
   },
   {
-    stage: { en: "Live full-stack web app — deployed on Render with MongoDB Atlas and tested in CI.", th: "เว็บ Full-stack ที่เปิดใช้งานจริง — Deploy บน Render คู่กับ MongoDB Atlas และมี test รันใน CI" },
+    stage: { en: "Live full-stack web app, deployed on Render with MongoDB Atlas and tested in CI.", th: "เว็บ Full-stack ที่เปิดใช้งานจริง Deploy บน Render คู่กับ MongoDB Atlas และมี test รันใน CI" },
     screenshots: [
       {
         src: assetUrl("assets/work/kickhub-home.jpg"),

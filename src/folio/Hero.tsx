@@ -94,7 +94,7 @@ export default function Hero() {
         {/* Wordmark layer. */}
         <motion.div className="fo-hero-layer is-word" style={reduce ? undefined : { x: wordX, y: wordY }}>
           <h1 id="fo-hero-title" className="fo-hero-title">
-            <span className="sr-only">{identity.name} — {identity.roles.join(", ")} portfolio</span>
+            <span className="sr-only">{identity.name}, {identity.roles.join(" and ")} portfolio</span>
             <span className="fo-hero-word" aria-hidden="true">
               {WORD.map((letter, index) => (
                 <span className="fo-hero-letter" key={index}>
