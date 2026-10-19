@@ -153,3 +153,47 @@ export function Flower({ className }: { className?: string }) {
     </svg>
   );
 }
+
+/**
+ * A slanted band of giant words that scrolls sideways forever, with the
+ * poster's flower between words. Purely decorative.
+ */
+export function Marquee({ items, reverse = false, className }: { items: readonly string[]; reverse?: boolean; className?: string }) {
+  return (
+    <div className={cn("fo-marquee", reverse && "is-reverse", className)} aria-hidden="true">
+      <div className="fo-marquee-track">
+        {[0, 1].map((copy) => (
+          <span className="fo-marquee-group" key={copy}>
+            {items.map((item) => (
+              <span className="fo-marquee-item" key={item}>
+                {item}
+                <Flower className="fo-marquee-star" />
+              </span>
+            ))}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Fine wavy security lines, like the background of an ID page. */
+export function Guilloche({ className }: { className?: string }) {
+  const lines = useMemo(() => {
+    const result: string[] = [];
+    for (let line = 0; line < 22; line += 1) {
+      let d = "";
+      for (let x = 0; x <= 200; x += 4) {
+        const y = 6 + line * 9 + Math.sin(x / 14 + line * 0.55) * 5 + Math.sin(x / 31 - line * 0.3) * 3;
+        d += `${x ? "L" : "M"}${x} ${y.toFixed(1)}`;
+      }
+      result.push(d);
+    }
+    return result;
+  }, []);
+  return (
+    <svg className={cn("fo-guilloche", className)} viewBox="0 0 200 200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      {lines.map((d, index) => <path key={index} d={d} />)}
+    </svg>
+  );
+}

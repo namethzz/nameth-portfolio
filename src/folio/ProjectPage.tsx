@@ -58,7 +58,7 @@ export default function ProjectPage({
               </a>
             </div>
           </Reveal>
-          <Photo className="fo-detail-shot is-color" src={project.image} alt={project.alt} width={1800} height={1350} />
+          <Photo className="fo-detail-shot" src={project.image} alt={project.alt} width={1800} height={1350} />
         </div>
       </section>
 
@@ -103,7 +103,7 @@ export default function ProjectPage({
             <div className="fo-shots">
               {proof.screenshots.map((shot, shotIndex) => (
                 <div className={"fo-shot" + (shotIndex === 0 ? " is-wide" : "")} key={shot.src}>
-                  <Photo className="is-color" src={shot.src} alt={shot.alt} delay={(shotIndex % 2) * 0.08} />
+                  <Photo src={shot.src} alt={shot.alt} delay={(shotIndex % 2) * 0.08} />
                   <p className="fo-shot-caption">{shot.caption}</p>
                 </div>
               ))}
