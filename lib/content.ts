@@ -70,8 +70,8 @@ export const copy = {
     "th": "ผมเริ่มจากปัญหาและข้อมูลก่อน แล้วค่อยไปที่หน้าจอ ผมตรวจว่าตัวเลขหมายถึงสิ่งที่คิดไว้ไหม ไล่หากรณีที่ทำให้ระบบพัง และทดสอบก่อนจะบอกว่างานเสร็จ"
   },
   "about3": {
-    "en": "I’m looking for an internship in full-stack, data engineering or AI engineering, with a team where I can ask questions and own real work while I keep learning toward data science.",
-    "th": "ผมอยากฝึกงานด้าน Full-stack, Data Engineering หรือ AI Engineering กับทีมที่ได้ถาม ได้รับผิดชอบงานจริง และได้เรียนรู้ต่อไปถึงงาน Data Science"
+    "en": "I’m looking for an internship in full-stack, data engineering or AI engineering, with a team where I can ask questions, own real work and keep learning.",
+    "th": "ผมอยากฝึกงานด้าน Full-stack, Data Engineering หรือ AI Engineering กับทีมที่ได้ถาม ได้รับผิดชอบงานจริง และได้เรียนรู้เพิ่มขึ้นเรื่อย ๆ"
   },
   "degree": {
     "en": "B.Sc. Computer Science & Software Development",
@@ -110,8 +110,8 @@ export const copy = {
     "th": "รวบรวม ทำความสะอาด และตรวจข้อมูลจนมั่นใจว่าถูกต้อง แล้วจัดรูปให้พร้อมสำหรับระบบและโมเดลที่จะนำไปใช้"
   },
   "learning": {
-    "en": "Training a 1–3 month price forecasting model for THAI TAY, my first step into data science.",
-    "th": "กำลังฝึกโมเดลพยากรณ์ราคาวัสดุล่วงหน้า 1–3 เดือนให้ THAI TAY ซึ่งเป็นก้าวแรกของผมสู่งาน Data Science"
+    "en": "Training a 1–3 month price forecasting model for THAI TAY, my first machine learning model.",
+    "th": "กำลังฝึกโมเดลพยากรณ์ราคาวัสดุล่วงหน้า 1–3 เดือนให้ THAI TAY ซึ่งเป็นโมเดล Machine Learning ตัวแรกของผม"
   },
   "contactKicker": {
     "en": "Beyond the horizon",

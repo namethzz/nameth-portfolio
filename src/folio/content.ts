@@ -123,7 +123,7 @@ export const folio = {
       {
         when: "NOW",
         tag: { en: "Self-study", th: "เรียนรู้ด้วยตัวเอง" },
-        title: { en: "Data science", th: "Data Science" },
+        title: { en: "Machine learning", th: "Machine Learning" },
       },
       {
         when: "2027",
@@ -135,8 +135,8 @@ export const folio = {
       {
         when: "NEXT",
         tag: { en: "The road ahead", th: "ทางข้างหน้า" },
-        title: { en: "Toward data science", th: "มุ่งสู่ Data Science" },
-        text: { en: "Keep learning toward data science, and one day build a game of my own.", th: "เรียนรู้ต่อไปถึงงาน Data Science และสักวันจะสร้างเกมของตัวเอง" },
+        title: { en: "Data, AI or games", th: "Data, AI หรือเกม" },
+        text: { en: "I want to become a data engineer, an AI engineer or a game developer, and one day build a game of my own.", th: "ผมอยากเป็น Data Engineer, AI Engineer หรือ Game Developer และสักวันจะสร้างเกมของตัวเอง" },
       },
     ],
     nowAlt: { en: "THAI TAY material page with its price forecast", th: "หน้าวัสดุของ THAI TAY พร้อมราคาคาดการณ์" },
