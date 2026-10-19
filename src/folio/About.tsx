@@ -20,7 +20,7 @@ const BEHIND = [
 /**
  * About me: my words, a pile of real photos you can swipe or tap through,
  * and a developer ID card that flips over to show what I do away from the
- * keyboard and where I'm heading.
+ * keyboard.
  */
 export default function About() {
   const { language, t } = useLanguage();
@@ -151,7 +151,7 @@ function IdCard() {
           </div>
         </div>
 
-        {/* Back: hobbies as stamps, and the long-term goal. */}
+        {/* Back: hobbies as stamps. */}
         <div className="fo-id-face is-back" aria-hidden={!flipped}>
           <Guilloche className="is-faint" />
           <div className="fo-id-head">
@@ -166,10 +166,6 @@ function IdCard() {
               </li>
             ))}
           </ul>
-          <p className="fo-stamp is-goal" style={{ "--r": "-3deg", "--d": "0.5s" } as never}>
-            <span className="fo-stamp-big">{pick(a.goalStamp, language)}</span>
-          </p>
-          <p className="fo-id-goal">{pick(a.goal, language)}</p>
         </div>
       </div>
       <button type="button" className="fo-id-flip" onClick={flip} aria-pressed={flipped}>

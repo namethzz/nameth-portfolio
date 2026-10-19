@@ -20,7 +20,7 @@ export const identityCopy = {
     heroIntro: "I build digital experiences with care, clarity, and curiosity.",
     aboutHeadline: "Curious enough to start. Careful enough to finish.",
     aboutBody:
-      "I like starting from zero and teaching myself what I don't know yet. I think hard about each piece of work before I ship it, and I'm proud of what I've built. I want my work to help the people around me.",
+      "I like learning new things. If I can't do something yet, I look it up and start building. I go over each piece of work a few times before I hand it in, because I want the people using it to get something that works.",
     values: [
       { id: "curiosity", title: "Curiosity", description: "Learning by exploring and doing." },
       { id: "craftsmanship", title: "Craftsmanship", description: "Caring about quality and the details." },
@@ -37,7 +37,7 @@ export const identityCopy = {
     heroIntro: "ผมชอบสร้างประสบการณ์ดิจิทัลที่มีประโยชน์ ด้วยความใส่ใจ ความชัดเจน และความอยากเรียนรู้",
     aboutHeadline: "กล้าที่จะเริ่มจากศูนย์ และตั้งใจทำให้ดีจนจบ",
     aboutBody:
-      "ผมชอบเริ่มจากศูนย์ และสอนตัวเองในสิ่งที่ยังไม่รู้ ก่อนส่งงานแต่ละชิ้นผมคิดกับมันเยอะมาก และผมภูมิใจกับทุกชิ้นที่ทำออกมา ผมอยากให้งานของผมช่วยคนรอบตัวได้",
+      "ผมชอบเรียนรู้เรื่องใหม่ ๆ อะไรที่ยังทำไม่เป็น ผมก็หาข้อมูลแล้วลงมือทำเลย งานแต่ละชิ้นผมจะไล่ดูหลายรอบก่อนส่ง เพราะอยากให้คนที่ใช้ได้ของที่ใช้งานได้จริง",
     values: [
       { id: "curiosity", title: "ความอยากรู้", description: "เรียนรู้ผ่านการสำรวจและลงมือทำ" },
       { id: "craftsmanship", title: "ความใส่ใจ", description: "ให้ความสำคัญกับคุณภาพและรายละเอียด" },

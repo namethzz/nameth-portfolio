@@ -13,7 +13,7 @@ import Mindset from "@/src/folio/Mindset";
 import About from "@/src/folio/About";
 import ProjectDeck from "@/src/folio/ProjectDeck";
 import Route from "@/src/folio/Route";
-import SkillMatrix from "@/src/folio/SkillMatrix";
+import Skills from "@/src/folio/Skills";
 import { Heading, Photo, Reveal } from "@/src/folio/motion";
 
 type Project = ReturnType<typeof getProjects>[number];
@@ -40,7 +40,7 @@ export default function Home({ projects, onOpen }: { projects: Project[]; onOpen
       <Mindset />
       <About />
       <Route />
-      <SkillMatrix projects={projects} />
+      <Skills projects={projects} />
       <Experience projects={projects} open={open} />
       <ProjectDeck projects={projects} open={open} />
       <Marquee items={projects.map((project) => project.name.toUpperCase())} reverse />
@@ -58,7 +58,6 @@ function Introduction() {
         <div className="fo-intro-top">
           <div className="fo-copy is-large">
             <Reveal as="p">{t("about1")}</Reveal>
-            <Reveal as="p" delay={0.08}>{t("about2")}</Reveal>
           </div>
           <Torus className="fo-intro-torus" />
         </div>

@@ -41,7 +41,13 @@ export const folio = {
     intro: ["FULL-STACK", "DATA ENGINEERING", "AI ENGINEERING", "INTERNSHIP · JAN 4 – APR 23, 2027", "FIVE PROJECTS SHIPPED"],
   },
   contents: {
-    principlesTitle: { en: "What I hold to", th: "สิ่งที่ผมยึดถือ" },
+    factsTitle: { en: "In short", th: "สรุปสั้น ๆ" },
+    facts: {
+      projects: { en: "projects", th: "โปรเจกต์" },
+      live: { en: "live demos", th: "เว็บที่เปิดใช้จริง" },
+      internship: { en: "internship term", th: "ช่วงฝึกงาน" },
+      internshipValue: { en: "Jan – Apr 2027", th: "ม.ค. – เม.ย. 2570" },
+    },
     items: [
       { href: "introduction", word: "INTRODUCTION", desc: { en: "Where I'm coming from", th: "แนะนำตัว" } },
       { href: "mindset", word: "LEVEL UP", desc: { en: "How I think", th: "วิธีคิดของผม" } },
@@ -92,7 +98,7 @@ export const folio = {
     },
     facts: [
       { key: { en: "Focus", th: "สายงาน" }, value: { en: "Full-stack · Data & AI engineering", th: "Full-stack · Data & AI Engineering" } },
-      { key: { en: "Personality", th: "บุคลิก" }, value: { en: "INTJ-A, the Architect", th: "INTJ-A นักสถาปัตย์" } },
+      { key: { en: "GitHub", th: "GitHub" }, value: { en: "@namethzz", th: "@namethzz" } },
       { key: { en: "University", th: "มหาวิทยาลัย" }, value: { en: "Sripatum University", th: "มหาวิทยาลัยศรีปทุม" } },
       { key: { en: "Internship", th: "ฝึกงาน" }, value: { en: "Jan 4 – Apr 23, 2027", th: "4 ม.ค. – 23 เม.ย. 2570" } },
     ],
@@ -103,11 +109,6 @@ export const folio = {
       { en: "Plays music", th: "เล่นดนตรี" },
       { en: "Team sports", th: "กีฬาเป็นทีม" },
     ],
-    goalStamp: { en: "Next stop: build a game", th: "ปลายทาง: สร้างเกมของตัวเอง" },
-    goal: {
-      en: "Games taught me to farm levels. One day I want to build a game of my own, and the full-stack, data and AI work I do now is how I get there.",
-      th: "เกมสอนให้ผมรู้จักการฟาร์มเลเวล สักวันผมอยากสร้างเกมของตัวเอง และงาน Full-stack ข้อมูล และ AI ที่ทำอยู่ตอนนี้คือทางที่จะพาผมไปถึง",
-    },
   },
   education: {
     stops: [
@@ -140,39 +141,55 @@ export const folio = {
   },
   skills: {
     lead: {
-      en: "No percentage bars. I matched each tool below to the projects that use it.",
-      th: "ไม่มีหลอดเปอร์เซ็นต์ ผมจับคู่เครื่องมือแต่ละตัวกับโปรเจกต์ที่ใช้มันจริง",
+      en: "Four things I can build today, the tools I use for each, and the projects where I did it.",
+      th: "สี่อย่างที่ผมทำได้ตอนนี้ เครื่องมือที่ใช้ในแต่ละอย่าง และโปรเจกต์ที่ผมทำมาแล้วจริง",
     },
-    disciplines: [
+    cards: [
       {
-        title: { en: "Full-stack development", th: "พัฒนา Full-stack" },
-        desc: { en: "APIs, databases and React frontends that hold up in production: concurrency, payments, privacy and tests in CI.", th: "API ฐานข้อมูล และหน้าเว็บ React ที่ใช้งานจริงได้ ทั้งเรื่องการแก้ข้อมูลพร้อมกัน การจ่ายเงิน ความเป็นส่วนตัว และการทดสอบใน CI" },
-        projects: [0, 2, 3, 4],
+        title: { en: "Full-stack web apps", th: "เว็บแอป Full-stack" },
+        can: {
+          en: "I build the screens in React, the API in Node.js or ASP.NET Core, and keep the data in MongoDB or MySQL.",
+          th: "ผมทำหน้าเว็บด้วย React ทำ API ด้วย Node.js หรือ ASP.NET Core และเก็บข้อมูลใน MongoDB หรือ MySQL",
+        },
+        tools: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "C#", "ASP.NET Core", "MongoDB", "MySQL"],
+        projects: [3, 4, 2],
       },
       {
-        title: { en: "Data engineering", th: "Data Engineering" },
-        desc: { en: "Collecting, cleaning and checking data until it means what it claims, then shaping it for the systems and models that use it.", th: "รวบรวม ทำความสะอาด และตรวจข้อมูลจนมั่นใจว่าถูกต้อง แล้วจัดรูปให้พร้อมสำหรับระบบและโมเดลที่จะนำไปใช้" },
+        title: { en: "Clean, ready data", th: "ข้อมูลที่สะอาดและพร้อมใช้" },
+        can: {
+          en: "I collect messy public data, find the rows that are wrong, and shape it for a model or an app.",
+          th: "ผมรวบรวมข้อมูลสาธารณะที่รก หาแถวที่ผิด แล้วจัดรูปให้พร้อมส่งต่อให้โมเดลหรือแอป",
+        },
+        tools: ["Python", "Pandas", "Data cleaning"],
         projects: [0, 1],
       },
       {
-        title: { en: "AI engineering", th: "AI Engineering" },
-        desc: { en: "Connecting language models to real data: fixing retrieval for a Thai crop chatbot and deploying its pipeline, and a price forecasting model now in training.", th: "เชื่อมโมเดลภาษาเข้ากับข้อมูลจริง ทั้งแก้ระบบค้นข้อมูลของแชตบอตพืชเศรษฐกิจภาษาไทยและ deploy ทั้งระบบ และโมเดลพยากรณ์ราคาที่กำลังฝึกอยู่" },
-        projects: [1, 0],
+        title: { en: "AI on real data", th: "AI ที่ตอบจากข้อมูลจริง" },
+        can: {
+          en: "I build retrieval (RAG) so a chatbot answers from real data, then deploy the whole pipeline.",
+          th: "ผมทำระบบค้นข้อมูล (RAG) ให้แชตบอตตอบจากข้อมูลจริง แล้ว deploy ทั้งระบบ",
+        },
+        tools: ["RAG", "ChromaDB", "FastAPI", "LLM APIs", "Hugging Face"],
+        projects: [1],
+      },
+      {
+        title: { en: "Tested and live", th: "ทดสอบแล้วขึ้นระบบจริง" },
+        can: {
+          en: "I write unit and end-to-end tests, run them in CI, and deploy to Render, Vercel or Railway.",
+          th: "ผมเขียน unit test และ end-to-end test ให้รันใน CI แล้ว deploy ขึ้น Render, Vercel หรือ Railway",
+        },
+        tools: ["Vitest", "xUnit", "GitHub Actions", "Docker", "Render", "Vercel", "Railway"],
+        projects: [3, 4],
       },
     ],
-    seenIn: { en: "Seen in", th: "ใช้ใน" },
-    matrixTitle: { en: "Tool × project", th: "เครื่องมือ × โปรเจกต์" },
-    matrixNote: { en: "Each dot is a project that uses the tool.", th: "แต่ละจุดคือโปรเจกต์ที่ใช้เครื่องมือนั้น" },
-    used: { en: "used", th: "ใช้" },
-    showAll: { en: "Show all tools", th: "ดูเครื่องมือทั้งหมด" },
-    showLess: { en: "Show fewer", th: "ย่อรายการ" },
-    toolbox: { en: "Also in my toolbox", th: "เครื่องมืออื่นที่ใช้" },
+    skill: { en: "Skill", th: "สกิล" },
+    usedIn: { en: "Built in", th: "ทำจริงใน" },
     training: { en: "In training", th: "กำลังฝึก" },
   },
   mindset: {
     lead: {
-      en: "I treat learning the way I used to treat a game: farm the levels, then take on the boss.",
-      th: "ผมเรียนรู้แบบเดียวกับที่เคยเล่นเกม ฟาร์มเลเวลให้พอ แล้วค่อยไปสู้บอส",
+      en: "Keep at it and don't give up. Collect as much knowledge as you can, and you'll use it when the time comes.",
+      th: "ทำมันไปเรื่อย ๆ อย่ายอมแพ้ เก็บวิชาความรู้ให้ได้เยอะ ๆ ถึงเวลาจะได้ใช้มันเอง",
     },
     hud: { level: { en: "Level", th: "เลเวล" }, xp: { en: "XP", th: "XP" }, inventory: { en: "Inventory", th: "ไอเทม" } },
     stages: [
@@ -180,8 +197,8 @@ export const folio = {
         item: { en: "Sword", th: "ดาบ" },
         title: { en: "Farming levels", th: "ฟาร์มเลเวล" },
         text: {
-          en: "I grew up farming levels in games. I ground away so I could beat the boss, find the drop I wanted and buy better armour and a better sword, and I had fun doing it.",
-          th: "ตอนเด็กผมชอบเล่นเกม และชอบฟาร์มเลเวลให้สู้บอสได้ หาของที่อยากได้ ซื้อชุดเกราะดี ๆ กับดาบดี ๆ แล้วผมก็สนุกไปกับมัน",
+          en: "I grew up farming levels in games so I could beat the boss, find the drop I wanted and buy better armour and a better sword. The stronger my character got, the more fun the game became.",
+          th: "ตอนเด็กผมชอบเล่นเกม และชอบฟาร์มเลเวลให้สู้บอสได้ หาของที่อยากได้ ซื้อชุดเกราะดี ๆ กับดาบดี ๆ มันทำให้ผมสนุกกับเกมได้มากขึ้น เพราะตัวละครของผมเก่งขึ้น",
         },
       },
       {
@@ -212,8 +229,8 @@ export const folio = {
         item: { en: "Crafting", th: "งานคราฟต์" },
         title: { en: "Thought through", th: "คิดกับทุกงาน" },
         text: {
-          en: "I'm proud of each project on this site. I put a lot of thought into each one before I called it done.",
-          th: "ผมภูมิใจกับงานทุกชิ้นที่ทำ เพราะผมคิดกับงานแต่ละชิ้นเยอะมาก",
+          en: "I'm proud of each project I've made, because I thought each one through many times.",
+          th: "ผมภูมิใจกับงานทุกชิ้นที่ได้ทำ เพราะแต่ละงานผ่านการคิดมาหลายรอบมาก",
         },
       },
     ],

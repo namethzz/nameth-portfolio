@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { TbArrowDownRight } from "react-icons/tb";
 import { useLanguage } from "@/lib/language";
-import { identityCopy } from "@/src/v2/content/identity";
+import { getProjects } from "@/lib/projects";
 import { folio, pick, sections } from "@/src/folio/content";
 import { Globe } from "@/src/folio/decor";
 import { EASE, Heading, Reveal } from "@/src/folio/motion";
@@ -15,18 +15,29 @@ export default function Index() {
   const { language } = useLanguage();
   const reduce = useReducedMotion();
   const c = folio.contents;
+  const projects = getProjects(language);
+  const live = projects.filter((project) => project.website).length;
   return (
     <section className="fo-section is-mist fo-contents" id="contents" aria-labelledby="fo-contents-title">
       <div className="fo-wrap">
         <div className="fo-index-side">
           <Heading id="fo-contents-title" word={"TABLE\nOF CONTENTS"} label={pick(sections.contents.label, language)} fit={40} />
-          <Reveal className="fo-principles">
-            <h3 className="fo-kicker">{pick(c.principlesTitle, language)}</h3>
-            <ul>
-              {identityCopy[language].values.map((value) => (
-                <li key={value.id}><strong>{value.title}</strong> {value.description}</li>
-              ))}
-            </ul>
+          <Reveal className="fo-quick">
+            <h3 className="fo-kicker">{pick(c.factsTitle, language)}</h3>
+            <dl>
+              <div>
+                <dt>{String(projects.length).padStart(2, "0")}</dt>
+                <dd>{pick(c.facts.projects, language)}</dd>
+              </div>
+              <div>
+                <dt>{String(live).padStart(2, "0")}</dt>
+                <dd>{pick(c.facts.live, language)}</dd>
+              </div>
+              <div className="is-wide">
+                <dt>{pick(c.facts.internshipValue, language)}</dt>
+                <dd>{pick(c.facts.internship, language)}</dd>
+              </div>
+            </dl>
           </Reveal>
           <Globe className="fo-index-globe" />
         </div>
