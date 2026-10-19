@@ -61,7 +61,7 @@ export default function Header({ onProjectPage, goHome }: { onProjectPage: boole
       <header className={"fo-header" + (open ? " is-open" : "")}>
         <a className="fo-brand" href={sectionHref("home")} onClick={go("home")} aria-label={identity.name + ", home"}>
           <span className="fo-brand-avatar" aria-hidden="true">
-            <img src={assetUrl("assets/about/id-photo.webp")} alt="" width={600} height={800} />
+            <img src={assetUrl("assets/header/avatar.webp")} alt="" width={160} height={160} />
             <i />
           </span>
           <span className="fo-brand-name">NAMETH<b>.</b></span>
