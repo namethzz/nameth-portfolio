@@ -5,6 +5,10 @@
 @font-face { font-family: "Poppins"; src: url("/assets/poppins-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Poppins"; src: url("/assets/poppins-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
 @font-face { font-family: "Poppins"; src: url("/assets/poppins-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+/* A real bold for Thai (globals.css ships 400–600), and a condensed extra-bold
+   Thai cut that stands in for Anton, which has no Thai letters. */
+@font-face { font-family: "Noto Sans Thai"; src: url("/assets/noto-sans-thai-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Thai Display"; src: url("/assets/noto-sans-thai-display.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0E00-0E7F; }
 
 html { background: #0b0f19; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -20,7 +24,7 @@ body { background: #0b0f19; }
   --fo-muted: #9fb0c1;
   --fo-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
   --fo-sans: "Poppins", "Noto Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --fo-display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --fo-display: "Anton", "Thai Display", "Impact", "Arial Narrow", sans-serif;
   --fit-min: 0;
   min-height: 100vh;
   background: var(--navy);
@@ -188,7 +192,7 @@ body { background: #0b0f19; }
 .fo-arrow { position: absolute; width: clamp(40px, 5vw, 84px); fill: var(--head); animation: fo-bob 2.4s ease-in-out infinite alternate; }
 
 /* INTRODUCTION. */
-.fo-intro-top { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 5cqi; align-items: center; margin-bottom: clamp(40px, 6vw, 96px); }
+.fo-intro-top { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 5cqi; align-items: center; margin-top: clamp(28px, 4vw, 64px); }
 .fo-intro-torus { width: 100%; transform: translateX(4%); }
 
 /* EXPERIENCE. */
@@ -248,7 +252,7 @@ body { background: #0b0f19; }
 @media (max-width: 900px) {
   .fo-site { --fit-min: 100; }
   .fo-intro-top { grid-template-columns: minmax(0, 1fr); }
-  .fo-intro-torus { width: 80%; margin-inline: auto; transform: none; }
+  .fo-intro-torus { width: 64%; margin: -8px auto -24px; transform: none; }
   .fo-experience .fo-wrap { grid-template-columns: minmax(0, 1fr); }
   .fo-experience-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); order: 2; }
   .fo-experience-photos .fo-photo:nth-child(2) { width: 100%; margin-top: 12%; }

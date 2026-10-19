@@ -55,13 +55,13 @@ function Introduction() {
   return (
     <section className="fo-section is-navy fo-intro" id="introduction" aria-labelledby="fo-intro-title">
       <div className="fo-wrap">
+        <Heading id="fo-intro-title" word={sections.introduction.word} label={pick(sections.introduction.label, language)} fit={84} />
         <div className="fo-intro-top">
           <div className="fo-copy is-large">
             <Reveal as="p">{t("about1")}</Reveal>
           </div>
           <Torus className="fo-intro-torus" />
         </div>
-        <Heading id="fo-intro-title" word={sections.introduction.word} label={pick(sections.introduction.label, language)} fit={84} />
       </div>
     </section>
   );
