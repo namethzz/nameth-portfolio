@@ -17,6 +17,6 @@ export function projectHref(index: number): string {
   return slug ? homePath + "?project=" + encodeURIComponent(slug) : homePath;
 }
 
-export function sectionHref(section: "home" | "status" | "work" | "about" | "skills" | "contact"): string {
+export function sectionHref(section: string): string {
   return homePath + "#" + section;
 }

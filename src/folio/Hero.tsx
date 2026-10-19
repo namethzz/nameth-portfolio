@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { identity } from "@/src/v2/content/identity";
-import { pick, sw } from "@/src/sw/content";
-import { GITHUB } from "@/src/sw/Home";
+import { GITHUB, HANDLE, THAI_NAME } from "@/src/folio/content";
+import { Flower } from "@/src/folio/decor";
 
 const WORD = "PORTFOLIO".split("");
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -59,45 +59,45 @@ export default function Hero() {
           transition: { duration: 0.9, delay, ease: EASE },
         };
 
-  const name = language === "th" ? sw.thaiName : identity.name;
+  const name = language === "th" ? THAI_NAME : identity.name;
 
   return (
     <section
       ref={ref}
-      className="sw-hero"
+      className="fo-hero"
       id="home"
-      aria-labelledby="sw-hero-title"
+      aria-labelledby="fo-hero-title"
       onPointerMove={track}
       onPointerLeave={release}
     >
-      <div className="sw-hero-stage">
+      <div className="fo-hero-stage">
         {/* Back layer: the flower behind the wordmark. */}
-        <motion.div className="sw-hero-layer" style={reduce ? undefined : { x: backX, y: backY }} aria-hidden="true">
-          <motion.div className="sw-hero-flower is-top" style={reduce ? undefined : { rotate: spin }}>
+        <motion.div className="fo-hero-layer" style={reduce ? undefined : { x: backX, y: backY }} aria-hidden="true">
+          <motion.div className="fo-hero-flower is-top" style={reduce ? undefined : { rotate: spin }}>
             <motion.div {...enter(0.05, { scale: 0.2, rotate: -120 })}>
-              <Flower />
+              <Flower className="fo-hero-flower-svg" />
             </motion.div>
           </motion.div>
         </motion.div>
 
-        <motion.p className="sw-hero-name" lang={language} {...enter(0.15, { y: -14 })}>{name}</motion.p>
+        <motion.p className="fo-hero-name" lang={language} {...enter(0.15, { y: -14 })}>{name}</motion.p>
         <motion.a
-          className="sw-hero-handle"
+          className="fo-hero-handle"
           href={GITHUB}
           target="_blank"
           rel="noopener noreferrer"
           {...enter(0.2, { y: -14 })}
         >
-          @namethzz
+          {HANDLE}
         </motion.a>
 
         {/* Wordmark layer. */}
-        <motion.div className="sw-hero-layer is-word" style={reduce ? undefined : { x: wordX, y: wordY }}>
-          <h1 id="sw-hero-title" className="sw-hero-title">
+        <motion.div className="fo-hero-layer is-word" style={reduce ? undefined : { x: wordX, y: wordY }}>
+          <h1 id="fo-hero-title" className="fo-hero-title">
             <span className="sr-only">{identity.name} — {identity.roles.join(", ")} portfolio</span>
-            <span className="sw-hero-word" aria-hidden="true">
+            <span className="fo-hero-word" aria-hidden="true">
               {WORD.map((letter, index) => (
-                <span className="sw-hero-letter" key={index}>
+                <span className="fo-hero-letter" key={index}>
                   <motion.span
                     initial={reduce ? false : { y: "108%" }}
                     animate={{ y: "0%" }}
@@ -111,7 +111,7 @@ export default function Hero() {
             </span>
           </h1>
           <motion.p
-            className="sw-hero-script"
+            className="fo-hero-script"
             aria-hidden="true"
             initial={reduce ? false : { clipPath: "inset(-30% 100% -30% -5%)" }}
             animate={{ clipPath: "inset(-30% -5% -30% -5%)" }}
@@ -120,7 +120,7 @@ export default function Hero() {
             Developer
           </motion.p>
           <motion.div
-            className="sw-hero-sticker"
+            className="fo-hero-sticker"
             aria-hidden="true"
             initial={reduce ? false : { opacity: 0, scale: 1.9, rotate: 52 }}
             animate={{ opacity: 1, scale: 1, rotate: 24 }}
@@ -133,9 +133,9 @@ export default function Hero() {
         </motion.div>
 
         {/* Portrait layer. */}
-        <motion.div className="sw-hero-layer is-portrait" style={reduce ? undefined : { x: frontX, y: portraitY }}>
+        <motion.div className="fo-hero-layer is-portrait" style={reduce ? undefined : { x: frontX, y: portraitY }}>
           <motion.img
-            className="sw-hero-portrait"
+            className="fo-hero-portrait"
             src={assetUrl("assets/hero/portrait.webp")}
             width={838}
             height={841}
@@ -147,32 +147,20 @@ export default function Hero() {
         </motion.div>
 
         {/* Front layer: the flower over the shirt. */}
-        <motion.div className="sw-hero-layer is-front" style={reduce ? undefined : { x: frontX, y: frontY }} aria-hidden="true">
-          <motion.div className="sw-hero-flower is-bottom" style={reduce ? undefined : { rotate: spin }}>
+        <motion.div className="fo-hero-layer is-front" style={reduce ? undefined : { x: frontX, y: frontY }} aria-hidden="true">
+          <motion.div className="fo-hero-flower is-bottom" style={reduce ? undefined : { rotate: spin }}>
             <motion.div {...enter(0.85, { scale: 0.2, rotate: 120 })}>
-              <Flower />
+              <Flower className="fo-hero-flower-svg" />
             </motion.div>
           </motion.div>
         </motion.div>
       </div>
 
-      <div className="sw-hero-notes">
+      <div className="fo-hero-notes">
         <motion.p {...enter(1.25, { y: 16 })}>{t("heroDescription")}</motion.p>
         <motion.p {...enter(1.35, { y: 16 })}>{t("about3")}</motion.p>
       </div>
     </section>
-  );
-}
-
-/** Eight rounded petals around a small star-shaped gap, like the poster's flowers. */
-function Flower() {
-  const petal = "M0 -6 C -5 -24 -24 -54 -24 -78 A 24 24 0 1 1 24 -78 C 24 -54 5 -24 0 -6 Z";
-  return (
-    <svg className="sw-hero-flower-svg" viewBox="-104 -104 208 208" focusable="false">
-      {Array.from({ length: 8 }, (_, index) => (
-        <path key={index} d={petal} transform={`rotate(${index * 45})`} />
-      ))}
-    </svg>
   );
 }
 

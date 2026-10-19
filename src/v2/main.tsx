@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { LanguageProvider } from "@/lib/language";
-import StatusSite from "@/src/sw/StatusSite";
+import Site from "@/src/folio/Site";
 import "@/src/globals.css";
-import "@/src/sw/status.css";
-import "@/src/sw/hero.css";
+import "@/src/folio/folio.css";
+import "@/src/folio/hero.css";
 
 const root = document.getElementById("root");
 if (!root) throw new Error("Missing #root");
@@ -12,7 +12,7 @@ if (!root) throw new Error("Missing #root");
 createRoot(root).render(
   <StrictMode>
     <LanguageProvider>
-      <StatusSite />
+      <Site />
     </LanguageProvider>
   </StrictMode>,
 );

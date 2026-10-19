@@ -1,23 +1,27 @@
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import { useLanguage } from "@/lib/language";
 import { getProjects } from "@/lib/projects";
 import { identity } from "@/src/v2/content/identity";
 import { getProjectIndex, homePath, projectHref, sectionHref } from "@/src/v2/lib/routes";
-import { pick, sw } from "@/src/sw/content";
-import Home, { EMAIL, GITHUB } from "@/src/sw/Home";
-import QuestDetail from "@/src/sw/QuestDetail";
+import { EMAIL, GITHUB, folio, pick } from "@/src/folio/content";
+import Home from "@/src/folio/Home";
+import ProjectPage from "@/src/folio/ProjectPage";
 
 /**
- * The portfolio as a fantasy-webtoon status screen: a status window, the
- * quest log of projects, skills, passive skills (hobbies), the game I want to
- * build as a locked final quest, and a party invite to get in touch.
+ * The portfolio as a printed editorial layout: navy and pale-blue spreads,
+ * giant condensed headings, black-and-white photos. The home page and each
+ * project page share this shell.
  */
-export default function StatusSite() {
+export default function Site() {
   const { language, setLanguage, t } = useLanguage();
   const projects = getProjects(language);
   const [routeIndex, setRouteIndex] = useState(() => getProjectIndex());
   const project = routeIndex < 0 ? undefined : projects[routeIndex];
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 24, restDelta: 0.001 });
 
   useEffect(() => {
     const handleLocation = () => setRouteIndex(getProjectIndex());
@@ -40,43 +44,40 @@ export default function StatusSite() {
       window.scrollTo({ top: 0, behavior: "instant" });
     });
   }
-  function backToWork() {
+  /** Leaves a project page for a section of the home page. */
+  function goHome(section: string) {
     transition(() => {
-      window.history.pushState(null, "", sectionHref("work"));
+      window.history.pushState(null, "", section === "home" ? homePath : sectionHref(section));
       flushSync(() => setRouteIndex(-1));
-      document.getElementById("work")?.scrollIntoView({ behavior: "instant" });
+      if (section === "home") window.scrollTo({ top: 0, behavior: "instant" });
+      else document.getElementById(section)?.scrollIntoView({ behavior: "instant" });
     });
   }
 
   const navigation = [
-    { id: "status", label: pick(sw.nav.status, language) },
-    { id: "work", label: pick(sw.nav.quests, language) },
-    { id: "skills", label: pick(sw.nav.skills, language) },
-    { id: "about", label: pick(sw.nav.passives, language) },
-    { id: "contact", label: pick(sw.nav.contact, language) },
-  ] as const;
+    { id: "about", label: pick(folio.nav.about, language) },
+    { id: "skills", label: pick(folio.nav.skills, language) },
+    { id: "work", label: pick(folio.nav.work, language) },
+    { id: "contact", label: pick(folio.nav.contact, language) },
+  ];
 
   return (
-    <div className="sw-site" lang={language}>
-      <a className="sw-skip" href="#main-content">{pick(sw.skip, language)}</a>
-      <header className="sw-header">
+    <div className="fo-site" lang={language}>
+      <a className="fo-skip" href="#main-content">{pick(folio.skip, language)}</a>
+      <header className="fo-header">
         <a
-          className="sw-brand"
+          className="fo-brand"
           href={sectionHref("home")}
           onClick={(event) => {
             if (!project) return;
             event.preventDefault();
-            transition(() => {
-              window.history.pushState(null, "", homePath);
-              flushSync(() => setRouteIndex(-1));
-              window.scrollTo({ top: 0, behavior: "instant" });
-            });
+            goHome("home");
           }}
           aria-label={identity.name + " — home"}
         >
-          NAMETH<span aria-hidden="true">_</span>
+          NAMETH
         </a>
-        <nav className="sw-nav" aria-label={t("navigation")}>
+        <nav className="fo-nav" aria-label={t("navigation")}>
           {navigation.map((item) => (
             <a
               key={item.id}
@@ -84,18 +85,14 @@ export default function StatusSite() {
               onClick={(event) => {
                 if (!project) return;
                 event.preventDefault();
-                transition(() => {
-                  window.history.pushState(null, "", sectionHref(item.id));
-                  flushSync(() => setRouteIndex(-1));
-                  document.getElementById(item.id)?.scrollIntoView({ behavior: "instant" });
-                });
+                goHome(item.id);
               }}
             >
               {item.label}
             </a>
           ))}
         </nav>
-        <div className="sw-lang" role="group" aria-label={t("language")}>
+        <div className="fo-lang" role="group" aria-label={t("language")}>
           {(["th", "en"] as const).map((locale) => (
             <button
               key={locale}
@@ -110,27 +107,28 @@ export default function StatusSite() {
             </button>
           ))}
         </div>
+        {reduce ? null : <motion.span className="fo-progress" style={{ scaleX: progress }} aria-hidden="true" />}
       </header>
 
       {project ? (
-        <QuestDetail
+        <ProjectPage
           project={project}
           index={routeIndex}
           total={projects.length}
           nextName={projects[(routeIndex + 1) % projects.length].name}
-          onBack={backToWork}
+          onBack={() => goHome("work")}
           onOpen={openProject}
         />
       ) : (
         <Home projects={projects} onOpen={openProject} />
       )}
 
-      <footer className="sw-footer">
+      <footer className="fo-footer">
         <span>© {identity.year} {identity.name}</span>
-        <span className="sw-footer-links">
+        <span className="fo-footer-links">
           <a href={`mailto:${EMAIL}`}>Email</a>
           <a href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href={project ? sectionHref("home") : "#home"}>{pick(sw.top, language)} ↑</a>
+          <a href={project ? sectionHref("home") : "#home"}>{pick(folio.top, language)} ↑</a>
         </span>
       </footer>
     </div>

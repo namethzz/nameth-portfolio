@@ -17,19 +17,19 @@
   font-display: swap;
 }
 
-.sw-hero {
+.fo-hero {
   /* Leave room under the stage for the start of the notes. */
-  --u: min(1cqi, calc((100svh - var(--sw-header) - 140px) / 122));
+  --u: min(1cqi, calc((100svh - var(--fo-header) - 140px) / 122));
   --hero-ink: #a9bfd2;
   --hero-red: #e8372c;
   --hero-paper: #eef0ec;
   position: relative;
   container-type: inline-size;
   overflow: clip;
-  border-bottom: 1px solid var(--sw-line);
+  border-bottom: 1px solid var(--fo-line);
   background: radial-gradient(70% 60% at 50% 30%, rgba(169, 191, 210, .07), transparent 70%);
 }
-.sw-hero-stage {
+.fo-hero-stage {
   /* Phone and portrait layout. */
   --stage-h: 122;
   --word-x: 3.1; --word-y: 23; --word-size: 24;
@@ -46,13 +46,13 @@
   overflow: clip;
 }
 /* Layers, back to front: flower, wordmark, portrait, flower over the shirt. */
-.sw-hero-layer { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.sw-hero-layer.is-word { z-index: 1; }
-.sw-hero-layer.is-portrait { z-index: 2; }
-.sw-hero-layer.is-front { z-index: 3; }
-.sw-hero-layer > * { pointer-events: auto; }
+.fo-hero-layer { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.fo-hero-layer.is-word { z-index: 1; }
+.fo-hero-layer.is-portrait { z-index: 2; }
+.fo-hero-layer.is-front { z-index: 3; }
+.fo-hero-layer > * { pointer-events: auto; }
 
-.sw-hero-name, .sw-hero-handle {
+.fo-hero-name, .fo-hero-handle {
   position: absolute;
   z-index: 4;
   top: calc(var(--u) * var(--label-y));
@@ -60,16 +60,16 @@
   font-weight: 500;
   letter-spacing: .14em;
   line-height: 1.2;
-  color: var(--sw-text);
+  color: var(--fo-text);
 }
-.sw-hero-name { left: calc(var(--u) * var(--label-x)); }
-.sw-hero-name:lang(th) { letter-spacing: .04em; }
-.sw-hero-handle { right: calc(var(--u) * var(--label-x)); transition: color .2s; }
-.sw-hero-handle:hover { color: var(--hero-ink); }
+.fo-hero-name { left: calc(var(--u) * var(--label-x)); }
+.fo-hero-name:lang(th) { letter-spacing: .04em; }
+.fo-hero-handle { right: calc(var(--u) * var(--label-x)); transition: color .2s; }
+.fo-hero-handle:hover { color: var(--hero-ink); }
 
 /* PORTFOLIO: Anton's cap height is .86em, so a line-height of .86 makes the
    line box the letters themselves. */
-.sw-hero-title {
+.fo-hero-title {
   position: absolute;
   left: calc(var(--u) * var(--word-x));
   top: calc(var(--u) * var(--word-y));
@@ -79,12 +79,12 @@
   color: var(--hero-ink);
   white-space: nowrap;
 }
-.sw-hero-word { display: flex; }
-.sw-hero-letter { display: block; clip-path: inset(-40% -4% 0 -4%); }
-.sw-hero-letter > span { display: block; cursor: default; transition: color .25s; }
-.sw-hero-letter > span:hover { color: #d9e6f2; }
+.fo-hero-word { display: flex; }
+.fo-hero-letter { display: block; clip-path: inset(-40% -4% 0 -4%); }
+.fo-hero-letter > span { display: block; cursor: default; transition: color .25s; }
+.fo-hero-letter > span:hover { color: #d9e6f2; }
 
-.sw-hero-script {
+.fo-hero-script {
   position: absolute;
   z-index: 1;
   left: calc(var(--u) * var(--script-x));
@@ -97,7 +97,7 @@
   pointer-events: none;
 }
 
-.sw-hero-portrait {
+.fo-hero-portrait {
   position: absolute;
   left: calc(var(--u) * var(--pic-x));
   bottom: 0;
@@ -115,26 +115,26 @@
 
 /* The bottom flower is tied to the portrait: its centre sits on the photo's
    bottom-right corner, at the same size relative to the photo as the poster. */
-.sw-hero-flower { position: absolute; color: #000; }
-.sw-hero-flower > div { width: 100%; height: 100%; }
-.sw-hero-flower.is-top {
+.fo-hero-flower { position: absolute; color: #000; }
+.fo-hero-flower > div { width: 100%; height: 100%; }
+.fo-hero-flower.is-top {
   left: calc(var(--u) * var(--top-flower-x));
   top: calc(var(--u) * var(--top-flower-y));
   width: calc(var(--u) * var(--top-flower-w));
   aspect-ratio: 1;
 }
-.sw-hero-flower.is-bottom {
+.fo-hero-flower.is-bottom {
   --size: calc(var(--u) * var(--pic-w) * .454);
   left: calc(var(--u) * (var(--pic-x) + var(--pic-w) * .994) - var(--size) / 2);
   top: calc(var(--u) * var(--stage-h) - var(--size) / 2);
   width: var(--size);
   aspect-ratio: 1;
 }
-.sw-hero-flower-svg { display: block; width: 100%; height: 100%; fill: currentColor; animation: sw-spin 48s linear infinite; }
-.sw-hero-flower.is-bottom .sw-hero-flower-svg { animation-duration: 36s; animation-direction: reverse; }
+.fo-hero-flower-svg { display: block; width: 100%; height: 100%; fill: currentColor; animation: fo-spin 48s linear infinite; }
+.fo-hero-flower.is-bottom .fo-hero-flower-svg { animation-duration: 36s; animation-direction: reverse; }
 
 /* Barcode sticker with a peeled corner. */
-.sw-hero-sticker {
+.fo-hero-sticker {
   position: absolute;
   z-index: 2;
   left: calc(var(--u) * var(--sticker-x));
@@ -151,7 +151,7 @@
   clip-path: polygon(0 0, 100% 0, 100% 64%, 90% 100%, 0 100%);
   cursor: default;
 }
-.sw-hero-sticker::after {
+.fo-hero-sticker::after {
   content: "";
   position: absolute;
   right: 0;
@@ -160,32 +160,32 @@
   height: 36%;
   background: linear-gradient(225deg, transparent 50%, #b9bcb6 50%, #f4f4f1);
 }
-.sw-hero-sticker svg { display: block; width: 100%; height: calc(var(--u) * var(--sticker-w) * .2); fill: currentColor; }
-.sw-hero-sticker span {
+.fo-hero-sticker svg { display: block; width: 100%; height: calc(var(--u) * var(--sticker-w) * .2); fill: currentColor; }
+.fo-hero-sticker span {
   display: block;
   margin-top: calc(var(--u) * var(--sticker-w) * .015);
-  font: 600 calc(var(--u) * var(--sticker-w) * .052) / 1.2 var(--sw-mono);
+  font: 600 calc(var(--u) * var(--sticker-w) * .052) / 1.2 var(--fo-mono);
   letter-spacing: .08em;
   text-align: center;
 }
 
 /* Notes: below the stage on smaller screens. */
-.sw-hero-notes {
+.fo-hero-notes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 14px clamp(20px, 5vw, 64px);
-  padding: clamp(20px, 4vw, 32px) var(--sw-gutter) clamp(28px, 5vw, 44px);
-  border-top: 1px solid var(--sw-line);
+  padding: clamp(20px, 4vw, 32px) var(--fo-gutter) clamp(28px, 5vw, 44px);
+  border-top: 1px solid var(--fo-line);
   font-size: 15px;
   line-height: 1.7;
-  color: var(--sw-text);
+  color: var(--fo-text);
 }
-.sw-hero-notes p + p { color: var(--sw-muted); }
+.fo-hero-notes p + p { color: var(--fo-muted); }
 
 /* Landscape: the 16:9 poster, never taller than the screen under the header. */
 @media (min-aspect-ratio: 1/1) and (min-width: 640px) {
-  .sw-hero { --u: min(1cqi, calc((100svh - var(--sw-header)) / 56.25)); }
-  .sw-hero-stage {
+  .fo-hero { --u: min(1cqi, calc((100svh - var(--fo-header)) / 56.25)); }
+  .fo-hero-stage {
     --stage-h: 56.25;
     --word-x: 4.8; --word-y: 17.2; --word-size: 23.6;
     --script-x: 5.4; --script-y: 9.4; --script-size: 12.5;
@@ -198,7 +198,7 @@
 }
 /* Big landscape screens: the notes join the poster, as in the original. */
 @media (min-aspect-ratio: 1/1) and (min-width: 1100px) and (min-height: 680px) {
-  .sw-hero-notes {
+  .fo-hero-notes {
     position: absolute;
     inset: 0;
     display: block;
@@ -210,17 +210,17 @@
     line-height: 1.55;
     pointer-events: none;
   }
-  .sw-hero-notes p {
+  .fo-hero-notes p {
     position: absolute;
     z-index: 4;
     top: calc(var(--u) * 39.5);
     text-shadow: 0 1px 12px rgba(6, 10, 20, .9);
     pointer-events: auto;
   }
-  .sw-hero-notes p:first-child { left: calc(var(--u) * 5.6); width: calc(var(--u) * 19); }
-  .sw-hero-notes p + p { right: calc(var(--u) * 4.4); width: calc(var(--u) * 23); text-align: right; }
+  .fo-hero-notes p:first-child { left: calc(var(--u) * 5.6); width: calc(var(--u) * 19); }
+  .fo-hero-notes p + p { right: calc(var(--u) * 4.4); width: calc(var(--u) * 23); text-align: right; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sw-hero-flower-svg { animation: none; }
+  .fo-hero-flower-svg { animation: none; }
 }
