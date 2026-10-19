@@ -170,7 +170,7 @@ export type CopyKey = keyof typeof copy;
 export const projectCopy = {
   "en": [
     {
-      "subtitle": "From a cost problem to a working price tool",
+      "subtitle": "Search construction material prices and see a 1–3 month forecast.",
       "category": "WEB DEVELOPMENT · MATERIAL PRICE DATA",
       "description": "I proposed this project after looking into construction cost uncertainty. The web app is finished; the backend and the price forecasting model are what I’m building next.",
       "status": "Frontend done · backend & ML in progress",
@@ -191,7 +191,7 @@ export const projectCopy = {
       "alt": "Actual screenshot of the THAI TAY home page"
     },
     {
-      "subtitle": "From farmers’ questions to answers grounded in real data",
+      "subtitle": "Ask a Thai chatbot about growing crops and get answers from government data.",
       "category": "DATA ENGINEERING · RAG · FRONTEND",
       "description": "A Thai chatbot that answers crop questions from government data. I prepared the data across all 77 provinces, built the frontend, and later fixed the retrieval and deployed the whole AI pipeline.",
       "status": "Team project · live demo",
@@ -212,7 +212,7 @@ export const projectCopy = {
       "alt": "Actual screenshot of the Economic Crops Chat landing page"
     },
     {
-      "subtitle": "Listening first. Building for both sides of the shop.",
+      "subtitle": "An online store with a shop front for customers and an admin side for the owner.",
       "category": "FULL-STACK · C# · E-COMMERCE",
       "description": "What I’m proudest of is translating user requirements into a C# store that considers both the people shopping and the people running it.",
       "status": "Full-stack project",
@@ -233,7 +233,7 @@ export const projectCopy = {
       "alt": "Actual screenshot of the deployed OTW.SHOP storefront"
     },
     {
-      "subtitle": "Prices people can follow. Addresses that stay private.",
+      "subtitle": "Find an air-con cleaner nearby and compare prices before you book.",
       "category": "FULL-STACK · C# · MARKETPLACE",
       "description": "A marketplace I built on my own that matches people who need their air conditioner cleaned with technicians nearby, with technician memberships paid for real through PromptPay.",
       "status": "Live · full-stack project",
@@ -254,7 +254,7 @@ export const projectCopy = {
       "alt": "Actual screenshot of the deployed AirClean landing page"
     },
     {
-      "subtitle": "Turn up alone. Leave with a team.",
+      "subtitle": "Find people to play football with, or fill the gaps in your team.",
       "category": "FULL-STACK · NODE.JS · FOOTBALL COMMUNITY",
       "description": "A full-stack web app I built on my own for finding people to play football with. Players join parties, hosts manage their team, and field owners list their pitches.",
       "status": "Live · full-stack project",
@@ -277,7 +277,7 @@ export const projectCopy = {
   ],
   "th": [
     {
-      "subtitle": "จากปัญหาต้นทุน สู่เครื่องมือดูราคาวัสดุ",
+      "subtitle": "ค้นราคาวัสดุก่อสร้าง และดูราคาคาดการณ์ล่วงหน้า 1–3 เดือน",
       "category": "พัฒนาเว็บ · ข้อมูลราคาวัสดุ",
       "description": "ผมเป็นคนเสนอไอเดียนี้กับทีม หลังมองเห็นความไม่แน่นอนของต้นทุนก่อสร้าง ตอนนี้หน้าเว็บเสร็จแล้ว ส่วน Backend และโมเดลพยากรณ์ราคาเป็นงานที่กำลังทำต่อ",
       "status": "หน้าเว็บเสร็จแล้ว · กำลังทำ Backend และ ML",
@@ -298,7 +298,7 @@ export const projectCopy = {
       "alt": "ภาพหน้าจอจริงของหน้าแรกเว็บไซต์ THAI TAY"
     },
     {
-      "subtitle": "จากคำถามของเกษตรกร สู่คำตอบที่อ้างอิงข้อมูลจริง",
+      "subtitle": "ถามแชตบอตเรื่องปลูกพืชเป็นภาษาไทย แล้วได้คำตอบจากข้อมูลหน่วยงานรัฐ",
       "category": "DATA ENGINEERING · RAG · FRONTEND",
       "description": "แชตบอตภาษาไทยที่ตอบเรื่องปลูกพืชจากข้อมูลหน่วยงานรัฐ ผมเตรียมข้อมูลครอบคลุม 77 จังหวัด ทำหน้าเว็บ และภายหลังกลับมาแก้ระบบค้นข้อมูลพร้อม deploy ระบบ AI ทั้งชุด",
       "status": "โปรเจกต์กลุ่ม · มีเดโมให้ลอง",
@@ -319,7 +319,7 @@ export const projectCopy = {
       "alt": "ภาพหน้าจอจริงของหน้าแรก Economic Crops Chat"
     },
     {
-      "subtitle": "ฟังผู้ใช้ แล้วออกแบบให้เข้าใจทั้งคนซื้อและคนขาย",
+      "subtitle": "ร้านค้าออนไลน์ที่มีหน้าร้านให้ลูกค้า และหลังบ้านให้คนดูแลร้าน",
       "category": "FULL-STACK · C# · ร้านค้าออนไลน์",
       "description": "จุดที่ผมภูมิใจคือการรับความต้องการจากผู้ใช้ แล้วนำมาพัฒนาเป็นร้านค้าด้วย C# ที่ใส่ใจทั้งฝั่งลูกค้าและคนดูแลร้าน",
       "status": "โปรเจกต์ Full-stack",
@@ -340,7 +340,7 @@ export const projectCopy = {
       "alt": "ภาพหน้าจอจริงของเว็บไซต์ร้านค้า OTW.SHOP ที่เผยแพร่แล้ว"
     },
     {
-      "subtitle": "ราคาที่ตามเข้าใจได้ ที่อยู่ที่ไม่หลุดก่อนเวลา",
+      "subtitle": "หาช่างล้างแอร์ใกล้บ้าน เทียบราคาได้ก่อนเลือก",
       "category": "FULL-STACK · C# · แพลตฟอร์มจับคู่",
       "description": "แพลตฟอร์มที่ผมพัฒนาคนเดียว จับคู่คนที่อยากล้างแอร์กับช่างใกล้บ้าน และเก็บค่าสมาชิกช่างผ่านพร้อมเพย์ได้จริง",
       "status": "เปิดใช้งานจริง · โปรเจกต์ Full-stack",
@@ -361,7 +361,7 @@ export const projectCopy = {
       "alt": "ภาพหน้าจอจริงของหน้าแรกเว็บไซต์ AirClean"
     },
     {
-      "subtitle": "มาคนเดียวก็มีทีม",
+      "subtitle": "หาเพื่อนเตะบอล หรือหาคนมาเติมทีมให้ครบ",
       "category": "FULL-STACK · NODE.JS · ชุมชนฟุตบอล",
       "description": "เว็บ Full-stack ที่ผมพัฒนาคนเดียว สำหรับหาเพื่อนเตะบอล ผู้เล่นขอเข้าร่วมปาร์ตี้ หัวตี้จัดการทีม และเจ้าของสนามลงข้อมูลสนามของตัวเองได้",
       "status": "เปิดใช้งานจริง · โปรเจกต์ Full-stack",
