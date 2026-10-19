@@ -4,6 +4,7 @@ import { LanguageProvider } from "@/lib/language";
 import StatusSite from "@/src/sw/StatusSite";
 import "@/src/globals.css";
 import "@/src/sw/status.css";
+import "@/src/sw/hero.css";
 
 const root = document.getElementById("root");
 if (!root) throw new Error("Missing #root");

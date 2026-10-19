@@ -10,6 +10,7 @@ import { identity, identityCopy } from "@/src/v2/content/identity";
 import { stack } from "@/src/v2/content/stack";
 import { projectHref } from "@/src/v2/lib/routes";
 import { pick, questTypeLabel, questTypes, sw } from "@/src/sw/content";
+import Hero from "@/src/sw/Hero";
 import Window from "@/src/sw/Window";
 
 type Project = ReturnType<typeof getProjects>[number];
@@ -26,6 +27,7 @@ export default function Home({ projects, onOpen }: { projects: Project[]; onOpen
   };
   return (
     <main id="main-content">
+      <Hero />
       <Status projects={projects} />
       <QuestLog projects={projects} open={open} />
       <Skills />
@@ -63,7 +65,7 @@ function Status({ projects }: { projects: Project[] }) {
   const values = identityCopy[language].values;
 
   return (
-    <section className="sw-section sw-status" id="home" aria-labelledby="sw-name">
+    <section className="sw-section sw-status" id="status" aria-labelledby="sw-name">
       <p className="sw-system" aria-hidden="true">
         <span className="sw-system-tag">SYSTEM</span>
         <span className="sw-typing">{pick(sw.system, language)}</span>
@@ -74,7 +76,7 @@ function Status({ projects }: { projects: Project[] }) {
           className="sw-status-main"
           meta={<span className="sw-online"><span className="sw-online-dot" aria-hidden="true" />{pick(sw.available, language)}</span>}
         >
-          <h1 id="sw-name" className="sw-name">{identity.name}</h1>
+          <h2 id="sw-name" className="sw-name">{identity.name}</h2>
           <p className="sw-name-th" lang="th">{sw.thaiName}</p>
           <dl className="sw-rows">
             {rows.map((row) => (

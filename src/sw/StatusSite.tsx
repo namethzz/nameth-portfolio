@@ -49,7 +49,7 @@ export default function StatusSite() {
   }
 
   const navigation = [
-    { id: "home", label: pick(sw.nav.status, language) },
+    { id: "status", label: pick(sw.nav.status, language) },
     { id: "work", label: pick(sw.nav.quests, language) },
     { id: "skills", label: pick(sw.nav.skills, language) },
     { id: "about", label: pick(sw.nav.passives, language) },
