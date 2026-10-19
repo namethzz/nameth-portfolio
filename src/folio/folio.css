@@ -218,55 +218,6 @@ body { background: #0b0f19; }
 .fo-contact-list svg { flex: none; width: 18px; height: 18px; }
 .fo-contact-torus { width: 100%; }
 
-/* PROJECT PAGE. */
-.fo-back { display: inline-flex; align-items: center; gap: 8px; margin-bottom: clamp(28px, 4vw, 48px); font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--head); }
-.fo-back svg { width: 17px; height: 17px; transition: transform .25s; }
-.fo-back:hover svg { transform: translateX(-4px); }
-.fo-detail-cover .fo-heading { margin-bottom: clamp(20px, 3vw, 36px); }
-.fo-detail-intro { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; margin-bottom: clamp(32px, 4vw, 56px); }
-.fo-detail-subtitle { max-width: 34em; font-size: clamp(17px, 1.6vw, 24px); font-weight: 500; line-height: 1.45; color: var(--head); }
-.fo-detail-shot { aspect-ratio: 16 / 9; }
-.fo-detail-story .fo-wrap { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.6fr); gap: 5cqi; align-items: start; }
-.fo-detail-facts { display: grid; gap: 14px; position: sticky; top: calc(var(--fo-header) + 24px); }
-.fo-detail-facts .fo-label { margin-bottom: 10px; font-size: 14px; }
-.fo-detail-facts p { font-size: 15px; }
-.fo-detail-stage { font-size: 13.5px; color: var(--dim); }
-.fo-detail-body { display: grid; gap: 24px; }
-.fo-points { display: grid; gap: 22px; counter-reset: fo-point; }
-.fo-points li { position: relative; padding-left: clamp(52px, 5vw, 72px); font-size: clamp(15px, 1.1vw, 17px); line-height: 1.7; counter-increment: fo-point; }
-.fo-points li::before { content: counter(fo-point, decimal-leading-zero); position: absolute; left: 0; top: -.1em; font: 400 clamp(28px, 2.6vw, 40px)/1 var(--fo-display); color: var(--head); }
-.fo-note { padding: 4px 0 4px 18px; border-left: 4px solid var(--head); font-size: 16px; font-weight: 500; }
-.fo-detail-screens .fo-heading, .fo-detail-code .fo-heading { margin-bottom: clamp(28px, 4vw, 56px); }
-.fo-shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 32px); }
-.fo-shot.is-wide { grid-column: 1 / -1; }
-.fo-shot .fo-photo { aspect-ratio: 16 / 10; }
-.fo-shot.is-wide .fo-photo { aspect-ratio: 16 / 8; }
-.fo-shot-caption { margin-top: 10px; font-size: 14px; color: var(--dim); }
-.fo-code-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; }
-.fo-code-grid > div { height: 100%; }
-.fo-code-card {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  height: 100%;
-  padding: 22px;
-  background: var(--block);
-  box-shadow: inset 0 0 0 2px var(--block);
-  color: var(--block-text);
-  transition: background .3s, color .3s;
-}
-.fo-code-card:hover { background: transparent; color: var(--block); }
-.fo-code-card svg { width: 22px; height: 22px; }
-.fo-code-card strong { font-size: 16px; font-weight: 600; }
-.fo-code-card > span { font-size: 14px; line-height: 1.6; }
-.fo-code-card .fo-code-visit { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 6px; font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
-.fo-detail-next .fo-wrap { display: grid; justify-items: start; }
-.fo-next-link { display: flex; align-items: flex-end; gap: 2cqi; margin-bottom: 28px; }
-.fo-next-arrow { flex: none; width: clamp(40px, 6vw, 96px); height: auto; color: var(--head); transition: transform .35s cubic-bezier(.22, 1, .36, 1); }
-.fo-next-link:hover .fo-next-arrow { transform: translateX(12px); }
-.fo-detail-torus { position: absolute; right: calc(var(--fo-gutter) * -.5); top: 50%; width: min(28vw, 400px); translate: 0 -50%; z-index: -1; }
-.fo-detail-next .fo-back { margin-bottom: 0; }
-
 /* Footer. */
 .fo-footer {
   display: flex;
@@ -306,9 +257,6 @@ body { background: #0b0f19; }
   .fo-experience-head .fo-heading-label { text-align: left; }
   .fo-contact-body { grid-template-columns: minmax(0, 1fr); }
   .fo-contact-torus { width: 70%; margin-inline: auto; }
-  .fo-detail-story .fo-wrap { grid-template-columns: minmax(0, 1fr); }
-  .fo-detail-facts { position: static; }
-  .fo-detail-torus { opacity: .5; }
 }
 /* Phone. */
 @media (max-width: 760px) {
@@ -328,5 +276,5 @@ body { background: #0b0f19; }
   .fo-nav a { flex: none; }
 }
 @media (max-width: 560px) {
-  .fo-roles, .fo-contact-list, .fo-shots { grid-template-columns: minmax(0, 1fr); }
+  .fo-roles, .fo-contact-list { grid-template-columns: minmax(0, 1fr); }
 }

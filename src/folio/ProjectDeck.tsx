@@ -145,7 +145,7 @@ function ProjectCard({ project, index, total, open }: { project: Project; index:
 }
 
 /** A browser window that steps through the project's real screens; tap a tab to pick one. */
-function Screens({ project }: { project: Project }) {
+export function Screens({ project, className }: { project: Project; className?: string }) {
   const { language } = useLanguage();
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -163,7 +163,7 @@ function Screens({ project }: { project: Project }) {
   }, [reduce, inView, paused, list.length]);
 
   return (
-    <div className="fo-screens" ref={ref} onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)}>
+    <div className={"fo-screens" + (className ? ` ${className}` : "")} ref={ref} onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)}>
       <div className="fo-browser">
         <div className="fo-browser-bar">
           <span className="fo-browser-dots" aria-hidden="true"><i /><i /><i /></span>

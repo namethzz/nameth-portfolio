@@ -115,7 +115,7 @@ export default function Site() {
           project={project}
           index={routeIndex}
           total={projects.length}
-          nextName={projects[(routeIndex + 1) % projects.length].name}
+          next={projects[(routeIndex + 1) % projects.length]}
           onBack={() => goHome("work")}
           onOpen={openProject}
         />
