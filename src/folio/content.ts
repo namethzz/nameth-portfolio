@@ -52,14 +52,41 @@ export const folio = {
     ],
   },
   about: {
-    pass: {
-      title: { en: "Developer pass", th: "บัตรประจำตัวนักพัฒนา" },
+    card: {
+      title: { en: "Developer ID", th: "บัตรประจำตัวนักพัฒนา" },
       number: "NW-2027-CS",
-      surname: { en: "Surname", th: "นามสกุล" },
-      given: { en: "Given name", th: "ชื่อ" },
-      thai: { en: "Name in Thai", th: "ชื่อภาษาไทย" },
-      photoAlt: { en: "Nameth Wongmongkol", th: "ณเมธ วงค์มงคล" },
-      mrz: ["P<THAWONGMONGKOL<<NAMETH<<<<<<<<<<<<<<<<<<<<", "NW2027CS<<SPU<FULLSTACK<DATA<AI<<<<<<<<<<<<<0"],
+      photoAlt: { en: "ID photo of Nameth Wongmongkol", th: "รูปประจำตัวของณเมธ วงค์มงคล" },
+      flip: { en: "Flip the card", th: "พลิกบัตร" },
+      flipBack: { en: "Flip back", th: "พลิกกลับ" },
+    },
+    photos: {
+      hint: { en: "Tap or swipe the photos", th: "แตะหรือปัดรูปเพื่อดูใบถัดไป" },
+      items: [
+        {
+          src: "assets/about/sports.webp",
+          width: 720,
+          height: 900,
+          caption: { en: "Game day. Sports, as part of a team.", th: "วันแข่ง กีฬาที่ได้เล่นเป็นทีม" },
+          alt: { en: "Nameth holding a ball on a sports field", th: "ณเมธถือลูกบอลอยู่ในสนามกีฬา" },
+          tag: "#teamsports",
+        },
+        {
+          src: "assets/about/mountain.webp",
+          width: 900,
+          height: 1125,
+          caption: { en: "Morning above a sea of mist.", th: "เช้าที่ได้มองทะเลหมอก" },
+          alt: { en: "Selfie of Nameth with misty mountains behind", th: "ณเมธถ่ายเซลฟี่โดยมีภูเขาและทะเลหมอกด้านหลัง" },
+          tag: "#offline",
+        },
+        {
+          src: "assets/about/swing.webp",
+          width: 900,
+          height: 1125,
+          caption: { en: "Away from the keyboard.", th: "วันที่ได้พักจากหน้าจอ" },
+          alt: { en: "Nameth in sunglasses on a garden swing", th: "ณเมธใส่แว่นกันแดดนั่งบนชิงช้าในสวน" },
+          tag: "#weekend",
+        },
+      ],
     },
     facts: [
       { key: { en: "Focus", th: "สายงาน" }, value: { en: "Full-stack · Data & AI engineering", th: "Full-stack · Data & AI Engineering" } },

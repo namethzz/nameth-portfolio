@@ -8,7 +8,7 @@ import { EMAIL, GITHUB, HANDLE, folio, pick, sections } from "@/src/folio/conten
 import { Globe, Marquee, Torus } from "@/src/folio/decor";
 import Hero from "@/src/folio/Hero";
 import Index from "@/src/folio/Index";
-import Passport from "@/src/folio/Passport";
+import About from "@/src/folio/About";
 import ProjectDeck from "@/src/folio/ProjectDeck";
 import Route from "@/src/folio/Route";
 import SkillMatrix from "@/src/folio/SkillMatrix";
@@ -35,7 +35,7 @@ export default function Home({ projects, onOpen }: { projects: Project[]; onOpen
       <Marquee items={folio.marquee.intro} />
       <Index />
       <Introduction />
-      <Passport />
+      <About />
       <Route />
       <SkillMatrix projects={projects} />
       <Experience projects={projects} open={open} />

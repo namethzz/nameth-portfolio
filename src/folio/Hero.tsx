@@ -5,7 +5,7 @@ import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import { identity } from "@/src/v2/content/identity";
 import { GITHUB, HANDLE, THAI_NAME } from "@/src/folio/content";
-import { Flower } from "@/src/folio/decor";
+import { Barcode, Flower } from "@/src/folio/decor";
 
 const WORD = "PORTFOLIO".split("");
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -161,26 +161,5 @@ export default function Hero() {
         <motion.p {...enter(1.35, { y: 16 })}>{t("about3")}</motion.p>
       </div>
     </section>
-  );
-}
-
-/** Bars drawn from the code's characters, so the sticker reads like a real label. */
-function Barcode({ code }: { code: string }) {
-  const bars: { x: number; w: number }[] = [];
-  let x = 0;
-  for (const char of `*${code}*`) {
-    const value = char.charCodeAt(0);
-    for (let bit = 0; bit < 5; bit += 1) {
-      const wide = (value >> bit) & 1;
-      const w = wide ? 2.4 : 1;
-      bars.push({ x, w });
-      x += w + (bit % 2 ? 1.6 : 1);
-    }
-    x += 1.2;
-  }
-  return (
-    <svg viewBox={`0 0 ${x} 30`} preserveAspectRatio="none" focusable="false">
-      {bars.map((bar, index) => <rect key={index} x={bar.x} y={0} width={bar.w} height={30} />)}
-    </svg>
   );
 }
