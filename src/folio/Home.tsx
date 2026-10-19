@@ -1,12 +1,12 @@
 import type { MouseEvent } from "react";
-import { TbBrandGithub, TbDownload, TbMail } from "react-icons/tb";
 import { assetUrl } from "@/lib/assets";
 import { useLanguage } from "@/lib/language";
 import type { getProjects } from "@/lib/projects";
 import { projectHref } from "@/src/v2/lib/routes";
-import { EMAIL, GITHUB, HANDLE, folio, pick, sections } from "@/src/folio/content";
+import { folio, pick, sections } from "@/src/folio/content";
 import { Globe, Marquee, Torus } from "@/src/folio/decor";
 import Ending from "@/src/folio/Ending";
+import Contact from "@/src/folio/Contact";
 import Hero from "@/src/folio/Hero";
 import Index from "@/src/folio/Index";
 import Mindset from "@/src/folio/Mindset";
@@ -18,9 +18,6 @@ import { Heading, Photo, Reveal } from "@/src/folio/motion";
 
 type Project = ReturnType<typeof getProjects>[number];
 type Open = (index: number) => (event: MouseEvent<HTMLAnchorElement>) => void;
-
-/** Display names for the giant project words, split where the print layout would break them. */
-const PROJECT_WORDS = ["THAI TAY", "ECONOMIC\nCROPS CHAT", "OTW.SHOP", "AIRCLEAN", "KICKHUB"];
 
 /**
  * The homepage, laid out like the printed portfolio: navy and pale-blue
@@ -93,42 +90,6 @@ function Experience({ projects, open }: { projects: Project[]; open: Open }) {
               </Reveal>
             ))}
           </ol>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Contact() {
-  const { language, t } = useLanguage();
-  const c = folio.contact;
-  return (
-    <section className="fo-section is-mist fo-contact" id="contact" aria-labelledby="fo-contact-title">
-      <div className="fo-wrap">
-        <Heading id="fo-contact-title" word={sections.contact.word} label={pick(sections.contact.label, language)} fit={88} />
-        <div className="fo-contact-body">
-          <div>
-            <Reveal as="p" className="fo-lead">{t("contactIntro")}</Reveal>
-            <dl className="fo-contact-list">
-              <Reveal>
-                <dt>{pick(c.email, language)}</dt>
-                <dd><a href={`mailto:${EMAIL}`}><TbMail aria-hidden="true" /> {EMAIL}</a></dd>
-              </Reveal>
-              <Reveal delay={0.05}>
-                <dt>{pick(c.github, language)}</dt>
-                <dd><a href={GITHUB} target="_blank" rel="noopener noreferrer"><TbBrandGithub aria-hidden="true" /> {HANDLE}</a></dd>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <dt>{pick(c.resume, language)}</dt>
-                <dd><a href={assetUrl("assets/resume.pdf")} download="resume.pdf"><TbDownload aria-hidden="true" /> {pick(c.resumeValue, language)}</a></dd>
-              </Reveal>
-              <Reveal delay={0.15}>
-                <dt>{pick(c.available, language)}</dt>
-                <dd>{pick(folio.about.facts[3].value, language)}</dd>
-              </Reveal>
-            </dl>
-          </div>
-          <Torus className="fo-contact-torus" />
         </div>
       </div>
     </section>

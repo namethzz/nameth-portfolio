@@ -212,15 +212,6 @@ body { background: #0b0f19; }
 .fo-role-status { margin-top: 4px; font-size: 13px; color: var(--dim); }
 
 /* CONTACT ME. */
-.fo-contact-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); gap: 4cqi; align-items: center; margin-top: clamp(32px, 5vw, 72px); }
-.fo-contact-body .fo-lead { max-width: 34em; margin-bottom: clamp(28px, 4vw, 48px); }
-.fo-contact-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 4cqi; }
-.fo-contact-list dt { font-size: clamp(16px, 1.4vw, 21px); font-weight: 700; color: var(--head); }
-.fo-contact-list dd { font-size: clamp(15px, 1.2vw, 18px); overflow-wrap: anywhere; }
-.fo-contact-list a { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; transition: background-size .35s; }
-.fo-contact-list a:hover { background-size: 100% 1.5px; }
-.fo-contact-list svg { flex: none; width: 18px; height: 18px; }
-.fo-contact-torus { width: 100%; }
 
 /* Footer. */
 .fo-footer {
@@ -259,8 +250,6 @@ body { background: #0b0f19; }
   .fo-experience-head { flex-direction: column-reverse; align-items: stretch; }
   .fo-experience-head .fo-heading .fo-fit-line { justify-content: flex-start; }
   .fo-experience-head .fo-heading-label { text-align: left; }
-  .fo-contact-body { grid-template-columns: minmax(0, 1fr); }
-  .fo-contact-torus { width: 70%; margin-inline: auto; }
 }
 /* Phone. */
 @media (max-width: 760px) {
@@ -280,5 +269,5 @@ body { background: #0b0f19; }
   .fo-nav a { flex: none; }
 }
 @media (max-width: 560px) {
-  .fo-roles, .fo-contact-list { grid-template-columns: minmax(0, 1fr); }
+  .fo-roles { grid-template-columns: minmax(0, 1fr); }
 }

@@ -5,7 +5,7 @@ import { useLanguage } from "@/lib/language";
 import { getProjects } from "@/lib/projects";
 import { identity } from "@/src/v2/content/identity";
 import { getProjectIndex, homePath, projectHref, sectionHref } from "@/src/v2/lib/routes";
-import { EMAIL, GITHUB, folio, pick } from "@/src/folio/content";
+import { EMAIL, FACEBOOK, GITHUB, INSTAGRAM, folio, pick } from "@/src/folio/content";
 import Home from "@/src/folio/Home";
 import ProjectPage from "@/src/folio/ProjectPage";
 
@@ -128,6 +128,8 @@ export default function Site() {
         <span className="fo-footer-links">
           <a href={`mailto:${EMAIL}`}>Email</a>
           <a href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={FACEBOOK} target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagram</a>
           <a href={project ? sectionHref("home") : "#home"}>{pick(folio.top, language)} ↑</a>
         </span>
       </footer>

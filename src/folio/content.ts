@@ -11,6 +11,8 @@ type Localized = Record<Language, string>;
 export const EMAIL = "nameth.won@spumail.net";
 export const GITHUB = "https://github.com/namethzz";
 export const HANDLE = "@namethzz";
+export const FACEBOOK = "https://www.facebook.com/nameth.wongmongkol";
+export const INSTAGRAM = "https://www.instagram.com/nameth_z/";
 export const THAI_NAME = "ณเมธ วงค์มงคล";
 
 /** Section ids in page order, with their giant word (lines split on \n). Projects follow as project-1 … project-5. */
@@ -287,11 +289,17 @@ export const folio = {
     file: { en: "Source file", th: "ไฟล์โค้ด" },
   },
   contact: {
-    email: { en: "Email address", th: "อีเมล" },
-    github: { en: "GitHub", th: "GitHub" },
-    resume: { en: "Résumé", th: "เรซูเม่" },
-    resumeValue: { en: "Download PDF", th: "ดาวน์โหลด PDF" },
-    available: { en: "Available", th: "ช่วงฝึกงาน" },
+    status: { en: "Open to internships · Jan 4 – Apr 23, 2027", th: "เปิดรับฝึกงาน · 4 ม.ค. – 23 เม.ย. 2570" },
+    lead: {
+      en: "Want me on your team as an intern, or curious about one of these projects? Message me on any of these.",
+      th: "อยากชวนผมไปฝึกงาน หรือสนใจโปรเจกต์ไหนในนี้ ทักมาได้ทุกช่องทางเลยครับ",
+    },
+    email: { en: "Email", th: "อีเมล" },
+    send: { en: "Send an email", th: "ส่งอีเมล" },
+    copy: { en: "Copy", th: "คัดลอก" },
+    copied: { en: "Copied", th: "คัดลอกแล้ว" },
+    socials: { en: "Elsewhere", th: "ช่องทางอื่น" },
+    resume: { en: "Download résumé (PDF)", th: "ดาวน์โหลดเรซูเม่ (PDF)" },
   },
 } as const;
 
