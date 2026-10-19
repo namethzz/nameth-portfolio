@@ -170,7 +170,7 @@ export type CopyKey = keyof typeof copy;
 export const projectCopy = {
   "en": [
     {
-      "subtitle": "Search construction material prices and see a 1–3 month forecast.",
+      "subtitle": "From a cost problem to a working price tool",
       "category": "WEB DEVELOPMENT · MATERIAL PRICE DATA",
       "description": "I proposed this project after looking into construction cost uncertainty. The web app is finished; the backend and the price forecasting model are what I’m building next.",
       "status": "Frontend done · backend & ML in progress",
@@ -191,7 +191,7 @@ export const projectCopy = {
       "alt": "Actual screenshot of the THAI TAY home page"
     },
     {
-      "subtitle": "Ask a Thai chatbot about growing crops and get answers from government data.",
+      "subtitle": "From farmers’ questions to answers grounded in real data",
       "category": "DATA ENGINEERING · RAG · FRONTEND",
       "description": "A Thai chatbot that answers crop questions from government data. I prepared the data across all 77 provinces, built the frontend, and later fixed the retrieval and deployed the whole AI pipeline.",
       "status": "Team project · live demo",
@@ -212,7 +212,7 @@ export const projectCopy = {
       "alt": "Actual screenshot of the Economic Crops Chat landing page"
     },
     {
-      "subtitle": "An online store with a shop front for customers and an admin side for the owner.",
+      "subtitle": "Listening first. Building for both sides of the shop.",
       "category": "FULL-STACK · C# · E-COMMERCE",
       "description": "What I’m proudest of is translating user requirements into a C# store that considers both the people shopping and the people running it.",
       "status": "Full-stack project",
@@ -254,7 +254,7 @@ export const projectCopy = {
       "alt": "Actual screenshot of the deployed AirClean landing page"
     },
     {
-      "subtitle": "Find people to play football with, or fill the gaps in your team.",
+      "subtitle": "Turn up alone. Leave with a team.",
       "category": "FULL-STACK · NODE.JS · FOOTBALL COMMUNITY",
       "description": "A full-stack web app I built on my own for finding people to play football with. Players join parties, hosts manage their team, and field owners list their pitches.",
       "status": "Live · full-stack project",
@@ -277,7 +277,7 @@ export const projectCopy = {
   ],
   "th": [
     {
-      "subtitle": "ค้นราคาวัสดุก่อสร้าง และดูราคาคาดการณ์ล่วงหน้า 1–3 เดือน",
+      "subtitle": "จากปัญหาต้นทุน สู่เครื่องมือดูราคาวัสดุ",
       "category": "พัฒนาเว็บ · ข้อมูลราคาวัสดุ",
       "description": "ผมเป็นคนเสนอไอเดียนี้กับทีม หลังมองเห็นความไม่แน่นอนของต้นทุนก่อสร้าง ตอนนี้หน้าเว็บเสร็จแล้ว ส่วน Backend และโมเดลพยากรณ์ราคาเป็นงานที่กำลังทำต่อ",
       "status": "หน้าเว็บเสร็จแล้ว · กำลังทำ Backend และ ML",
@@ -298,7 +298,7 @@ export const projectCopy = {
       "alt": "ภาพหน้าจอจริงของหน้าแรกเว็บไซต์ THAI TAY"
     },
     {
-      "subtitle": "ถามแชตบอตเรื่องปลูกพืชเป็นภาษาไทย แล้วได้คำตอบจากข้อมูลหน่วยงานรัฐ",
+      "subtitle": "จากคำถามของเกษตรกร สู่คำตอบที่อ้างอิงข้อมูลจริง",
       "category": "DATA ENGINEERING · RAG · FRONTEND",
       "description": "แชตบอตภาษาไทยที่ตอบเรื่องปลูกพืชจากข้อมูลหน่วยงานรัฐ ผมเตรียมข้อมูลครอบคลุม 77 จังหวัด ทำหน้าเว็บ และภายหลังกลับมาแก้ระบบค้นข้อมูลพร้อม deploy ระบบ AI ทั้งชุด",
       "status": "โปรเจกต์กลุ่ม · มีเดโมให้ลอง",
@@ -319,7 +319,7 @@ export const projectCopy = {
       "alt": "ภาพหน้าจอจริงของหน้าแรก Economic Crops Chat"
     },
     {
-      "subtitle": "ร้านค้าออนไลน์ที่มีหน้าร้านให้ลูกค้า และหลังบ้านให้คนดูแลร้าน",
+      "subtitle": "ฟังผู้ใช้ แล้วออกแบบให้เข้าใจทั้งคนซื้อและคนขาย",
       "category": "FULL-STACK · C# · ร้านค้าออนไลน์",
       "description": "จุดที่ผมภูมิใจคือการรับความต้องการจากผู้ใช้ แล้วนำมาพัฒนาเป็นร้านค้าด้วย C# ที่ใส่ใจทั้งฝั่งลูกค้าและคนดูแลร้าน",
       "status": "โปรเจกต์ Full-stack",
@@ -361,7 +361,7 @@ export const projectCopy = {
       "alt": "ภาพหน้าจอจริงของหน้าแรกเว็บไซต์ AirClean"
     },
     {
-      "subtitle": "หาเพื่อนเตะบอล หรือหาคนมาเติมทีมให้ครบ",
+      "subtitle": "มาคนเดียวก็มีทีม",
       "category": "FULL-STACK · NODE.JS · ชุมชนฟุตบอล",
       "description": "เว็บ Full-stack ที่ผมพัฒนาคนเดียว สำหรับหาเพื่อนเตะบอล ผู้เล่นขอเข้าร่วมปาร์ตี้ หัวตี้จัดการทีม และเจ้าของสนามลงข้อมูลสนามของตัวเองได้",
       "status": "เปิดใช้งานจริง · โปรเจกต์ Full-stack",
