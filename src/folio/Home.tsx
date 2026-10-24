@@ -10,6 +10,7 @@ import Contact from "@/src/folio/Contact";
 import Hero from "@/src/folio/Hero";
 import Index from "@/src/folio/Index";
 import Mindset from "@/src/folio/Mindset";
+import Workflow from "@/src/folio/Workflow";
 import About from "@/src/folio/About";
 import ProjectDeck from "@/src/folio/ProjectDeck";
 import Route from "@/src/folio/Route";
@@ -35,6 +36,7 @@ export default function Home({ projects, onOpen }: { projects: Project[]; onOpen
       <Index />
       <Introduction />
       <Mindset />
+      <Workflow projects={projects} />
       <About />
       <Route />
       <Skills projects={projects} />

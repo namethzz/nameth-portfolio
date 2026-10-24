@@ -1,5 +1,5 @@
-/* MINDSET and ENDING: the level-up story with a game HUD beside it, and
-   the closing screen with the proverb. */
+/* MINDSET, WORKFLOW and ENDING: the level-up story with a game HUD beside
+   it, the four steps of how I work, and the closing screen with the proverb. */
 .fo-mindset-head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 5cqi; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
 .fo-mindset-head .fo-lead { color: #c9d5e1; }
 .fo-mindset-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 5cqi; align-items: start; }
@@ -51,6 +51,21 @@
 .fo-stage-title { font-size: clamp(19px, 1.7vw, 24px); font-weight: 700; line-height: 1.25; color: #fff; }
 .fo-stage p { margin-top: 8px; font-size: clamp(15px, 1.1vw, 17px); line-height: 1.7; color: #c3cfdb; }
 
+/* WORKFLOW: four numbered steps, ruled like a printed checklist. */
+.fo-workflow-head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 5cqi; align-items: end; margin-bottom: clamp(40px, 5vw, 72px); }
+.fo-workflow-head .fo-lead { color: var(--dim); }
+.fo-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 5cqi; border-top: 3px solid var(--navy); }
+.fo-step { display: grid; grid-template-columns: clamp(48px, 5.2vw, 88px) minmax(0, 1fr); gap: clamp(16px, 2vw, 32px); padding-block: clamp(24px, 3vw, 44px); border-bottom: 1px solid var(--rule); }
+.fo-step-num { font: 400 clamp(48px, 5.2vw, 88px)/.85 var(--fo-display); color: var(--red); }
+.fo-step-body { display: grid; gap: 10px; align-content: start; justify-items: start; }
+.fo-step-title { display: flex; align-items: flex-start; gap: 10px; font-size: clamp(19px, 1.7vw, 24px); font-weight: 700; line-height: 1.25; color: var(--navy); }
+.fo-step-title svg { flex: none; width: 1.1em; height: 1.1em; margin-top: .08em; color: var(--red); }
+.fo-step p { font-size: clamp(15px, 1.1vw, 17px); line-height: 1.7; color: var(--text); }
+.fo-step-tag { display: inline-flex; align-items: center; gap: 7px; margin-top: 4px; padding: 3px 11px; border: 1px solid var(--rule); border-radius: 999px; color: var(--navy); font-size: 12.5px; font-weight: 600; }
+.fo-step-tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent, var(--navy)); }
+a.fo-step-tag { transition: background .25s, border-color .25s; }
+a.fo-step-tag:hover { border-color: var(--navy); background: rgba(11, 15, 25, .08); }
+
 /* ENDING: thanks for reading. */
 .fo-ending { text-align: center; }
 .fo-ending .fo-wrap { display: grid; justify-items: center; }
@@ -85,7 +100,7 @@
   .fo-endless-bar i { transform: scaleX(.97); }
 }
 @media (max-width: 900px) {
-  .fo-mindset-head { grid-template-columns: minmax(0, 1fr); }
+  .fo-mindset-head, .fo-workflow-head, .fo-steps { grid-template-columns: minmax(0, 1fr); }
   .fo-mindset-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   /* The HUD rides along as a slim bar under the header. */
   .fo-hud {

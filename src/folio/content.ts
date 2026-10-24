@@ -20,6 +20,7 @@ export const sections = {
   contents: { word: "TABLE OF CONTENTS", label: { en: "Table of contents", th: "สารบัญ" } },
   introduction: { word: "INTRODUCTION", label: { en: "Introduction", th: "แนะนำตัว" } },
   mindset: { word: "LEVEL UP", label: { en: "How I think", th: "วิธีคิดของผม" } },
+  workflow: { word: "HOW I WORK", label: { en: "How I work", th: "วิธีทำงานของผม" } },
   about: { word: "NAMETH\nWONGMONGKOL", label: { en: "About me", th: "เกี่ยวกับผม" } },
   education: { word: "EDUCATION", label: { en: "Education", th: "การศึกษา" } },
   skills: { word: "PERSONAL\nSKILLS", label: { en: "Personal skills", th: "ทักษะ" } },
@@ -53,6 +54,7 @@ export const folio = {
     items: [
       { href: "introduction", word: "INTRODUCTION", desc: { en: "Where I'm coming from", th: "แนะนำตัว" } },
       { href: "mindset", word: "LEVEL UP", desc: { en: "How I think", th: "วิธีคิดของผม" } },
+      { href: "workflow", word: "HOW I WORK", desc: { en: "How I work", th: "วิธีทำงานของผม" } },
       { href: "about", word: "ABOUT ME", desc: { en: "My ID page", th: "เกี่ยวกับผม" } },
       { href: "education", word: "EDUCATION", desc: { en: "The route so far", th: "เส้นทางการเรียน" } },
       { href: "skills", word: "SKILLS", desc: { en: "Tools, with proof", th: "ทักษะพร้อมหลักฐาน" } },
@@ -233,6 +235,45 @@ export const folio = {
           en: "I'm proud of each project I've made, because I thought each one through many times.",
           th: "ผมภูมิใจกับงานทุกชิ้นที่ได้ทำ เพราะแต่ละงานผ่านการคิดมาหลายรอบมาก",
         },
+      },
+    ],
+  },
+  workflow: {
+    lead: {
+      en: "The steps I take on a project, from the first conversation to the finished screen.",
+      th: "ขั้นตอนที่ผมใช้ทำโปรเจกต์ ตั้งแต่คุยโจทย์ครั้งแรกจนได้หน้าจอที่ใช้งานจริง",
+    },
+    steps: [
+      {
+        title: { en: "Understand the problem before writing code", th: "เข้าใจปัญหาก่อนเขียนโค้ด" },
+        text: {
+          en: "I talk to the people who will use the software, write down what they need, and keep asking why until I reach the cause.",
+          th: "ผมคุยกับคนที่จะใช้งานจริง จดว่าเขาต้องการอะไร แล้วถามต่อจนเจอต้นเหตุของปัญหา",
+        },
+      },
+      {
+        title: { en: "Trace problems to the source", th: "ตามหาต้นเหตุ" },
+        text: {
+          en: "In the crop chatbot, some CSV files sat in the wrong province folder. I read the province from the file name first and fall back to the folder.",
+          th: "ไฟล์ CSV บางไฟล์ของแชตบอตพืชอยู่ผิดโฟลเดอร์จังหวัด ผมจึงอ่านจังหวัดจากชื่อไฟล์ก่อน ถ้าไม่มีค่อยดูจากชื่อโฟลเดอร์",
+        },
+        project: 1,
+      },
+      {
+        title: { en: "Design for the customer", th: "ออกแบบให้ลูกค้าใช้ได้จริง" },
+        text: {
+          en: "Screens they understand at a glance, pages that load fast, and nothing that misleads them. THAI TAY shows a \"demo data\" tag on every price, estimate, and shared link until the forecast model exists.",
+          th: "หน้าจอที่ดูแล้วเข้าใจทันที โหลดเร็ว และไม่ทำให้ผู้ใช้เข้าใจผิด THAI TAY ติดป้าย \"ข้อมูลตัวอย่าง\" บนทุกราคา ใบประมาณ และลิงก์ที่ส่งต่อ จนกว่าโมเดลพยากรณ์จะเสร็จ",
+        },
+        project: 0,
+      },
+      {
+        title: { en: "Check security and the details", th: "ใส่ใจความปลอดภัยและรายละเอียด" },
+        text: {
+          en: "I re-read my year-2 e-commerce project, wrote down 20 mistakes, and fixed the 11 that touched security or data correctness.",
+          th: "ผมอ่านโค้ดร้านค้าออนไลน์ที่ทำตอนปี 2 ใหม่ จดข้อผิดพลาดได้ 20 ข้อ แล้วแก้ 11 ข้อที่กระทบความปลอดภัยหรือความถูกต้องของข้อมูล",
+        },
+        tag: { en: "Year-2 e-commerce", th: "ร้านค้าออนไลน์ ปี 2" },
       },
     ],
   },
